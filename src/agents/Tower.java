@@ -2,7 +2,9 @@ package agents;
 
 import javax.swing.ImageIcon;
 
-public abstract class Tower {
+import Utils.Visitor;
+
+public abstract class Tower implements Visitor {
 	protected int threatArea;
 	protected enum TYPE{
 		REGULAR,
@@ -15,5 +17,10 @@ public abstract class Tower {
 	public Tower(int threatArea, int attackSpeed) {
 		this.threatArea = threatArea;
 		this.attackSpeed = attackSpeed;
-	}	
+	}
+	
+	public void hit(Creep creep){
+		creep.impact(this);
+	}
+	
 }
