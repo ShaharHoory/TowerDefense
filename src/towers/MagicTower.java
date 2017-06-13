@@ -19,22 +19,22 @@ public class MagicTower extends Tower {
 
 	@Override
 	public void visit(Guli g) {
-		g.set_hp(g.get_hp()-25);		
+		g.setHp(g.getHp()-25);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		k.set_hp(k.get_hp()-30);		
+		k.setHp(k.getHp()-k.getPoisoningPower()*30);		
 	}
 
 	@Override
 	public void visit(Mike m) {
-		m.set_hp(m.get_hp()-10);		
+		m.setHp(m.getHp()-10);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		n.set_hp(n.get_hp()-10);		
+		n.setHp(n.getHp()-n.getPoisoningPower()*10);		
 	}
 	
 }
