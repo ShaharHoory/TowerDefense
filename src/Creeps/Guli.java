@@ -8,7 +8,7 @@ import agents.Creep;
 public class Guli extends Creep {
 
 	private final static int INIT_SPEED = 1;
-	//private final static ImageIcon ICON = 
+	private final static ImageIcon ICON = new ImageIcon("/sprites/guli-1.png");
 	
 	public Guli() {
 		super(INIT_SPEED, ICON);
