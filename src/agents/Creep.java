@@ -18,6 +18,14 @@ public abstract class Creep implements Visited {
 	
 	public abstract void impact(Visitor v);
 	
+	public int get_hp() {
+		return _hp;
+	}
+
+	public void set_hp(int _hp) {
+		this._hp = _hp;
+	}
+
 	public boolean isDead() {
 		return _hp <= 0;
 	}

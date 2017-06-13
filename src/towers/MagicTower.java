@@ -19,26 +19,22 @@ public class MagicTower extends Tower {
 
 	@Override
 	public void visit(Guli g) {
-		// TODO Auto-generated method stub
-		
+		g.set_hp(g.get_hp()-25);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		// TODO Auto-generated method stub
-		
+		k.set_hp(k.get_hp()-30);		
 	}
 
 	@Override
 	public void visit(Mike m) {
-		// TODO Auto-generated method stub
-		
+		m.set_hp(m.get_hp()-10);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		// TODO Auto-generated method stub
-		
+		n.set_hp(n.get_hp()-10);		
 	}
 	
 }

@@ -18,8 +18,7 @@ public class PoisonTower extends Tower{
 
 	@Override
 	public void visit(Guli g) {
-		// TODO Auto-generated method stub
-		
+		g.set_hp(g.get_hp()-20);		
 	}
 
 	@Override
@@ -30,8 +29,7 @@ public class PoisonTower extends Tower{
 
 	@Override
 	public void visit(Mike m) {
-		// TODO Auto-generated method stub
-		
+		return;		
 	}
 
 	@Override

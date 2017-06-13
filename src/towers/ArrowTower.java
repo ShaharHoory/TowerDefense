@@ -18,25 +18,21 @@ public class ArrowTower extends Tower{
 
 	@Override
 	public void visit(Guli g) {
-		// TODO Auto-generated method stub
-		
+		g.set_hp(g.get_hp()-15);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	@Override
 	public void visit(Mike m) {
-		// TODO Auto-generated method stub
-		
+		m.set_hp(m.get_hp()-30);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		// TODO Auto-generated method stub
-		
+		n.set_hp(n.get_hp()-30);	
 	}
 }
