@@ -2,8 +2,8 @@ package agents;
 
 import javax.swing.ImageIcon;
 
-import Utils.Tickable;
-import Utils.Visitor;
+import utils.Tickable;
+import utils.Visitor;
 
 public abstract class Tower implements Visitor,Tickable {
 	protected int threatArea;

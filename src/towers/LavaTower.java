@@ -2,12 +2,12 @@ package towers;
 
 import javax.swing.ImageIcon;
 
-import Creeps.Guli;
-import Creeps.Knight;
-import Creeps.Mike;
-import Creeps.Naji;
 import agents.Creep;
 import agents.Tower;
+import creeps.Guli;
+import creeps.Knight;
+import creeps.Mike;
+import creeps.Naji;
 
 public class LavaTower extends Tower{
 	

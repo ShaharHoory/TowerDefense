@@ -1,9 +1,9 @@
 package agents;
 import javax.swing.ImageIcon;
 
-import Utils.Tickable;
-import Utils.Visited;
-import Utils.Visitor;
+import utils.Tickable;
+import utils.Visited;
+import utils.Visitor;
 
 public abstract class Creep implements Visited,Tickable {
 

@@ -1,16 +1,16 @@
-package Creeps;
+package creeps;
 
 import javax.swing.ImageIcon;
 
-import Utils.Visitor;
 import agents.Creep;
+import utils.Visitor;
 
-public class Naji extends Creep {
+public class Mike extends Creep {
 
-	private final static int INIT_SPEED = 2;
-	private final static ImageIcon ICON = new ImageIcon(Creep.class.getResource("/naji-1.png"));
+	private final static int INIT_SPEED = 1;
+	private final static ImageIcon ICON = new ImageIcon("/sprites/mike-1.png");
 	
-	public Naji() {
+	public Mike() {
 		super(INIT_SPEED, ICON);
 	}
 

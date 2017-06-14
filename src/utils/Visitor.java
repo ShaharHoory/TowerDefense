@@ -1,6 +1,6 @@
-package Utils;
-import Creeps.*;
+package utils;
 import agents.Creep;
+import creeps.*;
 
 public interface Visitor {
 

@@ -1,9 +1,9 @@
-package Creeps;
+package creeps;
 
 import javax.swing.ImageIcon;
 
-import Utils.Visitor;
 import agents.Creep;
+import utils.Visitor;
 
 public class Knight extends Creep {
 
