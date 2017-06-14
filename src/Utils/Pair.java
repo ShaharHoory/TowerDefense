@@ -13,5 +13,12 @@ public class Pair {
 		_isEnterPoint = isEnterPoint;
 		_isExitPoint = isExitPoint;
 	}
+
+	public Pair(int x, int y) {
+		_x = x;
+		_y = y;
+		_isEnterPoint = false;
+		_isExitPoint = false;
+	}
 	
 }

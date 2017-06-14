@@ -11,15 +11,15 @@ import agents.Tower;
 
 public class SamTower extends Tower{
 
-	public SamTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public SamTower() {
+		super(2, 2);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/sam"));
+		icon = new ImageIcon(this.getClass().getResource("/sam.png"));
 	}
 
 	@Override
 	public void visit(Guli g) {
-		
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -36,6 +36,12 @@ public class SamTower extends Tower{
 
 	@Override
 	public void visit(Naji n) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tickHappened() {
 		// TODO Auto-generated method stub
 		
 	}

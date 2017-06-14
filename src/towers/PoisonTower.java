@@ -10,21 +10,20 @@ import agents.Creep;
 import agents.Tower;
 
 public class PoisonTower extends Tower{
-	public PoisonTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public PoisonTower() {
+		super(1, 1);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/poison"));
+		icon = new ImageIcon(this.getClass().getResource("/poison.png"));
 	}
 
 	@Override
 	public void visit(Guli g) {
-		g.setHp(g.getHp()-20);		
+		g.set_hp(g.get_hp()-20);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		k.setPoisoningPower(2);
-		//TODO: return poisoning power to be 1 after 5 seconds
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -35,7 +34,13 @@ public class PoisonTower extends Tower{
 
 	@Override
 	public void visit(Naji n) {
-		n.setPoisoningPower(1.5);
-		//TODO: return poisoning power to be 1 after 5 seconds
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
 	}
 }

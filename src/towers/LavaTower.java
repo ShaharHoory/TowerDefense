@@ -11,29 +11,35 @@ import agents.Tower;
 
 public class LavaTower extends Tower{
 	
-	public LavaTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public LavaTower() {
+		super(1, 1);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/lava"));
+		icon = new ImageIcon(this.getClass().getResource("/lava.png"));
 	}
 
 	@Override
 	public void visit(Guli g) {
-		g.setHp(g.getHp()-15);
+		g.set_hp(g.get_hp()-15);
 	}
 
 	@Override
 	public void visit(Knight k) {
-		k.setHp(k.getHp()-k.getPoisoningPower()*10);		
+		k.set_hp(k.get_hp()-10);		
 	}
 
 	@Override
 	public void visit(Mike m) {
-		m.setHp(m.getHp()-15);		
+		m.set_hp(m.get_hp()-15);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		n.setHp(n.getHp()-n.getPoisoningPower()*15);		
+		n.set_hp(n.get_hp()-15);		
+	}
+
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
 	}
 }

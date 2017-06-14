@@ -11,10 +11,10 @@ import agents.Tower;
 
 public class GokuTower extends Tower {
 
-	public GokuTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public GokuTower() {
+		super(2, 1);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/goku"));
+		icon = new ImageIcon(this.getClass().getResource("/goku.png"));
 	}
 
 	@Override
@@ -37,6 +37,12 @@ public class GokuTower extends Tower {
 
 	@Override
 	public void visit(Naji n) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tickHappened() {
 		// TODO Auto-generated method stub
 		
 	}

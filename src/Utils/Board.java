@@ -2,7 +2,7 @@ package Utils;
 
 import agents.Creep;
 
-public class Board {
+public class Board implements Tickable {
 	
 	private Pair[][] _directonsMat;
 	private Creep[][] _creepsLoc; //???
@@ -15,4 +15,9 @@ public class Board {
 		_directonsMat = directonsMat;
 	}
 
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
+	}
 }

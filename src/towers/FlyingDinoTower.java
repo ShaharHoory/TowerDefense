@@ -11,29 +11,35 @@ import agents.Tower;
 
 public class FlyingDinoTower extends Tower {
 	
-	public FlyingDinoTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public FlyingDinoTower() {
+		super(2, 1);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/dino-1"));
+		icon = new ImageIcon(this.getClass().getResource("/dino-1.png"));
 	}
 
 	@Override
 	public void visit(Guli g) {
-		g.setHp(g.getHp()-15);		
+		g.set_hp(g.get_hp()-15);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		k.setHp(k.getHp()-k.getPoisoningPower()*8);		
+		k.set_hp(k.get_hp()-8);		
 	}
 
 	@Override
 	public void visit(Mike m) {
-		m.setHp(m.getHp()-10);
+		m.set_hp(m.get_hp()-10);
 	}
 
 	@Override
 	public void visit(Naji n) {
-		n.setHp(n.getHp()-n.getPoisoningPower()*11);
+		n.set_hp(n.get_hp()-11);
+	}
+
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
 	}
 }

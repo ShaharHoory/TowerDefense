@@ -19,4 +19,10 @@ public class Mike extends Creep {
 		v.visit(this);
 	}
 
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

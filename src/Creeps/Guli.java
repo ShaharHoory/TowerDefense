@@ -19,4 +19,10 @@ public class Guli extends Creep {
 		v.visit(this);
 	}
 
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

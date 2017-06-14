@@ -11,30 +11,36 @@ import agents.Tower;
 
 public class MagicTower extends Tower {
 	
-	public MagicTower(int threatArea, int attackSpeed) {
-		super(threatArea, attackSpeed);
+	public MagicTower() {
+		super(1, 1);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/magic"));
+		icon = new ImageIcon(this.getClass().getResource("/magic.png"));
 	}
 
 	@Override
 	public void visit(Guli g) {
-		g.setHp(g.getHp()-25);		
+		g.set_hp(g.get_hp()-25);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		k.setHp(k.getHp()-k.getPoisoningPower()*30);		
+		k.set_hp(k.get_hp()-30);		
 	}
 
 	@Override
 	public void visit(Mike m) {
-		m.setHp(m.getHp()-10);		
+		m.set_hp(m.get_hp()-10);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		n.setHp(n.getHp()-n.getPoisoningPower()*10);		
+		n.set_hp(n.get_hp()-10);		
+	}
+
+	@Override
+	public void tickHappened() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -1,47 +1,34 @@
 package agents;
 import javax.swing.ImageIcon;
 
+import Utils.Tickable;
 import Utils.Visited;
 import Utils.Visitor;
 
-public abstract class Creep implements Visited {
+public abstract class Creep implements Visited,Tickable {
 
 	private int _speed;
 	private ImageIcon _icon;
-	private double _hp;
-	private double _poisoningPower;
+	private int _hp;
 	
 	public Creep(int speed, ImageIcon icon) {
 		_speed = speed;
 		_icon = icon;
 		_hp = 100;
-		_poisoningPower = 1;
 	}
 	
 	public abstract void impact(Visitor v);
 	
-	public double getHp() {
+	public int get_hp() {
 		return _hp;
 	}
 
-	public void setHp(double hp) {
-		_hp = hp;
-	}
-
-	public double getPoisoningPower() {
-		return _poisoningPower;
-	}
-
-	public void setPoisoningPower(double poisoningPower) {
-		_poisoningPower = poisoningPower;
+	public void set_hp(int _hp) {
+		this._hp = _hp;
 	}
 
 	public boolean isDead() {
 		return _hp <= 0;
-	}
-	
-	public boolean isPoisoned() {
-		return _poisoningPower > 0;
 	}
 	
 }
