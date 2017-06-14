@@ -1,10 +1,10 @@
 package entities.towers;
 
 import javax.swing.ImageIcon;
-
+import entities.Visitor;
 import entities.Entity;
 
-public abstract class Tower extends Entity {
+public abstract class Tower extends Entity implements Visitor {
 	protected int threatArea;
 
 	public enum TowerTypes {
@@ -16,12 +16,11 @@ public abstract class Tower extends Entity {
 	protected int attackSpeed;
 
 	public Tower(int threatArea, int attackSpeed, ImageIcon sprite) {
-		super(sprite); 
+		super(sprite);
 		this.threatArea = threatArea;
 		this.attackSpeed = attackSpeed;
 		initiateTowerType();
 	}
 
 	public abstract void initiateTowerType();
-
 }

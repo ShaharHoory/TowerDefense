@@ -2,16 +2,46 @@ package entities.towers;
 
 import javax.swing.ImageIcon;
 
+import entities.creeps.Knight;
+import entities.creeps.MikeW;
+import entities.creeps.Naji;
+import entities.creeps.Skull;
+import utilities.Constants;
+
 public class PoisonTower extends Tower {
 
-	public PoisonTower(int threatArea, int attackSpeed, ImageIcon sprite) {
-		super(threatArea, attackSpeed, sprite);
+	public PoisonTower(ImageIcon sprite) {
+		super(Constants.poisonThreatRadius, Constants.poisonAttackSpeed, sprite);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initiateTowerType() {
 		towerType = TowerTypes.Regular; 
+	}
+
+	@Override
+	public void attack(Skull attacked) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void attack(MikeW attacked) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void attack(Knight attacked) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void attack(Naji attacked) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

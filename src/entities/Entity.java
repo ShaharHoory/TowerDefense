@@ -2,7 +2,7 @@ package entities;
 
 import javax.swing.ImageIcon;
 
-public class Entity {
+public abstract class Entity {
 	protected ImageIcon sprite;
 
 	public Entity(ImageIcon sprite) {
