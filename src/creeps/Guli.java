@@ -8,10 +8,10 @@ import utils.Visitor;
 public class Guli extends Creep {
 
 	private final static int INIT_SPEED = 1;
-	private final static ImageIcon ICON = new ImageIcon("/sprites/guli-1.png");
+	private final static int REDUCTION_PARAM_K = 10;
 	
 	public Guli() {
-		super(INIT_SPEED, ICON);
+		super(INIT_SPEED, new ImageIcon("/sprites/guli-1.png"), REDUCTION_PARAM_K);
 	}
 
 	@Override
@@ -19,6 +19,11 @@ public class Guli extends Creep {
 		v.visit(this);
 	}
 
+	@Override
+	public void slow(int seconds) {
+		// TODO Auto-generated method stub
+	}
+	
 	@Override
 	public void tickHappened() {
 		// TODO Auto-generated method stub

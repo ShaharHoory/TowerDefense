@@ -11,34 +11,46 @@ import creeps.Naji;
 
 public class GokuTower extends Tower {
 
+	private int _hitParameterH;
+	private int _numOfHits;
+	
 	public GokuTower() {
 		super(2, 1);
 		this.type = TYPE.REGULAR;
 		icon = new ImageIcon(this.getClass().getResource("/goku.png"));
+		_hitParameterH = 1;
+		_numOfHits = 0;
+	}
+	
+	//updates the numOfHits in accordance
+	private void hitted() {
+		_numOfHits ++;
+		if (_numOfHits % 10 == 0)
+			_numOfHits = _numOfHits*2;
 	}
 
 	@Override
 	public void visit(Guli g) {
-		// TODO Auto-generated method stub
-		
+		g.setHp(g.getHp()-(_hitParameterH*g.getReductionParameterK()));
+		hitted();
 	}
 
 	@Override
 	public void visit(Knight k) {
-		// TODO Auto-generated method stub
-		
+		k.setHp(k.getHp()-(_hitParameterH*k.getReductionParameterK()));
+		hitted();
 	}
 
 	@Override
 	public void visit(Mike m) {
-		// TODO Auto-generated method stub
-		
+		m.setHp(m.getHp()-(_hitParameterH*m.getReductionParameterK()));
+		hitted();
 	}
 
 	@Override
 	public void visit(Naji n) {
-		// TODO Auto-generated method stub
-		
+		n.setHp(n.getHp()-(_hitParameterH*n.getReductionParameterK()));
+		hitted();
 	}
 
 	@Override

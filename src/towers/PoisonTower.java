@@ -18,12 +18,13 @@ public class PoisonTower extends Tower{
 
 	@Override
 	public void visit(Guli g) {
-		g.set_hp(g.get_hp()-20);		
+		g.setHp(g.getHp()-20);		
 	}
 
 	@Override
 	public void visit(Knight k) {
-		// TODO Auto-generated method stub
+		k.setPoisoningPower(2);
+		//TODO: return poisoning power to be 1 after 5 seconds
 		
 	}
 
@@ -34,8 +35,8 @@ public class PoisonTower extends Tower{
 
 	@Override
 	public void visit(Naji n) {
-		// TODO Auto-generated method stub
-		
+		n.setPoisoningPower(1.5);
+		//TODO: return poisoning power to be 1 after 5 seconds
 	}
 
 	@Override

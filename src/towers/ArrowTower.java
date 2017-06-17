@@ -18,7 +18,7 @@ public class ArrowTower extends Tower{
 
 	@Override
 	public void visit(Guli g) {
-		g.set_hp(g.get_hp()-15);		
+		g.setHp(g.getHp()-15);		
 	}
 
 	@Override
@@ -28,12 +28,12 @@ public class ArrowTower extends Tower{
 
 	@Override
 	public void visit(Mike m) {
-		m.set_hp(m.get_hp()-30);		
+		m.setHp(m.getHp()-30);		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		n.set_hp(n.get_hp()-30);	
+		n.setHp(n.getHp()-n.getPoisoningPower()*30);	
 	}
 
 	@Override

@@ -8,10 +8,10 @@ import utils.Visitor;
 public class Naji extends Creep {
 
 	private final static int INIT_SPEED = 2;
-	private final static ImageIcon ICON = new ImageIcon(Creep.class.getResource("/naji-1.png"));
+	private final static int REDUCTION_PARAM_K = 5;
 	
 	public Naji() {
-		super(INIT_SPEED, ICON);
+		super(INIT_SPEED, new ImageIcon("/sprites/naji-1.png"), REDUCTION_PARAM_K);
 	}
 
 	@Override
@@ -19,6 +19,11 @@ public class Naji extends Creep {
 		v.visit(this);
 	}
 
+	@Override
+	public void slow(int seconds) {
+		// TODO Auto-generated method stub
+	}
+	
 	@Override
 	public void tickHappened() {
 		// TODO Auto-generated method stub
