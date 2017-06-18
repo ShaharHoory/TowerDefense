@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import creeps.Creep;
+
 
 public class Board extends JPanel implements Tickable {
 	
