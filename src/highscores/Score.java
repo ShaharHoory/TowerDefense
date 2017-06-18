@@ -1,4 +1,4 @@
-package utils;
+package highscores;
 
 import java.io.Serializable;
 

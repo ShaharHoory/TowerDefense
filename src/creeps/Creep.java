@@ -1,4 +1,4 @@
-package agents;
+package creeps;
 import javax.swing.ImageIcon;
 
 import utils.Tickable;

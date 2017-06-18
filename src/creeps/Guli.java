@@ -2,7 +2,6 @@ package creeps;
 
 import javax.swing.ImageIcon;
 
-import agents.Creep;
 import utils.Visitor;
 
 public class Guli extends Creep {

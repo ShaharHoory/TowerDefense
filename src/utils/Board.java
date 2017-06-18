@@ -1,6 +1,6 @@
 package utils;
 
-import agents.Creep;
+import creeps.Creep;
 
 public class Board implements Tickable {
 	

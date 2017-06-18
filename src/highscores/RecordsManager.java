@@ -1,4 +1,4 @@
-package utils;
+package highscores;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -79,7 +79,7 @@ public class RecordsManager {
 	
 	public String getHighscoreString() {
         String highscoreString = "";
-        int max = 10;
+        int max = 5;
 
         ArrayList<Score> scores;
         scores = getScores();
