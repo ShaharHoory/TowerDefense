@@ -1,5 +1,6 @@
 package utils;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -9,6 +10,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import agents.Creep;
+=======
+import creeps.Creep;
+>>>>>>> Records
 
 public class Board extends JPanel implements Tickable {
 	

@@ -1,6 +1,8 @@
-package utils;
+package highscores;
 
-public class Score implements Comparable<Score> {
+import java.io.Serializable;
+
+public class Score implements Serializable {
 	protected int score;
 	protected String name;
 	
@@ -16,11 +18,4 @@ public class Score implements Comparable<Score> {
 	public String getName() {
 		return name;
 	}
-
-	@Override
-	public int compareTo(Score arg0) {
-		return this.score-arg0.score;
-	}
-	
-	
 }

@@ -1,6 +1,10 @@
+<<<<<<< HEAD:src/agents/Creep.java
 package agents;
 import java.awt.Graphics;
 
+=======
+package creeps;
+>>>>>>> Records:src/creeps/Creep.java
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 

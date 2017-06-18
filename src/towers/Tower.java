@@ -1,7 +1,8 @@
-package agents;
+package towers;
 
 import javax.swing.ImageIcon;
 
+import creeps.Creep;
 import utils.Tickable;
 import utils.Visitor;
 

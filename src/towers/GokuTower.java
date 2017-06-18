@@ -2,8 +2,7 @@ package towers;
 
 import javax.swing.ImageIcon;
 
-import agents.Creep;
-import agents.Tower;
+import creeps.Creep;
 import creeps.Guli;
 import creeps.Knight;
 import creeps.Mike;
