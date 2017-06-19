@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -14,12 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import creeps.Creep;
+import towers.Tower;
 
 
-public class Board extends JPanel implements Tickable {
+public class Board extends JPanel implements Tickable , MouseListener {
 	
 	private Pair[][] _directionsMat;
 	private List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
+	private Tower[][] _towersLoc;
 	private GridBagConstraints _gbc;
 	
 	public Board(Pair[][] directionsMat) {
@@ -31,7 +35,7 @@ public class Board extends JPanel implements Tickable {
 		_gbc.fill = GridBagConstraints.BOTH;
 		_directionsMat = directionsMat;
 		createMap();
-		
+		this.addMouseListener(this);
 		this.setVisible(true);
 
 	}
@@ -76,5 +80,45 @@ public class Board extends JPanel implements Tickable {
                 add(label, _gbc);
 			}
 		}	
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int yLoc = e.getY()/25;
+		int xLoc = e.getX()/25;
+		if(_directionsMat[yLoc][xLoc]._x!=0 || _directionsMat[yLoc][xLoc]._y!=0)
+			System.out.println("can't put towers on tiles");
+		//TODO: show a message box
+		else if(_towersLoc[yLoc][xLoc]!=null){
+			//show its shooting range
+		}
+		else{
+			//open a menu showing all the available towers
+		}
+			
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// if not part of tile: change picture to "selected grass tile"
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// if not part of tile: change picture back to "unselected grass tile"
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

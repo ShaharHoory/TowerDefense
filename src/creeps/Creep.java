@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import utils.Pair;
 import utils.Tickable;
 import utils.Visited;
 import utils.Visitor;
