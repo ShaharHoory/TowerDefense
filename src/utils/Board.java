@@ -1,12 +1,16 @@
 package utils;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import creeps.Creep;
@@ -25,8 +29,10 @@ public class Board extends JPanel implements Tickable {
 		_gbc.weightx = 25; //0 ????
 		_gbc.weighty = 25; //0 ????
 		_gbc.fill = GridBagConstraints.BOTH;
-		
 		_directionsMat = directionsMat;
+		createMap();
+		
+		this.setVisible(true);
 
 	}
 
@@ -51,5 +57,24 @@ public class Board extends JPanel implements Tickable {
 	public void tickHappened() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void createMap(){
+        JLabel label;
+		for(int i=0; i<_directionsMat.length;i++){
+			_gbc.gridy = i;
+			for(int j=0; j<_directionsMat[i].length; j++){
+				_gbc.gridx = j;
+				ImageIcon backgroundImage;
+				if(_directionsMat[i][j]._x!=0 || _directionsMat[i][j]._y!=0)
+					backgroundImage = new ImageIcon(GameWindow.class.getResource("/floor.png"));                   
+                else
+                    backgroundImage = new ImageIcon(GameWindow.class.getResource("/grass.png"));
+                label = new JLabel(new ImageIcon(backgroundImage.getImage().getScaledInstance(25, 25 , Image.SCALE_SMOOTH)));
+                label.setPreferredSize(new Dimension(25, 25));  
+                label.setVisible(true);
+                add(label, _gbc);
+			}
+		}	
 	}
 }

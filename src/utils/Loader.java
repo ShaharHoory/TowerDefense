@@ -12,7 +12,7 @@ public class Loader {
 	private static final char LEFT = 'L';
 	private static final char NOT_IN_PATH = '.';
 	
-	private Vector<Pair[][]> levels;
+	Vector<Pair[][]> levels;
 	
 	public Loader(){
 		levels = new Vector<>();
@@ -41,6 +41,9 @@ public class Loader {
 			}
 			if (line.trim().startsWith("h")) {
 				h = Integer.valueOf(line.trim().substring(1));
+				continue;
+			}
+			if (line.startsWith(";")) {
 				continue;
 			}
 			// start of level definition

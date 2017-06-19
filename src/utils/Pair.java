@@ -21,4 +21,17 @@ public class Pair {
 		_isExitPoint = false;
 	}
 	
+	public String toString(){
+		if(_x>0)
+			return "Right";
+		if(_x<0)
+			return "Left";
+		if(_y>0)
+			return "Down";
+		if(_y<0)
+			return "Up";
+		else
+			return "Not In Path";
+	}
+	
 }
