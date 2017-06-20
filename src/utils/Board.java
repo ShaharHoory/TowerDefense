@@ -13,29 +13,29 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import creeps.Creep;
+import towers.ArrowTower;
 import towers.Tower;
 
 
-public class Board extends JPanel implements Tickable , MouseListener {
+public class Board extends JPanel implements Tickable{
 	
-	private Pair[][] _directionsMat;
-	private List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
-	private Tower[][] _towersLoc;
+	Pair[][] _directionsMat;
+	List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
+	Tower[][] _towersLoc;
 	private GridBagConstraints _gbc;
 	
 	public Board(Pair[][] directionsMat) {
 		super(new GridBagLayout());
 		_gbc = new GridBagConstraints();
 		_gbc.insets = new Insets(0, 0, 0, 0);
-		_gbc.weightx = 25; //0 ????
-		_gbc.weighty = 25; //0 ????
 		_gbc.fill = GridBagConstraints.BOTH;
 		_directionsMat = directionsMat;
+		_towersLoc = new Tower[_directionsMat.length][directionsMat[0].length];
 		createMap();
-		this.addMouseListener(this);
 		this.setVisible(true);
 
 	}
@@ -80,45 +80,18 @@ public class Board extends JPanel implements Tickable , MouseListener {
                 add(label, _gbc);
 			}
 		}	
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		int yLoc = e.getY()/25;
-		int xLoc = e.getX()/25;
-		if(_directionsMat[yLoc][xLoc]._x!=0 || _directionsMat[yLoc][xLoc]._y!=0)
-			System.out.println("can't put towers on tiles");
-		//TODO: show a message box
-		else if(_towersLoc[yLoc][xLoc]!=null){
-			//show its shooting range
-		}
-		else{
-			//open a menu showing all the available towers
+	}	
+	public void showTowerArea(Graphics g , Tower t , int x , int y){
+		int threatArea = t.getThreatArea();
+		g.setColor(Color.BLUE);
+		for(int i=-threatArea; i<=threatArea; i++){
+			for(int j=-threatArea; j<=threatArea; j++){
+				if (i!=0 || j!=0){
+					if(x+threatArea>=0 && x+threatArea<=_directionsMat.length && y+threatArea>=0 && y+threatArea<=_directionsMat.length)
+						g.drawRect((x+i)*25, (y+j)*25, 25, 25);
+				}
+			}
 		}
 			
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// if not part of tile: change picture to "selected grass tile"
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// if not part of tile: change picture back to "unselected grass tile"
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

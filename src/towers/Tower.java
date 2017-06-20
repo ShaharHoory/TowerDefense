@@ -21,6 +21,14 @@ public abstract class Tower implements Visitor,Tickable {
 		this.attackSpeed = attackSpeed;
 	}
 	
+	public int getThreatArea() {
+		return threatArea;
+	}
+
+	public void setThreatArea(int threatArea) {
+		this.threatArea = threatArea;
+	}
+
 	public void hit(Creep creep){
 		creep.impact(this);
 	}
