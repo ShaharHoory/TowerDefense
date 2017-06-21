@@ -5,10 +5,12 @@ import java.awt.GridBagConstraints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import creeps.Creep;
 import towers.ChooseTowerDialog;
 
 public class Game extends JPanel implements MouseListener {
@@ -19,6 +21,7 @@ public class Game extends JPanel implements MouseListener {
 	protected int _passedFinishPointCreeps;
 	protected int _deadCreeps;
 	protected HashMap<String, Integer> towersLeft;
+	private boolean _isWvae;
 	
 	public Game(Board board) {
 		super(new BorderLayout());
@@ -36,15 +39,47 @@ public class Game extends JPanel implements MouseListener {
 	private boolean lost() {
 		return _lives <= 0;
 	}
+	
+	private void moveCreeps() {
+		Pair[][] directionsMat = _board.getDirectionsMat();
+		List<Creep>[][] creepsLoc = _board.getCreepsLoc();
+		
+		for(int i=0; i<creepsLoc.length; i++)
+			for(int j=0; j<creepsLoc[i].length; i++) {
+				int numOfCreeps = creepsLoc[i][j].size();
+				List<Creep> tCreeps = creepsLoc[i][j].subList(0, numOfCreeps); //a cloned list
+				if (directionsMat[i][j].outOfPath()) continue;
+				for(Creep creep: creepsLoc[i][j]) { //for every creep in each cell
+					if(directionsMat[i][j].isRight()) {
+						tCreeps.remove(creep);//deleting the creep from the current cell
+						creepsLoc[i][j+1].add(creep); //moving the creep to the next cell
+					}
+					else if(directionsMat[i][j].isLeft()) {
+						tCreeps.remove(creep);//deleting the creep from the current cell
+						creepsLoc[i][j-1].add(creep); //moving the creep to the next cell
+					}
+					else if(directionsMat[i][j].isUp()) {
+						tCreeps.remove(creep);//deleting the creep from the current cell
+						creepsLoc[i-1][j].add(creep); //moving the creep to the next cell
+					}
+					else { //down
+						tCreeps.remove(creep);//deleting the creep from the current cell
+						creepsLoc[i+1][j].add(creep); //moving the creep to the next cell
+					}		
+				}
+				creepsLoc[i][j] = tCreeps;
+				_board.paintCreeps(getGraphics()); //או לעשות בבורד איזה פונקצייה ריםיינטקריפס שפשוט קוראת לפאינטקריפס ולקרוא לה מכאן
+			}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int yLoc = e.getY()/25;
 		int xLoc = e.getX()/25;
-		if(_board._directionsMat[yLoc][xLoc]._x!=0 || _board._directionsMat[yLoc][xLoc]._y!=0)
+		if(_board.getDirectionsMat()[yLoc][xLoc]._x!=0 || _board.getDirectionsMat()[yLoc][xLoc]._y!=0)
 			JOptionPane.showMessageDialog(this, "You may put towers only on grass tiles!", "Error" , 0);
-		else if(_board._towersLoc[yLoc][xLoc]!=null){ // if user clicks on an existing tower 
-			_board.showTowerArea(getGraphics(), _board._towersLoc[yLoc][xLoc], xLoc, yLoc);
+		else if(_board.getTowersLoc()[yLoc][xLoc]!=null){ // if user clicks on an existing tower 
+			_board.showTowerArea(getGraphics(), _board.getTowersLoc()[yLoc][xLoc], xLoc, yLoc);
 		}
 		else{
 			ChooseTowerDialog dialog = new ChooseTowerDialog(this);						

@@ -23,9 +23,21 @@ import towers.Tower;
 
 public class Board extends JPanel implements Tickable{
 	
-	Pair[][] _directionsMat;
-	List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
-	Tower[][] _towersLoc;
+	private Pair[][] _directionsMat;
+	private List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
+	private Tower[][] _towersLoc;
+	
+	public Pair[][] getDirectionsMat() {
+		return _directionsMat;
+	}
+
+	public List<Creep>[][] getCreepsLoc() {
+		return _creepsLoc;
+	}
+
+	public Tower[][] getTowersLoc() {
+		return _towersLoc;
+	}
 	private GridBagConstraints _gbc;
 	
 	public Board(Pair[][] directionsMat) {
@@ -44,19 +56,6 @@ public class Board extends JPanel implements Tickable{
 		_directionsMat = directonsMat;
 	}
 	
-	/* public void paint(Graphics g) {
-		super.paint(g);
-		
-		for(int i=0; i<_directionsMat.length; i++) {
-			_gbc.gridy = i;
-			for (int j=0; j < _directionsMat[0].length; j++) {
-				_gbc.gridx = j;
-				if (_directionsMat[i][j]._x == 0 && _directionsMat[i][j]._y == 0)
-					
-			}
-		}
-	} */
-
 	@Override
 	public void tickHappened() {
 		// TODO Auto-generated method stub
@@ -93,5 +92,16 @@ public class Board extends JPanel implements Tickable{
 			}
 		}
 			
+	}
+	
+	//paints the creeps
+	public void paintCreeps(Graphics g) {
+		for(int i=0; i<_creepsLoc.length; i++)
+			for(int j=0; j<_creepsLoc[i].length; i++) {
+				for(Creep creep: _creepsLoc[i][j]) { //for every creep in each cell
+					ImageIcon icon = creep.getIcon();
+					g.drawImage(icon.getImage(), (800*i)/32, (800*j)/32, null);// ??? or 25
+				}
+			}
 	}
 }

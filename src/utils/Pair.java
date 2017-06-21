@@ -21,6 +21,26 @@ public class Pair {
 		_isExitPoint = false;
 	}
 	
+	public boolean isLeft() {
+		return _x<0;
+	}
+	
+	public boolean isRight() {
+		return _x>0;
+	}
+	
+	public boolean isUp() {
+		return _y<0;
+	}
+	
+	public boolean isDown() {
+		return _y>0;
+	}
+	
+	public boolean outOfPath() {
+		return _x==0 && _y==0;
+	}
+	
 	public String toString(){
 		if(_x>0)
 			return "Right";
