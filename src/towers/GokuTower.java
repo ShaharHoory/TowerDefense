@@ -13,10 +13,10 @@ public class GokuTower extends Tower {
 	private int _hitParameterH;
 	private int _numOfHits;
 	
-	public GokuTower() {
-		super(2, 1);
+	public GokuTower(int x , int y) {
+		super(2, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/goku.png"));
+		icon = new ImageIcon(this.getClass().getResource("/Goku Tower.png"));
 		_hitParameterH = 1;
 		_numOfHits = 0;
 	}

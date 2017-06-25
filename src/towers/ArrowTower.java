@@ -9,10 +9,10 @@ import creeps.Mike;
 import creeps.Naji;
 
 public class ArrowTower extends Tower{
-	 public ArrowTower () {
-		super(2, 2);
+	 public ArrowTower (int x , int y) {
+		super(2, 2 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/arrow.png"));
+		icon = new ImageIcon(this.getClass().getResource("/Arrow Tower.png"));
 	}
 
 	@Override

@@ -10,10 +10,10 @@ import creeps.Naji;
 
 public class LavaTower extends Tower{
 	
-	public LavaTower() {
-		super(1, 1);
+	public LavaTower(int x , int y) {
+		super(1, 1 , x , y);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/lava.png"));
+		icon = new ImageIcon(this.getClass().getResource("/Lava Tower.png"));
 	}
 
 	@Override

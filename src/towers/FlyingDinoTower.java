@@ -10,8 +10,8 @@ import creeps.Naji;
 
 public class FlyingDinoTower extends Tower {
 	
-	public FlyingDinoTower() {
-		super(2, 1);
+	public FlyingDinoTower(int x , int y) {
+		super(2, 1 , x , y);
 		this.type = TYPE.REGULAR;
 		icon = new ImageIcon(this.getClass().getResource("/dino-1.png"));
 	}

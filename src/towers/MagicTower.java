@@ -10,10 +10,10 @@ import creeps.Naji;
 
 public class MagicTower extends Tower {
 	
-	public MagicTower() {
-		super(1, 1);
+	public MagicTower(int x , int y) {
+		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/magic.png"));
+		icon = new ImageIcon(this.getClass().getResource("/Magic Tower.png"));
 	}
 
 	@Override

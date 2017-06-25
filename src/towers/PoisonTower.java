@@ -7,12 +7,13 @@ import creeps.Guli;
 import creeps.Knight;
 import creeps.Mike;
 import creeps.Naji;
+import utils.GameWindow;
 
 public class PoisonTower extends Tower{
-	public PoisonTower() {
-		super(1, 1);
+	public PoisonTower(int x , int y) {
+		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/poison.png"));
+		icon = new ImageIcon(GameWindow.class.getResource("/Poison Tower.png"));
 	}
 
 	@Override

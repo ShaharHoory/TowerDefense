@@ -4,12 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+
+import creeps.Creep;
+import creeps.Guli;
+import creeps.Knight;
+import creeps.Mike;
+import creeps.Naji;
 
 public class GameToolbar extends JPanel {
 
@@ -32,29 +40,11 @@ public class GameToolbar extends JPanel {
 		//this.fastForward.setIcon(new ImageIcon(GameWindow.class.getResource("/fastForward.png")));
 		wave.setFont(new Font("arial", Font.PLAIN, 20));
 		lives.setFont(new Font("arial", Font.PLAIN, 20));
+		nextWave.setFont(new Font("arial", Font.BOLD, 16));
 		
 		this.add(lives);
 		this.add(wave);
 		this.add(fastForward);
 		this.add(nextWave);
-		
-		this.nextWave.addActionListener(new ToolbarListener());
-		this.fastForward.addActionListener(new ToolbarListener());
-		this.setVisible(true);
-	}
-	
-	public class ToolbarListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JButton buttonPressed = ((JButton)e.getSource());
-			if(buttonPressed.equals(nextWave)){
-				//call next wave
-				//disable some features
-			}
-			if(buttonPressed.equals(fastForward)){
-				//fast forward the game - set timer to x/2;
-			}			
-		}
-		
 	}
 }

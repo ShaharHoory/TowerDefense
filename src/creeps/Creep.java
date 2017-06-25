@@ -16,13 +16,19 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 	private double _hp;
 	private double _poisoningPower;
 	private int _reductionParameterK;
+	public double _x;
+	public double _y;
+	public int steps;
 	
-	public Creep(int speed, ImageIcon icon, int reductionParameter) {
+	public Creep(int speed, ImageIcon icon, double x , double y , int reductionParameter) {
 		setSpeed(speed);
 		setIcon(icon);
 		_reductionParameterK = reductionParameter;
 		_hp = 100;
 		_poisoningPower = 1;
+		_x = x;
+		_y = y;
+		steps = 0;
 	}
 	
 	public abstract void impact(Visitor v);

@@ -1,39 +1,52 @@
 package utils;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import creeps.GameCreeps;
 import towers.ChooseTowerDialog;
+import towers.GameTowers;
+import towers.Tower;
 
 public class Game extends JPanel implements MouseListener {
 
-	private Board _board;
+	protected Timer timer;
+	protected Board _board;
 	protected int _lives;
 	protected int _currWave;
 	protected int _passedFinishPointCreeps;
-	protected int _deadCreeps;
-	protected HashMap<String, Integer> towersLeft;
+	protected int _deadCreeps;	
+	protected boolean _isWave;
+	protected GameTowers gameTowers;
+	protected GameCreeps gameCreeps;
 	
-	public Game(Board board) {
+	public Game(Board board , Timer timer) {
 		super(new BorderLayout());
 		_lives = 20;
 		_currWave = 0; // it's 0 until the user pushes the nextWave button
 		_passedFinishPointCreeps = 0;
 		_deadCreeps = 0;
-		_board = board;		
+		_board = board;	
+		_isWave = false;
+		gameCreeps = new GameCreeps(_board._directionsMat , timer);
+		gameTowers = new GameTowers(_board , gameCreeps.getCreeps());		
 		addTowerTypes();
 		this.add(_board, BorderLayout.CENTER);
 		this.setVisible(true);
 		_board.addMouseListener(this);
 	}
 	
-	private boolean lost() {
+	public boolean lost() {
 		return _lives <= 0;
 	}
 
@@ -41,14 +54,20 @@ public class Game extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int yLoc = e.getY()/25;
 		int xLoc = e.getX()/25;
-		if(_board._directionsMat[yLoc][xLoc]._x!=0 || _board._directionsMat[yLoc][xLoc]._y!=0)
-			JOptionPane.showMessageDialog(this, "You may put towers only on grass tiles!", "Error" , 0);
-		else if(_board._towersLoc[yLoc][xLoc]!=null){ // if user clicks on an existing tower 
-			_board.showTowerArea(getGraphics(), _board._towersLoc[yLoc][xLoc], xLoc, yLoc);
+		Tower location = gameTowers.getTowerInPlace(xLoc , yLoc);
+		if(location!=null){ // if user clicks on an existing tower 			
+			gameTowers.setVisibleRangeTower(location);
+			gameTowers.repaint();
 		}
 		else{
-			ChooseTowerDialog dialog = new ChooseTowerDialog(this);						
-		}			
+			if(!_isWave){
+				if(_board._directionsMat[yLoc][xLoc]._x!=0 || _board._directionsMat[yLoc][xLoc]._y!=0)
+					JOptionPane.showMessageDialog(this, "You may put towers only on grass tiles!", "Error" , 0);
+				else{
+					ChooseTowerDialog dialog = new ChooseTowerDialog(this , xLoc , yLoc);
+				}	
+			}
+		}		
 	}
 
 	@Override
@@ -76,13 +95,13 @@ public class Game extends JPanel implements MouseListener {
 	}
 	
 	private void addTowerTypes(){
-		towersLeft = new HashMap<>();
-		towersLeft.put("Lava Tower", 3);
-		towersLeft.put("Arrow Tower", 3);
-		towersLeft.put("Poison Tower", 3);
-		towersLeft.put("Magic Tower", 3);
-		towersLeft.put("Sam Tower", 1);
-		towersLeft.put("Goku Tower", 1);
+		gameTowers.setTowersLeft(new HashMap<>());
+		gameTowers.getTowersLeft().put("Lava Tower", 3);
+		gameTowers.getTowersLeft().put("Arrow Tower", 3);
+		gameTowers.getTowersLeft().put("Poison Tower", 3);
+		gameTowers.getTowersLeft().put("Magic Tower", 3);
+		gameTowers.getTowersLeft().put("Sam Tower", 1);
+		gameTowers.getTowersLeft().put("Goku Tower", 1);
 		
 	}
 
@@ -106,7 +125,11 @@ public class Game extends JPanel implements MouseListener {
 		return _deadCreeps;
 	}
 
-	public HashMap<String, Integer> getTowersLeft() {
-		return towersLeft;
+	public void set_board(Board _board) {
+		this._board = _board;
+	}
+
+	public GameTowers getGameTowers() {
+		return gameTowers;
 	}
 }

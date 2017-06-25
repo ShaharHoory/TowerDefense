@@ -2,6 +2,7 @@ package creeps;
 
 import javax.swing.ImageIcon;
 
+import utils.GameWindow;
 import utils.Visitor;
 
 public class Guli extends Creep {
@@ -9,8 +10,8 @@ public class Guli extends Creep {
 	private final static int INIT_SPEED = 1;
 	private final static int REDUCTION_PARAM_K = 10;
 	
-	public Guli() {
-		super(INIT_SPEED, new ImageIcon("/sprites/guli-1.png"), REDUCTION_PARAM_K);
+	public Guli(int x , int y) {
+		super(INIT_SPEED, new ImageIcon(GameWindow.class.getResource("/guli-1.png")), x , y , REDUCTION_PARAM_K);
 	}
 
 	@Override

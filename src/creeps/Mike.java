@@ -2,6 +2,7 @@ package creeps;
 
 import javax.swing.ImageIcon;
 
+import utils.GameWindow;
 import utils.Visitor;
 
 public class Mike extends Creep {
@@ -9,8 +10,8 @@ public class Mike extends Creep {
 	private final static int INIT_SPEED = 1;
 	private final static int REDUCTION_PARAM_K = 5;
 	
-	public Mike() {
-		super(INIT_SPEED, new ImageIcon("/sprites/mike-1.png"), REDUCTION_PARAM_K);
+	public Mike(int x , int y) {
+		super(INIT_SPEED, new ImageIcon(GameWindow.class.getResource("/mike-1.png")), x , y , REDUCTION_PARAM_K);
 	}
 
 	@Override

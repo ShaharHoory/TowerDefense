@@ -2,6 +2,7 @@ package creeps;
 
 import javax.swing.ImageIcon;
 
+import utils.GameWindow;
 import utils.Visitor;
 
 public class Naji extends Creep {
@@ -9,8 +10,8 @@ public class Naji extends Creep {
 	private final static int INIT_SPEED = 2;
 	private final static int REDUCTION_PARAM_K = 5;
 	
-	public Naji() {
-		super(INIT_SPEED, new ImageIcon("/sprites/naji-1.png"), REDUCTION_PARAM_K);
+	public Naji(int x , int y) {
+		super(INIT_SPEED, new ImageIcon(GameWindow.class.getResource("/naji-1.png")), x , y ,REDUCTION_PARAM_K);
 	}
 
 	@Override

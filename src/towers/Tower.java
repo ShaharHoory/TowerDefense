@@ -15,10 +15,16 @@ public abstract class Tower implements Visitor,Tickable {
 	protected TYPE type;
 	protected int attackSpeed;
 	protected ImageIcon icon;
+	int x;
+	int y;
+	int timeToShoot;
 
-	public Tower(int threatArea, int attackSpeed) {
+	public Tower(int threatArea, int attackSpeed , int x , int y) {
 		this.threatArea = threatArea;
 		this.attackSpeed = attackSpeed;
+		this.x = x;
+		this.y = y;
+		timeToShoot=0;
 	}
 	
 	public int getThreatArea() {
@@ -31,6 +37,14 @@ public abstract class Tower implements Visitor,Tickable {
 
 	public void hit(Creep creep){
 		creep.impact(this);
+	}
+
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 	
 }

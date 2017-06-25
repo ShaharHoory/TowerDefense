@@ -10,10 +10,10 @@ import creeps.Naji;
 
 public class SamTower extends Tower{
 
-	public SamTower() {
-		super(2, 2);
+	public SamTower(int x , int y) {
+		super(2, 2 , x , y);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/sam.png"));
+		icon = new ImageIcon(this.getClass().getResource("/Sam Tower.png"));
 	}
 
 	@Override
