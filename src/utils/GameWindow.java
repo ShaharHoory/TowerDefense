@@ -42,8 +42,8 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));       
         layeredPane.add(_game.get_board() , new Integer(0));
-        layeredPane.add(_game.gameTowers , new Integer(1));
-        layeredPane.add(_game.gameCreeps , new Integer(2));
+        layeredPane.add(_game.gameCreeps , new Integer(1));
+        layeredPane.add(_game.gameTowers , new Integer(2));
         
         this.add(layeredPane, BorderLayout.CENTER);
 		this.add(_toolbar , BorderLayout.NORTH);
