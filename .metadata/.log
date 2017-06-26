@@ -26,3 +26,64 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-06-25 22:43:46.973 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=iw_IL
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-06-25 22:45:04.016
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Shahar'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-06-25 23:06:17.919 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=iw_IL
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-06-25 23:06:50.742
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Shahar'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.core 4 0 2017-06-25 23:07:19.143
+!MESSAGE Failed to load index for repository Repository[D:\שחר תואר ראשון\סמסטר ב\OOP\Assignment4\TowerDefence\.git]
+!STACK 0
+org.eclipse.jgit.errors.IndexReadException: The index file D:\שחר תואר ראשון\סמסטר ב\OOP\Assignment4\TowerDefence\.git\index exists but cannot be read
+	at org.eclipse.jgit.dircache.DirCache.read(DirCache.java:445)
+	at org.eclipse.jgit.dircache.DirCache.read(DirCache.java:220)
+	at org.eclipse.egit.core.internal.indexdiff.IndexDiffCacheEntry.refreshIndexDelta(IndexDiffCacheEntry.java:314)
+	at org.eclipse.egit.core.internal.indexdiff.IndexDiffCacheEntry.access$0(IndexDiffCacheEntry.java:308)
+	at org.eclipse.egit.core.internal.indexdiff.IndexDiffCacheEntry$1.onIndexChanged(IndexDiffCacheEntry.java:100)
+	at org.eclipse.jgit.events.IndexChangedEvent.dispatch(IndexChangedEvent.java:55)
+	at org.eclipse.jgit.events.IndexChangedEvent.dispatch(IndexChangedEvent.java:47)
+	at org.eclipse.jgit.events.ListenerList.dispatch(ListenerList.java:120)
+	at org.eclipse.jgit.lib.Repository.fireEvent(Repository.java:167)
+	at org.eclipse.jgit.internal.storage.file.FileRepository.notifyIndexChanged(FileRepository.java:484)
+	at org.eclipse.jgit.internal.storage.file.FileRepository.detectIndexChanges(FileRepository.java:478)
+	at org.eclipse.jgit.internal.storage.file.FileRepository.scanForRepoChanges(FileRepository.java:464)
+	at org.eclipse.egit.ui.Activator$RepositoryChangeScanner.run(Activator.java:649)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2017-06-25 23:12:42.273 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=iw_IL
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-06-25 23:13:28.584
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Shahar'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
