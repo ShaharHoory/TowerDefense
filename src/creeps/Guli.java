@@ -7,11 +7,11 @@ import utils.Visitor;
 
 public class Guli extends Creep {
 
-	private final static int INIT_SPEED = 1;
 	private final static int REDUCTION_PARAM_K = 10;
 	
 	public Guli(int x , int y) {
-		super(INIT_SPEED, new ImageIcon(GameWindow.class.getResource("/guli-1.png")), x , y , REDUCTION_PARAM_K);
+		super(1, new ImageIcon(GameWindow.class.getResource("/guli-1.png")), x , y , REDUCTION_PARAM_K);
+		this.INIT_SPEED = 1;
 	}
 
 	@Override

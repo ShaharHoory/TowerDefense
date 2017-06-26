@@ -11,10 +11,13 @@ import utils.Visitor;
 
 public abstract class Creep extends JPanel implements Visited,Tickable {
 
+	public double INIT_SPEED;
 	private double _speed;
 	private ImageIcon _icon;
 	private double _hp;
 	private double _poisoningPower;
+	private double _poisoningTimeLeft;
+	private double _slowTimeLeft;
 	private int _reductionParameterK;
 	public double _x;
 	public double _y;
@@ -26,6 +29,7 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 		_reductionParameterK = reductionParameter;
 		_hp = 100;
 		_poisoningPower = 1;
+		_poisoningTimeLeft = 0;
 		_x = x;
 		_y = y;
 		steps = 0;
@@ -83,5 +87,21 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 	
 	public boolean isPoisoned() {
 		return _poisoningPower > 0;
+	}
+
+	public double get_poisoningTimeLeft() {
+		return _poisoningTimeLeft;
+	}
+
+	public void set_poisoningTimeLeft(double _poisoningTimeLeft) {
+		this._poisoningTimeLeft = _poisoningTimeLeft;
+	}
+
+	public double get_slowTimeLeft() {
+		return _slowTimeLeft;
+	}
+
+	public void set_slowTimeLeft(double _slowTimeLeft) {
+		this._slowTimeLeft = _slowTimeLeft;
 	}
 }

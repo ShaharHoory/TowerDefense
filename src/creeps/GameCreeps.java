@@ -69,8 +69,22 @@ public class GameCreeps extends JComponent implements Tickable {
 				creep._y = boardY;	
 			}		
 			creep.steps+=creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
-			System.out.println("creep moved from: "+currX+" , "+currY);	
-			System.out.println(creep.getHp());
+			if(creep.get_poisoningTimeLeft()>0){
+				creep.set_poisoningTimeLeft(creep.get_poisoningTimeLeft()-Timer.NORMAL_TICK);
+			}
+			if(creep.get_poisoningTimeLeft()<=0){
+				creep.set_poisoningTimeLeft(0);
+				creep.setPoisoningPower(1);
+			}
+			if(creep.get_slowTimeLeft()>0){
+				creep.set_slowTimeLeft(creep.get_slowTimeLeft()-Timer.NORMAL_TICK);
+				System.out.println("slow time: "+creep.get_slowTimeLeft());
+			}
+			if(creep.get_slowTimeLeft()<=0){
+				creep.set_slowTimeLeft(0);
+				creep.setSpeed(creep.INIT_SPEED);
+			}
+				
 		}
 		repaint();		
 	}

@@ -24,8 +24,7 @@ public class PoisonTower extends Tower{
 	@Override
 	public void visit(Knight k) {
 		k.setPoisoningPower(2);
-		//TODO: return poisoning power to be 1 after 5 seconds
-		
+		k.set_poisoningTimeLeft(5000);
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class PoisonTower extends Tower{
 	@Override
 	public void visit(Naji n) {
 		n.setPoisoningPower(1.5);
-		//TODO: return poisoning power to be 1 after 5 seconds
+		n.set_poisoningTimeLeft(5000);
 	}
 
 	@Override

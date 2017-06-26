@@ -7,11 +7,11 @@ import utils.Visitor;
 
 public class Knight extends Creep {
 
-	private final static int INIT_SPEED = 1;
 	private final static int REDUCTION_PARAM_K = 7;
 	
 	public Knight(int x , int y) {
-		super(INIT_SPEED, new ImageIcon(GameWindow.class.getResource("/abir-1.png")), x , y ,REDUCTION_PARAM_K);
+		super(1, new ImageIcon(GameWindow.class.getResource("/abir-1.png")), x , y ,REDUCTION_PARAM_K);
+		INIT_SPEED = 1;
 	}
 
 	@Override

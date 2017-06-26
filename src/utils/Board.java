@@ -26,7 +26,6 @@ import towers.Tower;
 public class Board extends JPanel implements Tickable{
 	
 	Pair[][] _directionsMat;
-	List<Creep>[][] _creepsLoc; //each cell may contains few creeps same time
 	private GridBagConstraints _gbc;
 	private int startX;
 	private int startY;

@@ -18,24 +18,28 @@ public class SamTower extends Tower{
 
 	@Override
 	public void visit(Guli g) {
-		// TODO Auto-generated method stub
+		g.set_slowTimeLeft(3000);
+		g.setSpeed(g.INIT_SPEED/2);
 	}
 
 	@Override
 	public void visit(Knight k) {
-		// TODO Auto-generated method stub
-		
+		k.set_slowTimeLeft(6000);
+		k.setSpeed(k.INIT_SPEED/2);
 	}
 
 	@Override
 	public void visit(Mike m) {
-		// TODO Auto-generated method stub
+		m.set_slowTimeLeft(3000);
+		m.setHp(m.getHp()-10);
+		m.setSpeed(m.INIT_SPEED/2);
 		
 	}
 
 	@Override
 	public void visit(Naji n) {
-		// TODO Auto-generated method stub
+		n.set_slowTimeLeft(3000);
+		n.setSpeed(n.INIT_SPEED/2);
 		
 	}
 

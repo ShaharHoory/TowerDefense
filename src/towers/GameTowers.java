@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import creeps.Creep;
+import towers.Tower.TYPE;
 import utils.Board;
 import utils.Game;
 import utils.Tickable;
@@ -65,6 +66,9 @@ public class GameTowers extends JComponent implements Tickable{
 	
 	public void deleteTower(Tower t){
 		towers.remove(t);
+		String str = t.getClass().getName().substring(7).replace("T", " T");
+		Integer i =getTowersLeft().get(str)+1;
+		getTowersLeft().put(str, i);
 	}
 	
 	public void showTowerArea(Graphics g , Tower t){
@@ -111,13 +115,31 @@ public class GameTowers extends JComponent implements Tickable{
 		for (Tower tower : towers) {
 			tower.timeToShoot-=tower.attackSpeed*Timer.NORMAL_TICK;
 			if(tower.timeToShoot<=0){
-				Creep target = selectTarget(tower);
-				if(target!=null){
-					tower.hit(target);
-					tower.timeToShoot=1000;
+				if(tower.type==TYPE.REGULAR){
+					Creep target = selectTarget(tower);
+					if(target!=null){
+						tower.hit(target);
+						tower.timeToShoot=1000;
+					}
+				}
+				else{
+					LinkedList<Creep> targets = selectsMultipleTargets(tower);
+						for (Creep creep : targets) {
+							tower.hit(creep);
+							tower.timeToShoot=1000;
+						}
 				}
 			}
 		}
+	}
+
+	private LinkedList<Creep> selectsMultipleTargets(Tower tower) {
+		LinkedList<Creep> targets = new LinkedList<>();
+		for (Creep creep : creeps) {
+			if(isInRange(tower , creep))
+				targets.add(creep);			
+		}
+		return targets;
 	}
 
 	private Creep selectTarget(Tower tower) {

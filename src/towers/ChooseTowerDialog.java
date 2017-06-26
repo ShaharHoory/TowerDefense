@@ -85,11 +85,16 @@ public class ChooseTowerDialog extends JDialog implements ActionListener{
 				Constructor<?> ctor = clazz.getConstructors()[0];
 				Tower object = (Tower) ctor.newInstance(_x , _y);				
 				gt.placeTower(object);
-//				Object[] options = {"Place" , "Cancel"};
-//				int selected = JOptionPane.showOptionDialog(this, "The tower can't be moved after it has been placed", "Place tower", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-//				if (selected != 0){
-//					_game.get_board().get_towersLoc()[object.y][object.x] = null;
-//				}
+				gt.setVisibleRangeTower(object);
+				gt.repaint();
+				Object[] options = {"Place" , "Cancel"};
+				int selected = JOptionPane.showOptionDialog(this, "The tower can't be moved after it has been placed", "Place tower", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				if (selected != 0){
+					gt.deleteTower(object);
+				}
+				gt.setVisibleRangeTower(null);
+				gt.repaint();
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
