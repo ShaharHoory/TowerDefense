@@ -10,36 +10,39 @@ import utilities.Constants;
 
 public class ArrowTower extends Tower {
 
-	public ArrowTower(ImageIcon sprite) {
-		super(Constants.arrowThreatRadius, Constants.arrowAttackSpeed, sprite);
+	public ArrowTower() {
+		super(Constants.arrowThreatRadius, Constants.arrowAttackSpeed, "/TowerDefence/sprites/towers/2.png‬");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initiateTowerType() {
-		towerType = TowerTypes.Regular;
+		towerType = TowerType.Regular;
 	}
 
 	@Override
 	public void attack(Skull attacked) {
-		// TODO Auto-generated method stub
-		
+        attacked.damageDecrease(15);	
 	}
 
 	@Override
 	public void attack(MikeW attacked) {
-		// TODO Auto-generated method stub
+		attacked.damageDecrease(30);	
 		
 	}
 
 	@Override
 	public void attack(Knight attacked) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void attack(Naji attacked) {
+		attacked.damageDecrease(30);	
+	}
+
+	@Override
+	public void engage() {
 		// TODO Auto-generated method stub
 		
 	}

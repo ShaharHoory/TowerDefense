@@ -10,36 +10,38 @@ import utilities.Constants;
 
 public class SamTower extends Tower {
 
-	public SamTower(ImageIcon sprite) {
-		super(Constants.samThreatRadius, Constants.samAttackSpeed, sprite);
+	public SamTower() {
+		super(Constants.samThreatRadius, Constants.samAttackSpeed, "‪/TowerDefence/sprites/towers/5.png‬");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initiateTowerType() {
-		towerType = TowerTypes.Terminator;
+		towerType = TowerType.Terminator;
 	}
 
 	@Override
 	public void attack(Skull attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(0); // slow effect			
 	}
 
 	@Override
 	public void attack(MikeW attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(10);	//slow effect				
 	}
 
 	@Override
 	public void attack(Knight attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(0);	//slow effect						
 	}
 
 	@Override
 	public void attack(Naji attacked) {
+		attacked.damageDecrease(0);	//slow effect						
+	}
+
+	@Override
+	public void engage() {
 		// TODO Auto-generated method stub
 		
 	}

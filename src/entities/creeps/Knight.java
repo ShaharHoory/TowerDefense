@@ -1,21 +1,22 @@
 package entities.creeps;
 
-import javax.swing.ImageIcon;
-
 import entities.Visitor;
 import utilities.Constants;
 
 public class Knight extends Creep {
 
-	public Knight(ImageIcon sprite) {
-		super(Constants.knightSpeed, Constants.HP, sprite);
-		// TODO Auto-generated constructor stub
+	public Knight() {
+		super(Constants.knightSpeed, Constants.HP, "‪/TowerDefence/sprites/creeps/abir-1.png‬",
+				"‪/TowerDefence/sprites/creeps/abir-2.png‬");
+		
+		
+
 	}
 
 	@Override
 	public void impact(Visitor v) {
-		// TODO Auto-generated method stub
-
+		 v.attack(this);
 	}
+	
 
 }

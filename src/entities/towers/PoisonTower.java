@@ -10,36 +10,39 @@ import utilities.Constants;
 
 public class PoisonTower extends Tower {
 
-	public PoisonTower(ImageIcon sprite) {
-		super(Constants.poisonThreatRadius, Constants.poisonAttackSpeed, sprite);
+	public PoisonTower() {
+		super(Constants.poisonThreatRadius, Constants.poisonAttackSpeed, "‪/TowerDefence/sprites/towers/3.png");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initiateTowerType() {
-		towerType = TowerTypes.Regular; 
+		towerType = TowerType.Regular;
 	}
 
 	@Override
 	public void attack(Skull attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(20);
+
 	}
 
 	@Override
 	public void attack(MikeW attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(0);
 	}
 
 	@Override
 	public void attack(Knight attacked) {
-		// TODO Auto-generated method stub
-		
+		attacked.damageDecrease(0); // poison effect
 	}
 
 	@Override
 	public void attack(Naji attacked) {
+		attacked.damageDecrease(15);// poison effect
+	}
+
+	@Override
+	public void engage() {
 		// TODO Auto-generated method stub
 		
 	}

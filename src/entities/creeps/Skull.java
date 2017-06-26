@@ -1,21 +1,20 @@
 package entities.creeps;
 
-import javax.swing.ImageIcon;
 
 import entities.Visitor;
 import utilities.Constants;
 
 public class Skull extends Creep {
 
-	public Skull(int speed, int HP, ImageIcon sprite) {
-		super(Constants.skullSpeed, Constants.HP, sprite);
+	public Skull() {
+		super(Constants.skullSpeed, Constants.HP, "‪/TowerDefence/sprites/creeps/guli-1.png‬",
+				"‪/TowerDefence/sprites/creeps/guli-2.png‬");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void impact(Visitor v) {
-		// TODO Auto-generated method stub
-
+		v.attack(this);
 	}
 
 }

@@ -11,35 +11,37 @@ import utilities.Constants;
 public class LavaTower extends Tower {
 
 	public LavaTower(ImageIcon sprite) {
-		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, sprite);
+		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, "‪/TowerDefence/sprites/towers/1.png‬");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initiateTowerType() {
-		towerType = TowerTypes.Terminator;
+		towerType = TowerType.Terminator;
 	}
 
 	@Override
 	public void attack(Skull attacked) {
-		// TODO Auto-generated method stub
-		
+		 attacked.damageDecrease(15);			
 	}
 
 	@Override
 	public void attack(MikeW attacked) {
-		// TODO Auto-generated method stub
-		
+		 attacked.damageDecrease(15);			
 	}
 
 	@Override
 	public void attack(Knight attacked) {
-		// TODO Auto-generated method stub
-		
+		 attacked.damageDecrease(10);			
 	}
 
 	@Override
 	public void attack(Naji attacked) {
+		 attacked.damageDecrease(15);			
+	}
+
+	@Override
+	public void engage() {
 		// TODO Auto-generated method stub
 		
 	}
