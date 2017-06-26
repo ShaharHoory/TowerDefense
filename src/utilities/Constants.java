@@ -48,53 +48,60 @@ public class Constants {
 	// Naji:
 	public static final int najiSpeed = 2;
 
-	// -----------------Damage&Effects----------------------//
+	// -----------------Size Of Components----------------------//
+	public static final int BLOCK_SIZE = 25;
 
-	// lava:
-	public static final int lavaToSkullDamage = 15;
-	public static final int lavaToMikeWDamage = 15;
-	public static final int lavaToKnightDamage = 10;
-	public static final int lavaToNajiDamage = 15;
+	public static final int BOARD_SIZE = 800;
 
-	// arrow:
-	public static final int arrowToSkullDamage = 15;
-	public static final int arrowToMikeWDamage = 30;
-	public static final int arrowToKnightDamage = 0;
-	public static final int arrowToNajiDamage = 30;
+	public static final int CREEP_SIZE = (int) (0.8 * BLOCK_SIZE);
 
-	// poison:
-	public static final int poisonToSkullDamage = 20;
-	// public static final boolean isSkullEffected = false;
-	public static final int poisonToMikeWDamage = 0;
-	// public static final boolean isMikeWEffected = false;
-	public static final int poisonFactorToKnight = 2;
-	// public static final boolean isKnightEffected = true;
-	public static final double poisonFactorToNaji = 1.5;
-	// public static final boolean isNajiEffected = true;
-
-	// magic:
-	public static final int magicToSkullDamage = 25;
-	public static final int magicToMikeWDamage = 10;
-	public static final int magicToKnightDamage = 30;
-	public static final int magicToNajiDamage = 10;
-
-	// sam:
-	public static final int samSlowDurationToSkull = 3;
-	public static final int samSlowDurationToMikeW = 3;
-	public static final int samToMikeWDamage = 10;
-	public static final int samSlowDurationToKnight = 6;
-	public static final int samSlowDurationToNaji = 3;
-
-	// goku :
-	public static final int gokuToSkullIncDamage = 10;
-	public static final int gokuToMikeWIncDamage = 5;
-	public static final int gokuToKnightIncDamage = 7;
-	public static final int gokuToNajiIncDamage = 5;
-
-	// dino:
-	public static final int dinoToSkullDamage = 15;
-	public static final int dinoToMikeWDamage = 10;
-	public static final int dinoToKnightDamage = 8;
-	public static final int dinoToNajiDamage = 11;
+	// // -----------------Damage&Effects----------------------//
+	//
+	// // lava:
+	// public static final int lavaToSkullDamage = 15;
+	// public static final int lavaToMikeWDamage = 15;
+	// public static final int lavaToKnightDamage = 10;
+	// public static final int lavaToNajiDamage = 15;
+	//
+	// // arrow:
+	// public static final int arrowToSkullDamage = 15;
+	// public static final int arrowToMikeWDamage = 30;
+	// public static final int arrowToKnightDamage = 0;
+	// public static final int arrowToNajiDamage = 30;
+	//
+	// // poison:
+	// public static final int poisonToSkullDamage = 20;
+	// // public static final boolean isSkullEffected = false;
+	// public static final int poisonToMikeWDamage = 0;
+	// // public static final boolean isMikeWEffected = false;
+	// public static final int poisonFactorToKnight = 2;
+	// // public static final boolean isKnightEffected = true;
+	// public static final double poisonFactorToNaji = 1.5;
+	// // public static final boolean isNajiEffected = true;
+	//
+	// // magic:
+	// public static final int magicToSkullDamage = 25;
+	// public static final int magicToMikeWDamage = 10;
+	// public static final int magicToKnightDamage = 30;
+	// public static final int magicToNajiDamage = 10;
+	//
+	// // sam:
+	// public static final int samSlowDurationToSkull = 3;
+	// public static final int samSlowDurationToMikeW = 3;
+	// public static final int samToMikeWDamage = 10;
+	// public static final int samSlowDurationToKnight = 6;
+	// public static final int samSlowDurationToNaji = 3;
+	//
+	// // goku :
+	// public static final int gokuToSkullIncDamage = 10;
+	// public static final int gokuToMikeWIncDamage = 5;
+	// public static final int gokuToKnightIncDamage = 7;
+	// public static final int gokuToNajiIncDamage = 5;
+	//
+	// // dino:
+	// public static final int dinoToSkullDamage = 15;
+	// public static final int dinoToMikeWDamage = 10;
+	// public static final int dinoToKnightDamage = 8;
+	// public static final int dinoToNajiDamage = 11;
 
 }
