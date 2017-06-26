@@ -2,6 +2,7 @@ package utils;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
@@ -26,6 +27,8 @@ public class GameToolbar extends JPanel {
 	JLabel wave;
 	JLabel lives;
 	JButton nextWave;
+	Image regularSpeed = new ImageIcon(GameWindow.class.getResource("/regularSpeed.png")).getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
+	Image doubleSpeed = new ImageIcon(GameWindow.class.getResource("/fast-forward.png")).getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
 	
 	public GameToolbar(Game game){
 		this.game = game;
@@ -33,6 +36,10 @@ public class GameToolbar extends JPanel {
 		this.lives = new JLabel();
 		this.nextWave = new JButton();
 		this.fastForward = new JButton();
+		this.fastForward.setIcon(new ImageIcon(regularSpeed));
+		this.fastForward.setOpaque(false);
+		this.fastForward.setContentAreaFilled(false);
+		this.fastForward.setEnabled(false);
 		this.wave.setText("Waves Passed: "+this.game._currWave+"   "); //change during a wave to "current wave"
 		this.lives.setText("Lives: "+this.game._lives+"   ");
 		this.nextWave = new JButton();

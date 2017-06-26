@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -39,6 +40,11 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		_toolbar = new GameToolbar(_game);		
 		_toolbar.fastForward.addActionListener(this);
 		_toolbar.nextWave.addActionListener(this);
+		
+		timer.register(this);
+		timer.register(_game.gameCreeps);
+		timer.register(_game.gameTowers);
+		
 		JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));       
         layeredPane.add(_game.get_board() , new Integer(0));
@@ -63,7 +69,14 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 			callNextWave();
 		}
 		else if(buttonPressed.equals(_toolbar.fastForward)){
-			//fast forward the game - set timer to x/2;
+			if(timer.tick==timer.NORMAL_TICK){
+				_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.doubleSpeed));
+				timer.fastForward();
+			}
+			else{
+				_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.regularSpeed));
+				timer.regularSpeed();
+			}
 		}			
 	}
 	
@@ -75,9 +88,6 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 			addCreeps(addedCreeps);
 		}
 		Collections.shuffle(addedCreeps);
-		timer.register(this);
-		timer.register(_game.gameCreeps);
-		timer.register(_game.gameTowers);
 		timer.start();
 		updateGameToolbar();
 	}
@@ -118,13 +128,15 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		
 		if(_game.lost()){
 			timer.stop();
-			AfterGamePanel gameOver = new AfterGamePanel(this, _game);
+			LostGameFrame lost = new LostGameFrame(_game);
+			this.dispose();
 		}
 		
 		if(gc.getCreeps().isEmpty() && gc.getAddedCreeps().isEmpty()){
 			timer.stop();
 			_game._isWave = false;
-		}					
+			_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.regularSpeed));
+		}				
 		updateGameToolbar();
 	}
 
@@ -132,7 +144,7 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		if(_game._isWave)
 			_toolbar.wave.setText("Current Wave: "+_game._currWave);
 		else
-			_toolbar.wave.setText("Waves Passed: "+(_game._currWave-1));
+			_toolbar.wave.setText("Waves Passed: "+(_game._currWave));
 		_toolbar.nextWave.setEnabled(!_game._isWave);
 		_toolbar.fastForward.setEnabled(_game._isWave);
 		_toolbar.lives.setText("Lives: "+_game._lives);

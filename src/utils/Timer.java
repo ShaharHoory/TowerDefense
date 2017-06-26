@@ -37,11 +37,6 @@ public class Timer implements ActionListener {
 	public void start(){
 		t.start();
 	}
-
-	public void stop() {
-		t.stop();
-		numOfTicks=0;
-	}
 	
 	public void fastForward(){
 		tick = NORMAL_TICK/2;
@@ -65,5 +60,11 @@ public class Timer implements ActionListener {
 
 	public void setNumOfTicks(int numOfTicks) {
 		this.numOfTicks = numOfTicks;
+	}
+
+	public void stop() {
+		t.stop();	
+		tick = NORMAL_TICK;
+		t.setDelay(tick);
 	}
 }

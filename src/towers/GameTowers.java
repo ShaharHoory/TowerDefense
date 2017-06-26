@@ -111,10 +111,10 @@ public class GameTowers extends JComponent implements Tickable{
 		for (Tower tower : towers) {
 			tower.timeToShoot-=tower.attackSpeed*Timer.NORMAL_TICK;
 			if(tower.timeToShoot<=0){
-				tower.timeToShoot=1000;
 				Creep target = selectTarget(tower);
 				if(target!=null){
 					tower.hit(target);
+					tower.timeToShoot=1000;
 				}
 			}
 		}
