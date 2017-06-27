@@ -120,6 +120,10 @@ public class GameTowers extends JComponent implements Tickable{
 					if(target!=null){
 						tower.hit(target);
 						tower.timeToShoot=1000;
+						tower.icon = new ImageIcon(tower.shootingImage);
+					}
+					else{
+						tower.icon = new ImageIcon(tower.towerImage);
 					}
 				}
 				else{
@@ -128,7 +132,13 @@ public class GameTowers extends JComponent implements Tickable{
 							tower.hit(creep);
 							tower.timeToShoot=1000;
 						}
+						tower.icon = new ImageIcon(tower.shootingImage);
+						if(targets.isEmpty())
+							tower.icon = new ImageIcon(tower.towerImage);
 				}
+			}
+			else{
+				tower.icon = new ImageIcon(tower.towerImage);
 			}
 		}
 	}

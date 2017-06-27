@@ -29,6 +29,7 @@ public class GameToolbar extends JPanel {
 	JButton nextWave;
 	Image regularSpeed = new ImageIcon(GameWindow.class.getResource("/regularSpeed.png")).getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
 	Image doubleSpeed = new ImageIcon(GameWindow.class.getResource("/fast-forward.png")).getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
+	JLabel time;
 	
 	public GameToolbar(Game game){
 		this.game = game;
@@ -44,14 +45,20 @@ public class GameToolbar extends JPanel {
 		this.lives.setText("Lives: "+this.game._lives+"   ");
 		this.nextWave = new JButton();
 		this.nextWave.setText("Call next wave!");
+		this.time = new JLabel("Time: "+game.timer.toString());
 		//this.fastForward.setIcon(new ImageIcon(GameWindow.class.getResource("/fastForward.png")));
 		wave.setFont(new Font("arial", Font.PLAIN, 20));
 		lives.setFont(new Font("arial", Font.PLAIN, 20));
+		time.setFont(new Font("arial", Font.PLAIN, 20));
 		nextWave.setFont(new Font("arial", Font.BOLD, 16));
+		
+		
 		
 		this.add(lives);
 		this.add(wave);
+		this.add(time);
 		this.add(fastForward);
 		this.add(nextWave);
+		
 	}
 }

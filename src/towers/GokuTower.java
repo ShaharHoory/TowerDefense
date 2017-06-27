@@ -18,10 +18,12 @@ public class GokuTower extends Tower {
 	public GokuTower(int x , int y) {
 		super(2, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/Goku Tower.png"));
 		_hitParameterH = 1;
 		_numOfHits = 0;
 		rangeColor = Color.RED;
+		towerImage = (this.getClass().getResource("/Goku Tower.png"));
+		shootingImage = (this.getClass().getResource("/Shooting Goku Tower.png"));
+		icon = new ImageIcon(towerImage);
 	}
 	
 	//updates the numOfHits in accordance

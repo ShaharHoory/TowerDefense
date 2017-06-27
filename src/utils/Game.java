@@ -38,6 +38,7 @@ public class Game extends JPanel implements MouseListener {
 		_deadCreeps = 0;
 		_board = board;	
 		_isWave = false;
+		this.timer = timer;
 		gameCreeps = new GameCreeps(_board._directionsMat , timer);
 		gameTowers = new GameTowers(_board , gameCreeps.getCreeps());		
 		addTowerTypes();

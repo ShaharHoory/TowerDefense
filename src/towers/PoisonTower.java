@@ -14,9 +14,11 @@ import utils.GameWindow;
 public class PoisonTower extends Tower{
 	public PoisonTower(int x , int y) {
 		super(1, 1 , x , y);
-		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(GameWindow.class.getResource("/Poison Tower.png"));
+		this.type = TYPE.REGULAR;		
 		rangeColor = Color.green;
+		towerImage = this.getClass().getResource("/Poison Tower.png");
+		shootingImage = this.getClass().getResource("/Shooting Poison Tower.png");
+		icon = new ImageIcon(towerImage);
 	}
 
 	@Override

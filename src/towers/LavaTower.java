@@ -15,8 +15,10 @@ public class LavaTower extends Tower{
 	public LavaTower(int x , int y) {
 		super(1, 1 , x , y);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/Lava Tower.png"));
 		rangeColor = Color.ORANGE;
+		towerImage = (this.getClass().getResource("/Lava Tower.png"));
+		shootingImage = (this.getClass().getResource("/Shooting Lava Tower.png"));
+		icon = new ImageIcon(towerImage);
 	}
 
 	@Override

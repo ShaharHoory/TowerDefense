@@ -104,7 +104,7 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 	@Override
 	public void tickHappened() {
 		GameCreeps gc = _game.gameCreeps;
-		if(gc.getAddedCreeps().size()>0 && timer.getNumOfTicks()%10==0){
+		if(gc.getAddedCreeps().size()>0 && timer.getNumOfTicks()%7==0){
 			Creep creep = gc.getAddedCreeps().removeFirst();
 			gc.getCreeps().add(creep);
 			//timer.register(creep);
@@ -112,16 +112,15 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		LinkedList<Creep> creepsToRemove = new LinkedList<>();
 		for (Creep creep : gc.getCreeps()) {
 			if(creep.getHp()<=0){
+				_game._deadCreeps++;
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);
 			}			
 			if(!_game.get_board().isInBoard(creep.getBoardX() , creep.getBoardY())){
 				_game._lives--;
+				_game._passedFinishPointCreeps++;
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);
-			}
-			else{
-				System.out.println("creep in board "+creep._x);
 			}
 		}
 		gc.getCreeps().removeAll(creepsToRemove);
@@ -148,5 +147,6 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		_toolbar.nextWave.setEnabled(!_game._isWave);
 		_toolbar.fastForward.setEnabled(_game._isWave);
 		_toolbar.lives.setText("Lives: "+_game._lives);
+		_toolbar.time.setText("Time: "+timer.toString());
 	}	
 }

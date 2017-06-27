@@ -1,6 +1,7 @@
 package towers;
 
 import java.awt.Color;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -21,6 +22,8 @@ public abstract class Tower implements Visitor,Tickable {
 	int y;
 	int timeToShoot;
 	Color rangeColor;
+	protected URL towerImage;
+	protected URL shootingImage;
 
 	public Tower(int threatArea, int attackSpeed , int x , int y) {
 		this.threatArea = threatArea;

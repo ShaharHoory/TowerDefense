@@ -14,8 +14,10 @@ public class ArrowTower extends Tower{
 	 public ArrowTower (int x , int y) {
 		super(2, 2 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/Arrow Tower.png"));
 		rangeColor = Color.WHITE;
+		towerImage = this.getClass().getResource("/Arrow Tower.png");
+		shootingImage = this.getClass().getResource("/Shooting Arrow Tower.png");
+		icon = new ImageIcon(towerImage);
 	}
 
 	@Override

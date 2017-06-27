@@ -15,8 +15,10 @@ public class SamTower extends Tower{
 	public SamTower(int x , int y) {
 		super(2, 2 , x , y);
 		this.type = TYPE.ASSASIN;
-		icon = new ImageIcon(this.getClass().getResource("/Sam Tower.png"));
 		rangeColor = Color.BLACK;
+		towerImage = this.getClass().getResource("/Sam Tower.png");
+		shootingImage = this.getClass().getResource("/Shooting Sam Tower.png");
+		icon = new ImageIcon(towerImage);
 	}
 
 	@Override

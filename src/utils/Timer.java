@@ -67,4 +67,17 @@ public class Timer implements ActionListener {
 		tick = NORMAL_TICK;
 		t.setDelay(tick);
 	}
+	
+	public String toString(){
+		int seconds = (int)(((double)NORMAL_TICK/1000) * numOfTicks);
+		if(seconds%60<10 && seconds/60<10)
+			return "0"+(seconds/60)+":0"+(seconds%60);
+		else if(seconds%60<10)
+			return (seconds/60)+":0"+(seconds%60);
+		else if(seconds/60<10)
+			return "0"+(seconds/60)+":"+(seconds%60);
+		else
+			return (seconds/60)+":"+(seconds%60);
+		
+	}
 }

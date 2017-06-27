@@ -15,8 +15,10 @@ public class MagicTower extends Tower {
 	public MagicTower(int x , int y) {
 		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		icon = new ImageIcon(this.getClass().getResource("/Magic Tower.png"));
 		rangeColor = Color.PINK;
+		towerImage = this.getClass().getResource("/Magic Tower.png");
+		shootingImage = this.getClass().getResource("/Shooting Magic Tower.png");
+		icon = new ImageIcon(towerImage);
 	}
 
 	@Override
