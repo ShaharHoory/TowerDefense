@@ -48,7 +48,7 @@ public class Game extends JPanel implements MouseListener {
 	}
 	
 	public boolean lost() {
-		return _lives <= 0;
+		return _lives <= 19;
 	}
 
 	@Override
