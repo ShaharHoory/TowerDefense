@@ -2,20 +2,28 @@ package GUI;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 import entities.creeps.Creep;
 import pace.Tickable;
+import pace.Timer;
 import utilities.Constants;
+import utilities.Pair;
 
 public class CreepsPresentation extends JComponent implements Tickable {
-
+	private Timer timer;
 	private LinkedList<Creep> creeps;
+	private LinkedList<Creep> newCreeps;
+	private Pair[][] directionMatrix;
 
-	public CreepsPresentation(LinkedList<Creep> creeps) {
-		this.creeps = creeps;
+	public CreepsPresentation(Pair[][] directionMatrix) {
+		this.creeps = new LinkedList<Creep>();
+		this.newCreeps = new LinkedList<Creep>();
+		this.directionMatrix = directionMatrix;
 		setLocation(0, 0);
 		setBounds(0, 0, Constants.BOARD_SIZE, Constants.BOARD_SIZE);
 		setPreferredSize(new Dimension(Constants.BOARD_SIZE, Constants.BOARD_SIZE));
@@ -26,13 +34,16 @@ public class CreepsPresentation extends JComponent implements Tickable {
 	public void paint(Graphics g) {
 		super.paint(g);
 		for (Creep creep : creeps) {
-
+			ImageIcon creepIcon = creep.getImage();
+			Image creepImage = creepIcon.getImage();
+			g.drawImage(creepImage, (int) creep.actualLocation.x * Constants.BLOCK_SIZE,
+					(int) creep.actualLocation.y * Constants.BLOCK_SIZE, Constants.CREEP_SIZE, Constants.CREEP_SIZE,
+					this);
 		}
 	}
 
 	@Override
 	public void tickHappened() {
-		// TODO Auto-generated method stub
-
+		repaint();
 	}
 }

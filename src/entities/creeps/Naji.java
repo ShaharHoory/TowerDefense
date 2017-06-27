@@ -1,15 +1,16 @@
 package entities.creeps;
 
-import javax.swing.ImageIcon;
+import java.awt.Point;
 
 import entities.Visitor;
 import utilities.Constants;
+import utilities.Pair;
 
 public class Naji extends Creep {
 
-	public Naji() {
+	public Naji(Point location ,Pair[][] directionMatrix) {
 		super(Constants.najiSpeed, Constants.HP, "‪/TowerDefence/sprites/creeps/naji-1.png",
-				"‪/TowerDefence/sprites/creeps/naji-2.png");
+				"‪/TowerDefence/sprites/creeps/naji-2.png", location,directionMatrix);
 		// TODO Auto-generated constructor stub
 	}
 

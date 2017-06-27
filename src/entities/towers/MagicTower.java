@@ -1,24 +1,30 @@
 package entities.towers;
 
+import java.awt.Color;
+import java.awt.Point;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 
+import entities.creeps.Creep;
 import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
 import utilities.Constants;
 
-public class MagicTower extends Tower {
+public class MagicTower extends OneTargetTower {
 
-	public MagicTower() {
-		super(Constants.magicThreatRadius, Constants.magicAttackSpeed, "‪/TowerDefence/sprites/towers/4.png‬");
+	public MagicTower(LinkedList<Creep> creeps, Point location) {
+		super(Constants.magicThreatRadius, Constants.magicAttackSpeed, "‪/TowerDefence/sprites/towers/4.png‬",
+				Color.MAGENTA, creeps, location);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void initiateTowerType() {
-		towerType = TowerType.Regular;
-	}
+	// @Override
+	// public void initiateTowerType() {
+	// towerType = TowerType.Regular;
+	// }
 
 	@Override
 	public void attack(Skull attacked) {
@@ -38,12 +44,6 @@ public class MagicTower extends Tower {
 	@Override
 	public void attack(Naji attacked) {
 		attacked.damageDecrease(10);
-	}
-
-	@Override
-	public void engage() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

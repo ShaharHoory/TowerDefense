@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 public class Timer implements ActionListener {
 	private javax.swing.Timer jTimer;
-	private static final int tickInterval = 1000 / 12;
-	private static int actualInterval;
+	public static final int tickInterval = 1000 / 12;
+	public static int actualInterval;
 	private LinkedList<Tickable> timedObjects;
 	public int ticksAccumulator;
 

@@ -1,8 +1,8 @@
 package utilities;
 
 public class Pair {
-	private int xInc;
-	private int yInc;
+	public int xInc;
+	public int yInc;
 
 	public Pair(int xInc, int yInc) {
 		super();
@@ -24,6 +24,12 @@ public class Pair {
 
 	public void setyInc(int yInc) {
 		this.yInc = yInc;
+	}
+
+	public boolean equals(Pair other) {
+		if (other.xInc == xInc && other.yInc == yInc)
+			return true;
+		return false;
 	}
 
 }

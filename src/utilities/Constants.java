@@ -55,6 +55,13 @@ public class Constants {
 
 	public static final int CREEP_SIZE = (int) (0.8 * BLOCK_SIZE);
 
+	public static final int lowLimit = 0;
+	public static final double highLimit = 31.9999;
+	
+	public static final int TOWER_HEIGHT = 60; 
+	
+	public static final int TOWER_WIDTH = 35; 
+
 	// // -----------------Damage&Effects----------------------//
 	//
 	// // lava:

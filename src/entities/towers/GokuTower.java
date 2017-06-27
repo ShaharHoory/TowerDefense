@@ -1,18 +1,24 @@
 package entities.towers;
 
+import java.awt.Color;
+import java.awt.Point;
+import java.util.LinkedList;
+
+import entities.creeps.Creep;
 import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
 import utilities.Constants;
 
-public class GokuTower extends Tower {
+public class GokuTower extends OneTargetTower {
 
 	private int H;
 	private int hitCount;
 
-	public GokuTower() {
-		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, "‪/TowerDefence/sprites/towers/6.png‬");
+	public GokuTower(LinkedList<Creep> creeps, Point location) {
+		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, "‪/TowerDefence/sprites/towers/6.png‬",
+				Color.yellow, creeps, location);
 		H = 1;
 		hitCount = 0;
 	}
@@ -25,10 +31,10 @@ public class GokuTower extends Tower {
 		}
 	}
 
-	@Override
-	public void initiateTowerType() {
-		towerType = TowerType.Regular;
-	}
+	// @Override
+	// public void initiateTowerType() {
+	// towerType = TowerType.Regular;
+	// }
 
 	@Override
 	public void attack(Skull attacked) {
@@ -53,12 +59,6 @@ public class GokuTower extends Tower {
 	public void attack(Naji attacked) {
 		attacked.damageDecrease(H * 5);
 		sayians();
-	}
-
-	@Override
-	public void engage() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
