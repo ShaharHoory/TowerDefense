@@ -88,7 +88,7 @@ public class ChooseTowerDialog extends JDialog implements ActionListener{
 				gt.setVisibleRangeTower(object);
 				gt.repaint();
 				Object[] options = {"Place" , "Cancel"};
-				int selected = JOptionPane.showOptionDialog(this, "The tower can't be moved after it has been placed", "Place tower", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				int selected = JOptionPane.showOptionDialog(this, "You can't move the tower after it was placed", "Place tower?", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (selected != 0){
 					gt.deleteTower(object);
 				}

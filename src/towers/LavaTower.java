@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -14,6 +16,7 @@ public class LavaTower extends Tower{
 		super(1, 1 , x , y);
 		this.type = TYPE.ASSASIN;
 		icon = new ImageIcon(this.getClass().getResource("/Lava Tower.png"));
+		rangeColor = Color.ORANGE;
 	}
 
 	@Override

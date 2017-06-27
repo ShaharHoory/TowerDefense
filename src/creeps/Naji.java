@@ -12,6 +12,10 @@ public class Naji extends Creep {
 	public Naji(int x , int y) {
 		super(2, new ImageIcon(GameWindow.class.getResource("/naji-1.png")), x , y ,REDUCTION_PARAM_K);
 		INIT_SPEED = 2;
+		rightS = GameWindow.class.getResource("/naji-1.png");
+		rightW = GameWindow.class.getResource("/naji-2.png");
+		leftS = GameWindow.class.getResource("/naji-3.png");
+		leftW = GameWindow.class.getResource("/naji-4.png");
 	}
 
 	@Override

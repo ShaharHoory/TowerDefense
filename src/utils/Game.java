@@ -67,6 +67,9 @@ public class Game extends JPanel implements MouseListener {
 					ChooseTowerDialog dialog = new ChooseTowerDialog(this , xLoc , yLoc);
 				}	
 			}
+			else{
+				gameTowers.setVisibleRangeTower(null);
+			}
 		}		
 	}
 

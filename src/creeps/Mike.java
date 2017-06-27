@@ -12,6 +12,11 @@ public class Mike extends Creep {
 	public Mike(int x , int y) {
 		super(1, new ImageIcon(GameWindow.class.getResource("/mike-1.png")), x , y , REDUCTION_PARAM_K);
 		INIT_SPEED=1;
+		rightS = GameWindow.class.getResource("/mike-1.png");
+		rightW = GameWindow.class.getResource("/mike-2.png");
+		leftS = GameWindow.class.getResource("/mike-3.png");
+		leftW = GameWindow.class.getResource("/mike-4.png");
+		
 	}
 
 	@Override

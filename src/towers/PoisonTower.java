@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -14,6 +16,7 @@ public class PoisonTower extends Tower{
 		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;
 		icon = new ImageIcon(GameWindow.class.getResource("/Poison Tower.png"));
+		rangeColor = Color.green;
 	}
 
 	@Override

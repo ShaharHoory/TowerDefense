@@ -115,7 +115,7 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);
 			}			
-			if(!_game.get_board().isInBoard((int)creep._x , (int)creep._y)){
+			if(!_game.get_board().isInBoard(creep.getBoardX() , creep.getBoardY())){
 				_game._lives--;
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);

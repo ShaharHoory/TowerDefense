@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -18,6 +20,7 @@ public abstract class Tower implements Visitor,Tickable {
 	int x;
 	int y;
 	int timeToShoot;
+	Color rangeColor;
 
 	public Tower(int threatArea, int attackSpeed , int x , int y) {
 		this.threatArea = threatArea;

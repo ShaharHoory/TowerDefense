@@ -1,5 +1,6 @@
 package creeps;
 import java.awt.Graphics;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -21,7 +22,15 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 	private int _reductionParameterK;
 	public double _x;
 	public double _y;
+	protected int boardX;
+	protected int boardY;
 	public int steps;
+	protected URL leftS;
+	protected URL rightS;
+	protected URL leftW;
+	protected URL rightW;
+	boolean direction = true; //right - true , left - false
+	boolean walking = false; // staying - false
 	
 	public Creep(int speed, ImageIcon icon, double x , double y , int reductionParameter) {
 		setSpeed(speed);
@@ -32,6 +41,8 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 		_poisoningTimeLeft = 0;
 		_x = x;
 		_y = y;
+		boardX = (int)x;
+		boardY = (int)y;
 		steps = 0;
 	}
 	
@@ -103,5 +114,53 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 
 	public void set_slowTimeLeft(double _slowTimeLeft) {
 		this._slowTimeLeft = _slowTimeLeft;
+	}
+
+	public int getBoardX() {
+		return boardX;
+	}
+
+	public void setBoardX(int boardX) {
+		this.boardX = boardX;
+	}
+
+	public int getBoardY() {
+		return boardY;
+	}
+
+	public void setBoardY(int boardY) {
+		this.boardY = boardY;
+	}
+
+	public URL getLeftS() {
+		return leftS;
+	}
+
+	public void setLeftS(URL leftS) {
+		this.leftS = leftS;
+	}
+
+	public URL getRightS() {
+		return rightS;
+	}
+
+	public void setRightS(URL rightS) {
+		this.rightS = rightS;
+	}
+
+	public URL getLeftW() {
+		return leftW;
+	}
+
+	public void setLeftW(URL leftW) {
+		this.leftW = leftW;
+	}
+
+	public URL getRightW() {
+		return rightW;
+	}
+
+	public void setRightW(URL rightW) {
+		this.rightW = rightW;
 	}
 }

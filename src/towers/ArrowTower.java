@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -13,6 +15,7 @@ public class ArrowTower extends Tower{
 		super(2, 2 , x , y);
 		this.type = TYPE.REGULAR;
 		icon = new ImageIcon(this.getClass().getResource("/Arrow Tower.png"));
+		rangeColor = Color.WHITE;
 	}
 
 	@Override

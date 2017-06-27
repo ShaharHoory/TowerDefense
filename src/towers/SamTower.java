@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -14,6 +16,7 @@ public class SamTower extends Tower{
 		super(2, 2 , x , y);
 		this.type = TYPE.ASSASIN;
 		icon = new ImageIcon(this.getClass().getResource("/Sam Tower.png"));
+		rangeColor = Color.BLACK;
 	}
 
 	@Override

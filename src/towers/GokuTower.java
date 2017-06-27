@@ -1,5 +1,7 @@
 package towers;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
@@ -19,6 +21,7 @@ public class GokuTower extends Tower {
 		icon = new ImageIcon(this.getClass().getResource("/Goku Tower.png"));
 		_hitParameterH = 1;
 		_numOfHits = 0;
+		rangeColor = Color.RED;
 	}
 	
 	//updates the numOfHits in accordance

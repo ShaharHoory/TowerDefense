@@ -75,7 +75,7 @@ public class GameTowers extends JComponent implements Tickable{
 		int x = t.getX();
 		int y = t.getY();
 		int threatArea = t.getThreatArea();
-		g.setColor(Color.BLUE);
+		g.setColor(t.rangeColor);
 		for(int i=-threatArea; i<=threatArea; i++){
 			for(int j=-threatArea; j<=threatArea; j++){
 				if (i!=0 || j!=0){
