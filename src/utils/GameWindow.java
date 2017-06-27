@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -11,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import creeps.Creep;
 import creeps.GameCreeps;
@@ -25,18 +28,23 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 	MainMenu _menu;
 	GameToolbar _toolbar;
 	private Timer timer;
-	private Loader loader;
+	private Loader _loader;
 	
-	public GameWindow() throws IOException {
+	public GameWindow(Loader loader, int levelIndex) throws IOException {
 		super("Tower Defence!");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.setSize(800, 900);
 		this.setResizable(false);
-		loader = new Loader();
-		loader.load("Levels.txt");
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				exit();
+			}
+		});
+		_loader = loader;
 		timer = new Timer();
-		_game = new Game(new Board(loader.levels.get(0)) , timer);
+		_game = new Game(new Board(loader.levels.get(levelIndex-1)) , timer);
 		_toolbar = new GameToolbar(_game);		
 		_toolbar.fastForward.addActionListener(this);
 		_toolbar.nextWave.addActionListener(this);
@@ -58,9 +66,9 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) throws IOException {
+	/*public static void main(String[] args) throws IOException {
 		new GameWindow();
-	}
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -127,8 +135,8 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		
 		if(_game.lost()){
 			timer.stop();
-			LostGameFrame lost = new LostGameFrame(_game);
 			this.dispose();
+			LoosingWindow loserWind = new LoosingWindow(_game);
 		}
 		
 		if(gc.getCreeps().isEmpty() && gc.getAddedCreeps().isEmpty()){
@@ -149,4 +157,15 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		_toolbar.lives.setText("Lives: "+_game._lives);
 		_toolbar.time.setText("Time: "+timer.toString());
 	}	
+	
+	//exits the program according to the user's choice
+	public void exit() {
+		String ObjButtons[] = { "Yes", "No" };
+		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
+				"Exit", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+				ObjButtons, ObjButtons[1]);
+		if (PromptResult == JOptionPane.YES_OPTION) {
+			System.exit(0);
+			}
+	}
 }
