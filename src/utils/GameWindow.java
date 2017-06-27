@@ -126,7 +126,8 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		
 		if(_game.lost()){
 			timer.stop();
-			AfterGamePanel gameOver = new AfterGamePanel(this, _game);
+			this.dispose();
+			LoosingWindow loserWind = new LoosingWindow(_game);
 		}
 		
 		if(gc.getCreeps().isEmpty() && gc.getAddedCreeps().isEmpty()){

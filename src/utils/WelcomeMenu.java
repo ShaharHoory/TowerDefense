@@ -1,6 +1,5 @@
 package utils;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,8 +10,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.HashMap;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +35,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 	public WelcomeMenu() throws IOException {
 		super("Tower Defence!");
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(600, 490);
+		this.setSize(600, 435);
 		this.setResizable(false);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -53,23 +50,29 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 		
 		//menu content panel
 		_menuContent = new JPanel();
-		_menuContent.setSize(600, 490);
+		_menuContent.setSize(600, 435);
 		_menuContent.setLayout(null);
 		JLabel welcomeLabel = new JLabel("Tower Defence!");
 		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		welcomeLabel.setBounds(200, 30, 150, 35);
+		welcomeLabel.setBounds(220, 20, 150, 35);
 		_menuContent.add(welcomeLabel);
 		initializeButtons();
 		_chosenIndex = 1;
 		
 		//level select panel
 		_levelSelectPanel = new JPanel();
-		_levelSelectPanel.setBounds(120, 50, 300, 250);
-		_nextLevelButton = new JButton(new ImageIcon(this.getClass().getResource("/nextButton.png")));
-		_prevLevelButton = new JButton(new ImageIcon(this.getClass().getResource("/prevButton.png")));
+		_levelSelectPanel.setBounds(110, 50, 370, 300);
+		ImageIcon nextImage = new ImageIcon((this.getClass().getResource("/nextButton.png")));
+		ImageIcon prevImage = new ImageIcon((this.getClass().getResource("/prevButton.png")));
+		nextImage = new ImageIcon(nextImage.getImage().getScaledInstance(57, 59, Image.SCALE_SMOOTH));
+		prevImage = new ImageIcon(prevImage.getImage().getScaledInstance(57, 59, Image.SCALE_SMOOTH));
+		_nextLevelButton = new JButton(nextImage);
+		_prevLevelButton = new JButton(prevImage);
+		_nextLevelButton.setPreferredSize(new Dimension(57, 59));
+		_prevLevelButton.setPreferredSize(new Dimension(57, 59));
+		_prevLevelButton.setSize(57, 59);
 		_nextLevelButton.addActionListener(this);
 		_prevLevelButton.addActionListener(this);
-		//_prevLevelButton.setEnabled(false);
 		manageLevelsButtons();
 		_levelsViewLabel = new JLabel();
 		_levelsMap = new HashMap<>();
@@ -88,15 +91,15 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 	private void levalsMapInitialization() {
 		for(int i=1; i<=_numOfLevels; i++) {
 			ImageIcon levelIcon = new ImageIcon((this.getClass().getResource("/level"+i+"Image.png")));
-			levelIcon = new ImageIcon(levelIcon.getImage().getScaledInstance((getWidth()/9), getHeight()/4, Image.SCALE_SMOOTH));
+			//levelIcon = new ImageIcon(levelIcon.getImage().getScaledInstance((getWidth()/9), getHeight()/4, Image.SCALE_SMOOTH));
 			_levelsMap.put(i, levelIcon);
 		}
 	}
 
 	//initializes all the buttons
 	private void initializeButtons() {
-		_playButton = addButton("Play", 235, 180);
-		_exitButton = addButton("Exit", 235, 220);
+		_playButton = addButton("Play", 260, 220);
+		_exitButton = addButton("Exit", 260, 260);
 		}
 	
 	//creates a button
