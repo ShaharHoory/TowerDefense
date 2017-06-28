@@ -1,8 +1,9 @@
-package GUI;
+package guiComponents;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -18,18 +19,26 @@ public class TowersPresentation extends JComponent implements Tickable {
 
 	LinkedList<Tower> towers;
 	LinkedList<Creep> creeps;
-	private HashMap<String, Integer> towersAvailable;
+	HashMap<String, Integer> towersAvailable;
 	Tower onFocus;
-	BoardPresentation board;
 
-	public TowersPresentation(LinkedList<Creep> creeps, BoardPresentation board) {
+	public TowersPresentation(LinkedList<Creep> creeps) {
 		onFocus = null;
-		towers = new LinkedList<>();
-		towersAvailable = new HashMap<>();
+		towers = new LinkedList<Tower>();
+		towersAvailable = new HashMap<String, Integer>();
+		initiateTowersAvailable();
 		this.creeps = creeps;
-		this.board = board;
 		setSize(new Dimension(Constants.BOARD_SIZE, Constants.BOARD_SIZE));
 		// setPreferredSize(new Dimension(800, 800));
+	}
+
+	private void initiateTowersAvailable() {
+		towersAvailable.put("Lava Tower", 3);
+		towersAvailable.put("Arrow Tower", 3);
+		towersAvailable.put("Poison Tower", 3);
+		towersAvailable.put("Magic Tower", 3);
+		towersAvailable.put("Sam Tower", 1);
+		towersAvailable.put("Goku Tower", 1);
 	}
 
 	@Override
@@ -70,6 +79,14 @@ public class TowersPresentation extends JComponent implements Tickable {
 		String key = className.substring(0, className.indexOf("Tower"));
 		Integer currentTowersLeft = towersAvailable.get(key);
 		towersAvailable.put(key, currentTowersLeft - 1);
+	}
+
+	public Tower getTowerAt(Point location) {
+		for (Tower tower : towers) {
+			if (tower.location.equals(location))
+				return tower;
+		}
+		return null;
 	}
 
 	@Override

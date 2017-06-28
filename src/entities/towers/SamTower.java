@@ -11,13 +11,14 @@ import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
+import run.TowerDefence;
 import utilities.Constants;
 
 public class SamTower extends MultiTargetTower {
 
 	public SamTower(LinkedList<Creep> creeps, Point location) {
-		super(Constants.samThreatRadius, Constants.samAttackSpeed, "‪/TowerDefence/sprites/towers/5.png‬", Color.black,
-				creeps, location);
+		super(Constants.samThreatRadius, Constants.samAttackSpeed,
+				new ImageIcon(TowerDefence.class.getResource("/Sam.png")), Color.black, creeps, location);
 		// TODO Auto-generated constructor stub
 	}
 

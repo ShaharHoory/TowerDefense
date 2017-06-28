@@ -11,13 +11,14 @@ import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
+import run.TowerDefence;
 import utilities.Constants;
 
 public class ArrowTower extends OneTargetTower {
 
 	public ArrowTower(LinkedList<Creep> creeps, Point location) {
-		super(Constants.arrowThreatRadius, Constants.arrowAttackSpeed, "/TowerDefence/sprites/towers/2.png‬",
-				Color.gray, creeps, location);
+		super(Constants.arrowThreatRadius, Constants.arrowAttackSpeed,
+				new ImageIcon(TowerDefence.class.getResource("/Arrow.png")), Color.gray, creeps, location);
 	}
 
 	// @Override

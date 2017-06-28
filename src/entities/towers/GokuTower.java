@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 import entities.creeps.Creep;
 import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
+import run.TowerDefence;
 import utilities.Constants;
 
 public class GokuTower extends OneTargetTower {
@@ -17,8 +20,8 @@ public class GokuTower extends OneTargetTower {
 	private int hitCount;
 
 	public GokuTower(LinkedList<Creep> creeps, Point location) {
-		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, "‪/TowerDefence/sprites/towers/6.png‬",
-				Color.yellow, creeps, location);
+		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed,
+				new ImageIcon(TowerDefence.class.getResource("/Goku.png")), Color.yellow, creeps, location);
 		H = 1;
 		hitCount = 0;
 	}

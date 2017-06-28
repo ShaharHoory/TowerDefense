@@ -1,4 +1,4 @@
-package GUI;
+package guiComponents;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
+import run.TowerDefence;
 import utilities.Constants;
 
 public class BoardPresentation extends JPanel {
@@ -29,9 +30,9 @@ public class BoardPresentation extends JPanel {
 				gbc.gridx = j;
 				ImageIcon blockImage;
 				if (blocksPartition[i][j])
-					blockImage = new ImageIcon("‪blocks/floor.jpeg‬");
+					blockImage = new ImageIcon(TowerDefence.class.getResource("/floor.jpeg"));
 				else
-					blockImage = new ImageIcon("/blocks/grass.jpg‬");
+					blockImage = new ImageIcon(TowerDefence.class.getResource("/grass.jpg"));
 				block = new JLabel(blockImage);
 				block.setBorder(new MatteBorder(0, 0, 1, 1, Color.BLACK));
 				block.setPreferredSize(new Dimension(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE));

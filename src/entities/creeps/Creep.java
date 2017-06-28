@@ -6,7 +6,6 @@ import entities.Entity;
 import entities.Visited;
 import pace.Tickable;
 import pace.Timer;
-import utilities.Direction;
 import utilities.Pair;
 import effects.*;
 import java.awt.Point;
@@ -23,12 +22,12 @@ public abstract class Creep extends Entity implements Visited, Tickable {
 	public static double ticksPerStep;
 	private Pair[][] directionMatrix;
 
-	public Creep(int speed, int HP, String spriteState1, String spriteState2, Point p, Pair[][] directionMatrix) {
+	public Creep(int speed, int HP, ImageIcon spriteState1, ImageIcon spriteState2, Point p, Pair[][] directionMatrix) {
 		super(spriteState1, p);
 		this.speed = speed;
 		this.HP = HP;
 		state = false;
-		sprite2 = new ImageIcon(spriteState2);
+		sprite2 = spriteState2;
 		steps = 0;
 		actualLocation = new utilities.Point(p.getX(), p.getY());
 		currentEffects = new LinkedList<Effect>();
@@ -99,7 +98,7 @@ public abstract class Creep extends Entity implements Visited, Tickable {
 				actualSpeed *= effect.getEffectParam();
 		}
 
-		// update position
+		// update position accoring to direction
 		if (direD) {
 			actualLocation.y += actualSpeed;
 			if (actualLocation.y > location.y)

@@ -1,4 +1,4 @@
-package GUI;
+package guiComponents;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,15 +15,11 @@ import utilities.Constants;
 import utilities.Pair;
 
 public class CreepsPresentation extends JComponent implements Tickable {
-	private Timer timer;
-	private LinkedList<Creep> creeps;
-	private LinkedList<Creep> newCreeps;
-	private Pair[][] directionMatrix;
+
+	public LinkedList<Creep> creeps;
 
 	public CreepsPresentation(Pair[][] directionMatrix) {
 		this.creeps = new LinkedList<Creep>();
-		this.newCreeps = new LinkedList<Creep>();
-		this.directionMatrix = directionMatrix;
 		setLocation(0, 0);
 		setBounds(0, 0, Constants.BOARD_SIZE, Constants.BOARD_SIZE);
 		setPreferredSize(new Dimension(Constants.BOARD_SIZE, Constants.BOARD_SIZE));

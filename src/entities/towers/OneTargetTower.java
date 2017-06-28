@@ -4,14 +4,16 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 import entities.creeps.Creep;
 
 public abstract class OneTargetTower extends Tower {
 	private Creep currentTarget;
 
-	public OneTargetTower(int threatArea, int attackSpeed, String spriteState, Color onFocusColor,
+	public OneTargetTower(int threatArea, int attackSpeed, ImageIcon sprite, Color onFocusColor,
 			LinkedList<Creep> creeps, Point location) {
-		super(threatArea, attackSpeed, spriteState, onFocusColor, creeps, location);
+		super(threatArea, attackSpeed, sprite, onFocusColor, creeps, location);
 		currentTarget = null;
 	}
 

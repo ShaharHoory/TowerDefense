@@ -8,8 +8,8 @@ public abstract class Entity {
 	public ImageIcon sprite;
 	public Point location;
 
-	public Entity(String sprite, Point p) {
-		this.sprite = new ImageIcon("‪/TowerDefence/sprites/creeps/guli-1.png‬");
+	public Entity(ImageIcon sprite, Point p) {
+		this.sprite = sprite;
 		location = new Point(p);
 	}
 

@@ -11,12 +11,13 @@ import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
+import run.TowerDefence;
 import utilities.Constants;
 
 public class LavaTower extends MultiTargetTower {
 
 	public LavaTower(LinkedList<Creep> creeps, Point location) {
-		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, "‪/TowerDefence/sprites/towers/1.png‬", Color.red,
+		super(Constants.gokuThreatRadius, Constants.gokuAttackSpeed, new ImageIcon(TowerDefence.class.getResource("/Goku.png")), Color.red,
 				creeps, location);
 		// TODO Auto-generated constructor stub
 

@@ -4,13 +4,15 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 import entities.creeps.Creep;
 
 public abstract class MultiTargetTower extends Tower {
 
-	public MultiTargetTower(int threatArea, int attackSpeed, String spriteState, Color onFocusColor,
+	public MultiTargetTower(int threatArea, int attackSpeed, ImageIcon sprite, Color onFocusColor,
 			LinkedList<Creep> creeps, Point location) {
-		super(threatArea, attackSpeed, spriteState, onFocusColor, creeps, location);
+		super(threatArea, attackSpeed, sprite, onFocusColor, creeps, location);
 	}
 
 	@Override

@@ -1,42 +1,35 @@
 package gameMap;
 
 import java.awt.GridBagLayout;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import utilities.*;
+import utilities.Pair;
 
 public class Board extends JPanel {
 	private Pair[][] directionMatrix;
-	private int startPositionX;
-	private int startPositionY;
+	private Point startPosition;
 
-	public Board(Pair[][] directionMatrix, int startPositionX, int startPositionY) {
-
+	public Board(Pair[][] directionMatrix) {
 		this.directionMatrix = directionMatrix;
-		this.startPositionX = startPositionX;
-		this.startPositionY = startPositionY;
+
 	}
 
 	public Pair[][] getDirectionMatrix() {
 		return directionMatrix;
 	}
 
-	public int getStartPositionX() {
-		return startPositionX;
-	}
-
-	public int getStartPositionY() {
-		return startPositionY;
-	}
-
 	public boolean[][] blocksPartition() {
 		boolean[][] partition = new boolean[directionMatrix.length][directionMatrix[0].length];
 		for (int i = 0; i < directionMatrix.length; i++) {
 			for (int j = 0; j < directionMatrix[i].length; j++) {
-				if (isFloor(i, j))
+				if (isFloor(i, j)) {
 					partition[i][j] = true;
-				else
+					if (j == 0)
+						startPosition = new Point(j, i);
+
+				} else
 					partition[i][j] = false;
 			}
 		}

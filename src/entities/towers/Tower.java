@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 import entities.Entity;
 
 public abstract class Tower extends Entity implements Visitor, Tickable {
@@ -19,7 +21,7 @@ public abstract class Tower extends Entity implements Visitor, Tickable {
 	public LinkedList<Creep> creeps;
 	public Color onFocusColor;
 
-	public Tower(int threatArea, int attackSpeed, String sprite, Color onFocusColor, LinkedList<Creep> creeps,
+	public Tower(int threatArea, int attackSpeed, ImageIcon sprite, Color onFocusColor, LinkedList<Creep> creeps,
 			Point location) {
 		super(sprite, location);
 		this.threatArea = threatArea;

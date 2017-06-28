@@ -11,13 +11,14 @@ import entities.creeps.Knight;
 import entities.creeps.MikeW;
 import entities.creeps.Naji;
 import entities.creeps.Skull;
+import run.TowerDefence;
 import utilities.Constants;
 
 public class PoisonTower extends OneTargetTower {
 
 	public PoisonTower(LinkedList<Creep> creeps, Point location) {
-		super(Constants.poisonThreatRadius, Constants.poisonAttackSpeed, "‪/TowerDefence/sprites/towers/3.png",
-				Color.green, creeps, location);
+		super(Constants.poisonThreatRadius, Constants.poisonAttackSpeed,
+				new ImageIcon(TowerDefence.class.getResource("/Poison.png")), Color.green, creeps, location);
 		// TODO Auto-generated constructor stub
 	}
 

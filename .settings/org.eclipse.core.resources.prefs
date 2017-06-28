@@ -1,5 +1,4 @@
 eclipse.preferences.version=1
-encoding//src/GUI/BoardPresentation.java=UTF-8
 encoding//src/entities/Entity.java=UTF-8
 encoding//src/entities/creeps/Creep.java=UTF-8
 encoding//src/entities/creeps/Knight.java=UTF-8
@@ -12,3 +11,4 @@ encoding//src/entities/towers/LavaTower.java=UTF-8
 encoding//src/entities/towers/MagicTower.java=UTF-8
 encoding//src/entities/towers/PoisonTower.java=UTF-8
 encoding//src/entities/towers/SamTower.java=UTF-8
+encoding//src/guiComponents/BoardPresentation.java=UTF-8
