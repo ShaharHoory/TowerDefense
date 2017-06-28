@@ -33,6 +33,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				_welcomeMenu.exit();
 			}
 		});
+		
 		this.setVisible(true);
 		this.setResizable(false);
 		this.pack();
