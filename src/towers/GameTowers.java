@@ -27,10 +27,11 @@ import utils.Timer;
 
 public class GameTowers extends JComponent implements Tickable{
 	LinkedList<Tower> towers;
-	private HashMap<String, Integer> towersLeft;
+	HashMap<String, Integer> towersLeft;
 	LinkedList<Creep> creeps;
 	Tower visibleRangeTower;
 	Board board;
+	int numOfTowers;
 	
 	
 	public GameTowers(Board board , LinkedList<Creep> creeps){
@@ -39,6 +40,7 @@ public class GameTowers extends JComponent implements Tickable{
 		towersLeft = new HashMap<>();
 		this.creeps = creeps;
 		this.board = board; 
+		numOfTowers = 0;
 		setSize(new Dimension(800, 800));
 		setPreferredSize(new Dimension(800, 800));
 	}
@@ -61,6 +63,7 @@ public class GameTowers extends JComponent implements Tickable{
 		String newStr = object.getClass().getName().substring(7).replace("T", " T");
 		Integer i =getTowersLeft().get(newStr);
 		getTowersLeft().put(newStr, i-1);
+		numOfTowers++;
 		repaint();
 	}
 	
@@ -69,6 +72,7 @@ public class GameTowers extends JComponent implements Tickable{
 		String str = t.getClass().getName().substring(7).replace("T", " T");
 		Integer i =getTowersLeft().get(str)+1;
 		getTowersLeft().put(str, i);
+		numOfTowers--;
 	}
 	
 	public void showTowerArea(Graphics g , Tower t){
