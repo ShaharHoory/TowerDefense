@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class LoosingWindow extends JFrame implements MouseListener{
+public class LosingWindow extends JFrame implements MouseListener{
 
 	private Game _game;
 	private JPanel _mainPanel;
@@ -33,10 +33,10 @@ public class LoosingWindow extends JFrame implements MouseListener{
 	private JButton _startOver;
 	private JButton _exit;
 	
-	public LoosingWindow(Game game) {
+	public LosingWindow(Game game) {
 		super("You Lost!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 435);
+		this.setSize(400, 280);
 		this.setResizable(false);
 		_mainPanel = new JPanel(new BorderLayout());
 		this.add(_mainPanel);
@@ -44,7 +44,7 @@ public class LoosingWindow extends JFrame implements MouseListener{
 		
 		//mainPanel
 		JLabel lostLabel = new JLabel("You Lost!");
-		lostLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lostLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lostLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		_mainPanel.add(lostLabel, BorderLayout.PAGE_START);
 		
@@ -52,11 +52,25 @@ public class LoosingWindow extends JFrame implements MouseListener{
 		_infoPanel = new JPanel();
 		_infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.Y_AXIS));
 		_infoPanel.setSize(100, 150);
-		_score = new JLabel("Your score: 0");
+		//text
+		_score = new JLabel("\n" + "\n" + "Your score: 0");
 		_livesLabel = new JLabel("lives: 0");
 		_passedEnemies = new JLabel("Amount of enemies who passed the finish point: 20");
-		_deadCreeps = new JLabel("Dead Creeps: " + _game._deadCreeps);
+		_deadCreeps = new JLabel("Creeps Killed: " + _game._deadCreeps);
 		_timePassed = new JLabel("Time Passed: " + _game.timer.toString());
+		//size
+		_score.setFont(new Font("Tahoma", Font.BOLD, 14));
+		_livesLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		_passedEnemies.setFont(new Font("Tahoma", Font.BOLD, 14));
+		_deadCreeps.setFont(new Font("Tahoma", Font.BOLD, 14));
+		_timePassed.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		_score.setAlignmentX(CENTER_ALIGNMENT);
+		_livesLabel.setAlignmentX(CENTER_ALIGNMENT);
+		_passedEnemies.setAlignmentX(CENTER_ALIGNMENT);
+		_deadCreeps.setAlignmentX(CENTER_ALIGNMENT);
+		_timePassed.setAlignmentX(CENTER_ALIGNMENT);
+		
 		_infoPanel.add(_score);
 		_infoPanel.add(_livesLabel);
 		_infoPanel.add(_passedEnemies);
@@ -105,12 +119,10 @@ public class LoosingWindow extends JFrame implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(e.getSource().equals(_startOver)) {
+		if(e.getSource().equals(_startOver)) 
 			_startOver.setIcon(new ImageIcon((this.getClass().getResource("/startOverButtonHovered.png"))));
-		}
-		else if (e.getSource().equals(_exit)) {
+		else if (e.getSource().equals(_exit))
 			_exit.setIcon(new ImageIcon((this.getClass().getResource("/exitButtonHovered.png"))));
-		}
 	}
 
 	@Override
