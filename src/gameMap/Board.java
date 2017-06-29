@@ -24,20 +24,16 @@ public class Board extends JPanel {
 		boolean[][] partition = new boolean[directionMatrix.length][directionMatrix[0].length];
 		for (int i = 0; i < directionMatrix.length; i++) {
 			for (int j = 0; j < directionMatrix[i].length; j++) {
-				if (isFloor(i, j)) {
-					partition[i][j] = true;
-					if (j == 0)
-						startPosition = new Point(j, i);
-
-				} else
-					partition[i][j] = false;
+				partition[i][j] = isFloor(i, j);
+				if (partition[i][j] && j == 0)
+					startPosition = new Point(j, i);
 			}
 		}
 		return partition;
 	}
 
 	public boolean isFloor(int x, int y) {
-		return directionMatrix[x][y].xInc != 0 || directionMatrix[x][y].yInc != 0;
+		return directionMatrix[y][x].xInc != 0 || directionMatrix[y][x].yInc != 0;
 	}
 
 }

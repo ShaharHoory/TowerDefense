@@ -14,4 +14,8 @@ public class GameStats {
 		creepsKilled = 0;
 		isWave = false;
 	}
+
+	public boolean isAlive() {
+		return life > 0;
+	}
 }

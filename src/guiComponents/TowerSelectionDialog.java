@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Constructor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entities.towers.Tower;
 import run.Game;
 import run.TowerDefence;
 
@@ -77,7 +79,20 @@ public class TowerSelectionDialog extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		JButton towerSelceted = ((JButton) e.getSource());
+		try {
+			Class<?> towerToCreate = Class.forName(towerSelceted.getName() + "Tower");
+			Constructor<?> builder = towerToCreate.getConstructors()[0];
+			Tower created = (Tower) builder.newInstance(game.gameCreeps, location);
+			game.gameTowers.placeTower(created);
+			game.gameTowers.setOnFocus(created);
+			game.repaint();
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
+		dispose();
 	}
 
 }

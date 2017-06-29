@@ -96,4 +96,8 @@ public class TowersPresentation extends JComponent implements Tickable {
 		}
 	}
 
+	public void setOnFocus(Tower onFocus) {
+		this.onFocus = onFocus;
+	}
+
 }
