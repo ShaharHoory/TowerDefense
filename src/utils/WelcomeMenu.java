@@ -102,9 +102,9 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 
 	//initializes all the buttons
 	private void initializeButtons() { 
-		_playButton = addButton("Play", 237, 220);
-		_highScores = addButton("HighScores", 237, 260);
-		_exitButton = addButton("Exit", 237, 300);
+		_playButton = addButton("Play", 237, 250);
+		_highScores = addButton("HighScores", 237, 290);
+		_exitButton = addButton("Exit", 237, 330);
 		}
 	
 	//creates a button
