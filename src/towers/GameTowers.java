@@ -40,7 +40,7 @@ public class GameTowers extends JComponent implements Tickable{
 		towersLeft = new HashMap<>();
 		this.creeps = creeps;
 		this.board = board; 
-		numOfTowers = 0;
+		this.numOfTowers = 0;
 		setSize(new Dimension(800, 800));
 		setPreferredSize(new Dimension(800, 800));
 	}
@@ -181,5 +181,9 @@ public class GameTowers extends JComponent implements Tickable{
 			}
 		}
 		return false;
+	}
+
+	public int getNumOfTowers() {
+		return numOfTowers;
 	}
 }

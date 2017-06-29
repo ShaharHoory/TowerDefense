@@ -17,12 +17,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import highscores.RecordsManager;
+
 
 public class WelcomeMenu extends JFrame implements ActionListener {
 
 	private Loader _levelLoader;
 	protected JButton _playButton;
 	protected JButton _exitButton;
+	private JButton _highScores;
 	private JButton _nextLevelButton;
 	private JButton _prevLevelButton;
 	private JPanel _menuContent;
@@ -31,6 +34,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 	private HashMap<Integer, ImageIcon> _levelsMap;
 	private int _chosenIndex;
 	private int _numOfLevels;
+	private RecordsManager _recordsManager;
 	
 	public WelcomeMenu() throws IOException {
 		super("Tower Defence!");
@@ -47,14 +51,15 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 		_levelLoader = new Loader();
 		_levelLoader.load("Levels.txt");
 		_numOfLevels = _levelLoader.levels.size();
+		_recordsManager = new RecordsManager();
 		
 		//menu content panel
 		_menuContent = new JPanel();
 		_menuContent.setSize(600, 435);
 		_menuContent.setLayout(null);
 		JLabel welcomeLabel = new JLabel("Tower Defence!");
-		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		welcomeLabel.setBounds(220, 20, 150, 35);
+		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		welcomeLabel.setBounds(201, 20, 190, 35);
 		_menuContent.add(welcomeLabel);
 		initializeButtons();
 		_chosenIndex = 1;
@@ -91,15 +96,15 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 	private void levalsMapInitialization() {
 		for(int i=1; i<=_numOfLevels; i++) {
 			ImageIcon levelIcon = new ImageIcon((this.getClass().getResource("/level"+i+"Image.png")));
-			//levelIcon = new ImageIcon(levelIcon.getImage().getScaledInstance((getWidth()/9), getHeight()/4, Image.SCALE_SMOOTH));
 			_levelsMap.put(i, levelIcon);
 		}
 	}
 
 	//initializes all the buttons
-	private void initializeButtons() {
-		_playButton = addButton("Play", 260, 220);
-		_exitButton = addButton("Exit", 260, 260);
+	private void initializeButtons() { 
+		_playButton = addButton("Play", 237, 220);
+		_highScores = addButton("HighScores", 237, 260);
+		_exitButton = addButton("Exit", 237, 300);
 		}
 	
 	//creates a button
@@ -113,7 +118,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 			button.setMinimumSize(new Dimension(100, 50));
 			button.setAlignmentX(CENTER_ALIGNMENT);
 			button.setAlignmentY(CENTER_ALIGNMENT);
-			button.setBounds(x, y, 70, 35);
+			button.setBounds(x, y, 117, 35);
 			button.addActionListener(this);
 			button.setVisible(true);
 			_menuContent.add(button);
@@ -151,6 +156,10 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}
+		
+		if(e.getSource().equals(_highScores)) {
+			JOptionPane.showMessageDialog(this, _recordsManager.getHighscoreString(), "Highscores", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		if(e.getSource().equals(_exitButton))

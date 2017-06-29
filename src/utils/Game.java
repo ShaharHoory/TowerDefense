@@ -106,6 +106,13 @@ public class Game extends JPanel implements MouseListener {
 		gameTowers.getTowersLeft().put("Goku Tower", 1);
 		
 	}
+	
+	public int getNumOfMinutes() {
+		String time = timer.toString();
+		int minutesIndex = time.indexOf(':');
+		String minutesString = time.substring(0, minutesIndex);
+		return Integer.parseInt(minutesString);
+	}
 
 	public Board get_board() {
 		return _board;
