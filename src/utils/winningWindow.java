@@ -1,6 +1,7 @@
 package utils;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,7 @@ public class winningWindow extends JFrame implements MouseListener{
 	private JTextField _name;
 	private boolean _saved;
 	private RecordsManager _recordsManager;
-	private double _score;
+	private int _score;
 	
 	public winningWindow(Game game) {
 		super("You Won!");
@@ -51,7 +52,7 @@ public class winningWindow extends JFrame implements MouseListener{
 		_game = game;
 		_saved = false;
 		_recordsManager = new RecordsManager();
-	//****	_score = //להכניס נוסחה של עידו\!!!!!!!!!! ****************************
+		_score = (_game._lives*_game._deadCreeps)/(_game.gameTowers.getNumOfTowers()+_game.getNumOfMinutes());
 		
 		//mainPanel
 		JLabel lostLabel = new JLabel("You Won!");
@@ -142,7 +143,7 @@ public class winningWindow extends JFrame implements MouseListener{
 					JOptionPane.showMessageDialog(this, "Enter your name and try again", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				_recordsManager.addScore(_name.getText(), 5);//במקום 5 לשים את _score
+				_recordsManager.addScore(_name.getText(), _score);
 				JOptionPane.showMessageDialog(this, "Record Saved!");
 				_saved = true;
 			}

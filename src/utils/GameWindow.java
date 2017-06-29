@@ -144,7 +144,7 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 			_game._isWave = false;
 			_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.regularSpeed));
 		}				
-		if (!_game._isWave && _game._currWave == 1) { //if won
+		if (!_game._isWave && _game._currWave == 5) { //if won
 			this.dispose();
 			new winningWindow(_game);
 		}
