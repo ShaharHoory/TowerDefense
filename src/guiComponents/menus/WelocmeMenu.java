@@ -145,7 +145,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		leftArrow.setSelected(false);
 		leftArrow.setBackground(Color.LIGHT_GRAY);
 		leftArrow.setForeground(Color.LIGHT_GRAY);
-		leftArrow.setSize(200, 200);
+		leftArrow.setSize(168, 168);
 		leftArrow.setBorderPainted(false);
 		leftArrow.setFocusPainted(false);
 		leftArrow.addActionListener(new ActionListener() {
@@ -154,9 +154,8 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 				prevLvl();
 			}
 		});
-		leftArrow.setMinimumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
-		leftArrow.setMaximumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
-		leftArrow.setSize(100, 100);
+		//leftArrow.setMinimumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
+		//leftArrow.setMaximumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
 		_lvlSelect.add(leftArrow, FlowLayout.LEFT);
 		_lvl = 1;
 		_lvlPreview = new JLabel(new ImageIcon(TowerDefence.class.getResource("/level1.png")));
@@ -173,7 +172,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		rightArrow.setSelected(false);
 		rightArrow.setBackground(Color.LIGHT_GRAY);
 		rightArrow.setForeground(Color.WHITE);
-		rightArrow.setSize(200, 200);
+		rightArrow.setSize(168, 168);
 		rightArrow.setContentAreaFilled(true);
 		rightArrow.setBorderPainted(false);
 		rightArrow.setFocusPainted(false);
@@ -205,7 +204,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		_lvlPreview.setIcon(new ImageIcon(TowerDefence.class.getResource("/level" + _lvl + ".png")));
 	}
 
-	public void exit() {
+	/*public void exit() {
 		String ObjButtons[] = { "Yes", "No" };
 		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
 				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
@@ -213,5 +212,5 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		if (PromptResult == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-	}
+	}*/
 }

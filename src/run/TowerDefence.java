@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import game.Board;
 import game.Game;
@@ -58,7 +59,7 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				_welcomeMenu.exit();
+				exit();
 			}
 		});
 
@@ -76,7 +77,7 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == _welcomeMenu._exitButton) {
-			_welcomeMenu.exit();
+			this.exit();
 		}
 	}
 
@@ -84,5 +85,15 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 	public void tickHappened() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void exit() {
+		String ObjButtons[] = { "Yes", "No" };
+		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
+				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+				ObjButtons[1]);
+		if (PromptResult == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
 	}
 }

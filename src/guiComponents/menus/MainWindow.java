@@ -30,7 +30,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				_welcomeMenu.exit();
+				exit();
 			}
 		});
 		
@@ -49,7 +49,17 @@ public class MainWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == _welcomeMenu._exitButton) {
-			_welcomeMenu.exit();
+			this.exit();
+		}
+	}
+	
+	public void exit() {
+		String ObjButtons[] = { "Yes", "No" };
+		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
+				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+				ObjButtons[1]);
+		if (PromptResult == JOptionPane.YES_OPTION) {
+			System.exit(0);
 		}
 	}
 }
