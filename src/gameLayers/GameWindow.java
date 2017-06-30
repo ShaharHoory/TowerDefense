@@ -25,7 +25,6 @@ import timer.Timer;
 import utils.Loader;
 import windows.GameToolbar;
 import windows.LosingWindow;
-import windows.MainMenu;
 import windows.winningWindow;
 
 public class GameWindow extends JFrame implements ActionListener , Tickable{

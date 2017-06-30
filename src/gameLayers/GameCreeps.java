@@ -65,7 +65,6 @@ public class GameCreeps extends JComponent implements Tickable {
 				}
 				//g.drawOval((int)(creep._x*25), (int)(creep._y*25), 20, 20);
 				g.drawImage(image, (int)(creep._x*25) , (int)(creep._y*25) , 20 , 20 , this);	
-				System.out.println("painted creep: "+creep._x+" "+creep._y+" ");
 			}
 		}
 	}

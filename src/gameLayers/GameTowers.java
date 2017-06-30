@@ -175,7 +175,7 @@ public class GameTowers extends JComponent implements Tickable{
 				int xLocation = tower.getX()+i;
 				int yLocation = tower.getY()+j;
 				if(board.isInBoard(xLocation, yLocation))
-					if((int)creep._x == xLocation && (int)creep._y==yLocation)
+					if(creep.getBoardX() == xLocation && creep.getBoardY()==yLocation)
 						return true;
 			}
 		}

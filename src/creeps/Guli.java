@@ -24,9 +24,4 @@ public class Guli extends Creep {
 		v.visit(this);
 	}
 
-	@Override
-	public void slow(int seconds) {
-		// TODO Auto-generated method stub
-	}
-
 }

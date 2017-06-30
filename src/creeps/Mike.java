@@ -23,10 +23,5 @@ public class Mike extends Creep {
 	public void impact(Visitor v) {
 		v.visit(this);
 	}
-	
-	@Override
-	public void slow(int seconds) {
-		// TODO Auto-generated method stub
-	}
 
 }

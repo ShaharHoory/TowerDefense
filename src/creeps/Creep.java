@@ -10,7 +10,7 @@ import utils.Pair;
 import utils.Visited;
 import utils.Visitor;
 
-public abstract class Creep extends JPanel implements Visited{
+public abstract class Creep implements Visited{
 
 	public double INIT_SPEED;
 	private double _speed;
@@ -47,14 +47,6 @@ public abstract class Creep extends JPanel implements Visited{
 	}
 	
 	public abstract void impact(Visitor v);
-	
-	public void paint(Graphics g, int x, int y) {
-		super.paint(g);
-		g.drawImage(_icon.getImage(), x, y, null);
-	}
-	
-	//slows down the Creep's speed for @param seconds
-	public abstract void slow(int seconds);
 	
 	public double getSpeed() {
 		return _speed;
