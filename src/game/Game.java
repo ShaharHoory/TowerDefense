@@ -25,7 +25,7 @@ public class Game extends JPanel implements MouseListener, ActionListener {
 	public CreepsPresentation gameCreeps;
 	public TowersPresentation gameTowers;
 	public GameStats gameStats;
-	public GameToolbar gameToolbar;
+	// public GameToolbar gameToolbar;
 
 	public Game(Board board, Timer timer) {
 		super(new BorderLayout());
@@ -34,14 +34,15 @@ public class Game extends JPanel implements MouseListener, ActionListener {
 		boardGUI = new BoardPresentation(board.blocksPartition());
 		gameCreeps = new CreepsPresentation(this.board.getDirectionMatrix());
 		gameTowers = new TowersPresentation(gameCreeps.creeps);
-		gameToolbar = new GameToolbar(this);
+		gameStats = new GameStats();
+		// gameToolbar = new GameToolbar(this);
 		this.add(boardGUI, BorderLayout.CENTER);
 		boardGUI.addMouseListener(this);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Point toPlace = new Point(e.getX(), e.getY());
+		Point toPlace = new Point(e.getX() / 25, e.getY() / 25);
 		Tower towerAt = gameTowers.getTowerAt(toPlace);
 		if (towerAt != null) {
 			gameTowers.setOnFocus(towerAt);

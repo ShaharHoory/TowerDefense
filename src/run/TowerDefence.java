@@ -8,13 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Collection;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import entities.creeps.Creep;
 import entities.creeps.Knight;
@@ -23,6 +24,8 @@ import entities.creeps.Naji;
 import entities.creeps.Skull;
 import game.Board;
 import game.Game;
+import game.GameStats;
+import guiComponents.GameToolbar;
 import guiComponents.menus.MainWindow;
 import guiComponents.menus.WelocmeMenu;
 import pace.Tickable;
@@ -31,20 +34,25 @@ import utilities.LevelLoader;
 import utilities.Pair;
 
 public class TowerDefence extends JFrame implements ActionListener, Tickable {
-	private WelocmeMenu _welcomeMenu;
+	// private WelocmeMenu _welcomeMenu;
 	private Game game;
 	private Timer timer;
 	private LevelLoader levelLoader;
+	private int currLevel;
+	private GameToolbar gameToolbar;
 
-	public TowerDefence() {
+	public TowerDefence(int level) throws IOException {
 		super("Tower Defense");
 		setVisualDesign();
+		timer = new Timer();
 		levelLoader = new LevelLoader();
+		System.out.println(levelLoader.load("levels.txt"));
+		currLevel = level;
 		Board currBoard = new Board(getDirectionMatrixAtChosenLevel());
 		game = new Game(currBoard, timer);
-
-		game.gameToolbar.fastForward.addActionListener(this);
-		game.gameToolbar.nextWave.addActionListener(this);
+		gameToolbar = new GameToolbar(game);
+		gameToolbar.fastForward.addActionListener(this);
+		gameToolbar.nextWave.addActionListener(this);
 		timer.register(this);
 		timer.register(game.gameCreeps);
 		timer.register(game.gameTowers);
@@ -54,14 +62,16 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 		layers.add(game.gameCreeps, new Integer(1));
 		layers.add(game.gameTowers, new Integer(2));
 		layers.setVisible(true);
-
+		System.out.println(game.board.toString());
 		this.add(layers, BorderLayout.CENTER);
-		this.add(game.gameToolbar, BorderLayout.NORTH);
+		this.add(gameToolbar, BorderLayout.NORTH);
+		this.setVisible(true);
 
 	}
 
 	private Pair[][] getDirectionMatrixAtChosenLevel() {
-		return levelLoader.levels.get(_welcomeMenu._levelSelect.getSelectedIndex() - 1);
+		System.out.println(levelLoader.levels.size());
+		return levelLoader.levels.get(currLevel);
 	}
 
 	private void setVisualDesign() {
@@ -72,38 +82,35 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 		int yPos = (dm.height / 2) - (this.getHeight() / 2);
 		this.setLocation(xPos, yPos);
 		this.getContentPane().setLayout(new BorderLayout());
-		this._welcomeMenu = new WelocmeMenu();
-		this.add(_welcomeMenu, BorderLayout.CENTER);
+		// this._welcomeMenu = new WelocmeMenu();
+		// this.add(_welcomeMenu, BorderLayout.CENTER);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				_welcomeMenu.exit();
+				exit();
 			}
 		});
 
 		this.setVisible(true);
 		this.setResizable(false);
 		this.pack();
-		_welcomeMenu._exitButton.addActionListener(this);
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MainWindow window = new MainWindow();
+		// _welcomeMenu._exitButton.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton clicked = (JButton) e.getSource();
-		if (clicked == game.gameToolbar.nextWave)
+		if (clicked == gameToolbar.nextWave)
 			summonNextWave();
-		if( clicked == _welcomeMenu._startButton){
-			_welcomeMenu.setVisible(false);
-			game.setVisible(true);
-		}
-			
-		
+		// if (clicked == _welcomeMenu._startButton) {
+		// _welcomeMenu.setVisible(false);
+		// game.setVisible(true);
+		// }
+
+		// if (e.getSource() == _welcomeMenu._exitButton)
+		// this.exit();
+
 	}
 
 	private void summonNextWave() {
@@ -111,17 +118,25 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 		LinkedList<Creep> toInit = new LinkedList<Creep>();
 		initiateNextWave(toInit);
 		Collections.shuffle(toInit);
-		game.gameCreeps.creepsInLine.addAll(toInit);
-		game.gameToolbar.updateToolbar();
+		game.gameCreeps.setCreepsInLine(toInit);
+		gameToolbar.updateToolbar();
 		timer.register(this);
 		timer.register(game.gameCreeps);
 		timer.register(game.gameTowers);
 		timer.start();
 	}
 
+//	private void registerCreeps(LinkedList<Creep> toInit) {
+//		for (Creep creep : toInit) {
+//			timer.register(creep);
+//		}
+//
+//	}
+
 	private void initiateNextWave(LinkedList<Creep> toInit) {
 		for (int i = 1; i <= Math.pow(2, game.gameStats.currWave); i++) {
 			addCreepsToWave(toInit);
+
 		}
 	}
 
@@ -137,12 +152,12 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 	@Override
 	public void tickHappened() {
 		if (game.gameStats.isWave) {
+			LinkedList<Creep> passedAndKilled = new LinkedList<Creep>();
 			if (isTimeToSummonNextCreep()) {
 				Creep summoned = game.gameCreeps.creepsInLine.removeFirst();
 				game.gameCreeps.creeps.add(summoned);
-				timer.register(summoned);
+				//timer.register(summoned);
 			}
-			LinkedList<Creep> passedAndKilled = new LinkedList<Creep>();
 			for (Creep creep : game.gameCreeps.creeps) {
 				if (!creep.isAlive()) {
 					game.gameStats.creepsKilled++;
@@ -150,11 +165,10 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 				}
 				if (!game.board.isInBoard(creep.location)) {
 					game.gameStats.creepPassed();
-					timer.unregister(creep);
 					passedAndKilled.add(creep);
 				}
-				game.gameCreeps.creeps.removeAll(passedAndKilled);
 			}
+			game.gameCreeps.creeps.removeAll(passedAndKilled);
 			if (!game.gameStats.isAlive()) {
 				timer.stop();
 				this.dispose();
@@ -165,12 +179,41 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 				this.dispose();
 				// TODO : add winning window
 			}
-			game.gameToolbar.updateToolbar();
+			unregisterPassedAndDeadCreeps(passedAndKilled);
+			gameToolbar.updateToolbar();
 		}
 	}
-	
+
+	private void unregisterPassedAndDeadCreeps(LinkedList<Creep> passedAndKilled) {
+		for (Creep creep : passedAndKilled) {
+			//timer.unregister(creep);
+		}
+	}
 
 	private boolean isTimeToSummonNextCreep() {
-		return game.gameCreeps.creepsInLine.size() > 0 && timer.getTicksAccumulator() % 5 == 0;
+		return game.gameCreeps.creepsInLine.size() > 0 && timer.getTicksAccumulator() % 20 == 0;
 	}
+
+	public void exit() {
+		String ObjButtons[] = { "Yes", "No" };
+		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
+				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+				ObjButtons[1]);
+		if (PromptResult == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
+	}
+
+	private void deleteAndUnregisterDeadCreeps() {
+		LinkedList<Creep> deadCreeps = new LinkedList<Creep>();
+		for (Creep creep : game.gameCreeps.creeps) {
+			if (!creep.isAlive()) {
+				deadCreeps.add(creep);
+				game.gameStats.creepsKilled++;
+				//timer.unregister(creep);
+			}
+		}
+		game.gameCreeps.creeps.removeAll(deadCreeps);
+	}
+
 }

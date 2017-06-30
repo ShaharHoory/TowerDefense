@@ -33,12 +33,12 @@ public class TowersPresentation extends JComponent implements Tickable {
 	}
 
 	private void initiateTowersAvailable() {
-		towersAvailable.put("Lava Tower", 3);
-		towersAvailable.put("Arrow Tower", 3);
-		towersAvailable.put("Poison Tower", 3);
-		towersAvailable.put("Magic Tower", 3);
-		towersAvailable.put("Sam Tower", 1);
-		towersAvailable.put("Goku Tower", 1);
+		towersAvailable.put("Lava", 3);
+		towersAvailable.put("Arrow", 3);
+		towersAvailable.put("Poison", 3);
+		towersAvailable.put("Magic", 3);
+		towersAvailable.put("Sam", 1);
+		towersAvailable.put("Goku", 1);
 	}
 
 	@Override

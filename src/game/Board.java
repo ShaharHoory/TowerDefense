@@ -1,13 +1,14 @@
 package game;
 
-import java.awt.GridBagLayout;
 import java.awt.Point;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
 import utilities.Pair;
 
 public class Board extends JPanel {
+
 	private Pair[][] directionMatrix;
 	private Point startPosition;
 
@@ -25,8 +26,10 @@ public class Board extends JPanel {
 		for (int i = 0; i < directionMatrix.length; i++) {
 			for (int j = 0; j < directionMatrix[i].length; j++) {
 				partition[i][j] = isFloor(i, j);
-				if (partition[i][j] && j == 0)
-					startPosition = new Point(j, i);
+				if (partition[i][j] && i == 0){
+					startPosition = new Point(i, j);
+					System.out.println("bla");
+				}
 			}
 		}
 		return partition;
@@ -35,14 +38,20 @@ public class Board extends JPanel {
 	public boolean isFloor(int x, int y) {
 		return directionMatrix[y][x].xInc != 0 || directionMatrix[y][x].yInc != 0;
 	}
-	
-	public boolean isInBoard(Point location){
-			return location.x<32 && location.x>=0 && location.y>=0 && location.y<32;
-		
+
+	public boolean isInBoard(Point location) {
+		return location.x < 32 && location.x >= 0 && location.y >= 0 && location.y < 32;
+
 	}
 
 	public Point getStartPosition() {
 		return startPosition;
 	}
+	@Override
+	public String toString() {
+		return "Board [directionMatrix=" + Arrays.deepToString(directionMatrix) + ", startPosition=" + startPosition + "]";
+	}
+	
+	
 
 }

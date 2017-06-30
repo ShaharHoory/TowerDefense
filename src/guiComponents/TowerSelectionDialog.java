@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entities.towers.OneTargetTower;
 import entities.towers.Tower;
 import game.Game;
 import run.TowerDefence;
@@ -57,6 +58,7 @@ public class TowerSelectionDialog extends JDialog implements ActionListener {
 			ImageIcon editedTowerImage = new ImageIcon(
 					towerImage.getImage().getScaledInstance((getWidth() / 9), getHeight() / 4, Image.SCALE_SMOOTH));
 			JButton chosenTower = new JButton(editedTowerImage);
+			chosenTower.setName(towerName);
 			chosenTower.setContentAreaFilled(false);
 			chosenTower.setOpaque(false);
 			chosenTower.setPreferredSize(new Dimension(getWidth() / 9 + 10, getHeight() / 4));
@@ -81,8 +83,10 @@ public class TowerSelectionDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton towerSelceted = ((JButton) e.getSource());
 		try {
-			Class<?> towerToCreate = Class.forName(towerSelceted.getName() + "Tower");
+			Class<?> towerToCreate = Class.forName("entities.towers." + towerSelceted.getName() + "Tower");
+			System.out.println(towerToCreate.getName());
 			Constructor<?> builder = towerToCreate.getConstructors()[0];
+			System.out.println(builder.toString());
 			Tower created = (Tower) builder.newInstance(game.gameCreeps, location);
 			game.gameTowers.placeTower(created);
 			game.gameTowers.setOnFocus(created);

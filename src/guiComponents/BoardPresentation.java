@@ -25,11 +25,11 @@ public class BoardPresentation extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		JLabel block;
 		for (int i = 0; i < blocksPartition.length; i++) {
-			for (int j = 0; i < blocksPartition[i].length; j++) {
+			for (int j = 0; j < blocksPartition[i].length; j++) {
 				gbc.gridy = i;
 				gbc.gridx = j;
 				ImageIcon blockImage;
-				if (blocksPartition[i][j])
+				if (blocksPartition[j][i])
 					blockImage = new ImageIcon(TowerDefence.class.getResource("/floor.jpeg"));
 				else
 					blockImage = new ImageIcon(TowerDefence.class.getResource("/grass.jpg"));

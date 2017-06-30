@@ -15,7 +15,13 @@ public class Point {
 		y = other.y;
 	}
 
-	public void setPoint (double x, double y){
-		
+	public void setPoint(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + "]";
 	}
 }

@@ -19,7 +19,7 @@ public class GameToolbar extends JPanel {
 	public JButton nextWave;
 	Image playButton = new ImageIcon(TowerDefence.class.getResource("/playButton.png")).getImage().getScaledInstance(30,
 			20, Image.SCALE_SMOOTH);
-	Image fatForwardImage = new ImageIcon(TowerDefence.class.getResource("/fastforward.png")).getImage()
+	Image fatForwardImage = new ImageIcon(TowerDefence.class.getResource("/fastforward.jpg")).getImage()
 			.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
 	JLabel time;
 

@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -25,15 +26,13 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 	public JButton _exitButton;
 	protected JButton _backButton;
 	public JButton _startButton;
-	public JComboBox<Integer> _levelSelect;
 	protected JLabel _select;
 	protected JPanel _buttons;
 	protected JPanel _lvlSelect;
 	protected JLabel _lvlPreview;
-	protected int _lvl;
+	public int _lvl;
 
 	public WelocmeMenu() {
-		super();
 		this.setLayout(new BorderLayout(30, 30));
 		this.setPreferredSize(new Dimension(800, 800));
 		this.setMaximumSize(getPreferredSize());
@@ -57,32 +56,31 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == _playButton) {
-			_playButton.setVisible(false);
-			_exitButton.setVisible(false);
-			// _levelSelect.setVisible(true);
-			_select.setVisible(true);
-			_lvlSelect.setVisible(true);
-			_backButton.setVisible(true);
-			_startButton.setVisible(true);
-			// _buttons.repaint();
-			// _buttons.revalidate();
-			// this.repaint();
-			// this.revalidate();
-		}
-		if (e.getSource() == _backButton) {
-			_playButton.setVisible(true);
-			_exitButton.setVisible(true);
-			// _levelSelect.setVisible(false);
-			_select.setVisible(false);
-			_lvlSelect.setVisible(false);
-			_backButton.setVisible(false);
-			_startButton.setVisible(false);
-			// _buttons.repaint();
-			// _buttons.revalidate();
-			// this.repaint();
-			// this.revalidate();
-		}
+//		if (e.getSource() == _playButton) {
+//			_playButton.setVisible(false);
+//			_exitButton.setVisible(false);
+//			_select.setVisible(true);
+//			_lvlSelect.setVisible(true);
+//			_backButton.setVisible(true);
+//			_startButton.setVisible(true);
+//		}
+//		if (e.getSource() == _backButton) {
+//			_playButton.setVisible(true);
+//			_exitButton.setVisible(true);
+//			_select.setVisible(false);
+//			_lvlSelect.setVisible(false);
+//			_backButton.setVisible(false);
+//			_startButton.setVisible(false);
+//		}
+//		if (e.getSource() == _startButton){
+//			try {
+//				new TowerDefence(_lvl-1);
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			} 
+//		}
+			
 	}
 
 	private void initializeButtons() {
@@ -145,7 +143,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		leftArrow.setSelected(false);
 		leftArrow.setBackground(Color.LIGHT_GRAY);
 		leftArrow.setForeground(Color.LIGHT_GRAY);
-		leftArrow.setSize(200, 200);
+		leftArrow.setSize(168, 168);
 		leftArrow.setBorderPainted(false);
 		leftArrow.setFocusPainted(false);
 		leftArrow.addActionListener(new ActionListener() {
@@ -154,9 +152,8 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 				prevLvl();
 			}
 		});
-		leftArrow.setMinimumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
-		leftArrow.setMaximumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
-		leftArrow.setSize(100, 100);
+		//leftArrow.setMinimumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
+		//leftArrow.setMaximumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
 		_lvlSelect.add(leftArrow, FlowLayout.LEFT);
 		_lvl = 1;
 		_lvlPreview = new JLabel(new ImageIcon(TowerDefence.class.getResource("/level1.png")));
@@ -173,7 +170,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		rightArrow.setSelected(false);
 		rightArrow.setBackground(Color.LIGHT_GRAY);
 		rightArrow.setForeground(Color.WHITE);
-		rightArrow.setSize(200, 200);
+		rightArrow.setSize(168, 168);
 		rightArrow.setContentAreaFilled(true);
 		rightArrow.setBorderPainted(false);
 		rightArrow.setFocusPainted(false);
@@ -205,7 +202,7 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		_lvlPreview.setIcon(new ImageIcon(TowerDefence.class.getResource("/level" + _lvl + ".png")));
 	}
 
-	public void exit() {
+	/*public void exit() {
 		String ObjButtons[] = { "Yes", "No" };
 		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
 				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
@@ -213,5 +210,5 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		if (PromptResult == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-	}
+	}*/
 }

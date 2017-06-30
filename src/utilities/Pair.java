@@ -1,6 +1,7 @@
 package utilities;
 
 public class Pair {
+
 	public int xInc;
 	public int yInc;
 
@@ -30,6 +31,11 @@ public class Pair {
 		if (other.xInc == xInc && other.yInc == yInc)
 			return true;
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Pair [xInc=" + xInc + ", yInc=" + yInc + "]";
 	}
 
 }

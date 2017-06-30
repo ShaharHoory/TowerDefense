@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 /*
- * based on the LevelLoader presented in hw#3 (but modified to fit into the requirements of the TD
+ * based on the LevelLoader presented in hw#3 (but modified to fit into the requirements of the TD)
  * 
  */
 
@@ -20,7 +20,7 @@ public class LevelLoader {
 	public Vector<Pair[][]> levels;
 
 	public LevelLoader() {
-		levels = new Vector<>();
+		levels = new Vector<Pair[][]>();
 	}
 
 	public boolean load(String levelsFile) throws IOException {

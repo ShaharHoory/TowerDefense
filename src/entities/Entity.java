@@ -10,7 +10,7 @@ public abstract class Entity {
 
 	public Entity(ImageIcon sprite, Point p) {
 		this.sprite = sprite;
-		location = new Point(p);
+		location = p;
 	}
 
 	public Point getLocation() {
