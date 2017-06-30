@@ -60,16 +60,11 @@ public class TowersPresentation extends JComponent implements Tickable {
 		g.setColor(tower.onFocusColor);
 		for (int i = -tower.threatArea; i < tower.threatArea; i++) {
 			for (int j = -tower.threatArea; j < tower.threatArea; j++) {
-				if (i != 0 || j != 0 && isOnBoard(tower))
+				if (i != 0 || j != 0 && tower.isOnBoard())
 					g.drawRect((tower.location.x + i) * Constants.BLOCK_SIZE,
 							(tower.location.y + j) * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE);
 			}
 		}
-	}
-
-	private boolean isOnBoard(Tower tower) {
-		return tower.location.x + tower.threatArea >= 0 && tower.location.x + tower.threatArea <= 32
-				&& tower.location.y + tower.threatArea >= 0 && tower.location.y + tower.threatArea <= 32;
 	}
 
 	public void placeTower(Tower toPlace) {

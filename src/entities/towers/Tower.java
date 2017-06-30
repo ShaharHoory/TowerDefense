@@ -60,4 +60,9 @@ public abstract class Tower extends Entity implements Visitor, Tickable {
 
 	}
 
+	public boolean isOnBoard() {
+		return location.x + threatArea >= 0 && location.x + threatArea <= 32 && location.y + threatArea >= 0
+				&& location.y + threatArea <= 32;
+	}
+
 }

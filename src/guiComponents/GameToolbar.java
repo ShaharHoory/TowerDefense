@@ -17,7 +17,7 @@ public class GameToolbar extends JPanel {
 	JLabel wave;
 	JLabel lives;
 	public JButton nextWave;
-	Image playButton = new ImageIcon(TowerDefence.class.getResource("/platButton.png")).getImage().getScaledInstance(30,
+	Image playButton = new ImageIcon(TowerDefence.class.getResource("/playButton.png")).getImage().getScaledInstance(30,
 			20, Image.SCALE_SMOOTH);
 	Image fatForwardImage = new ImageIcon(TowerDefence.class.getResource("/fastforward.png")).getImage()
 			.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
@@ -57,5 +57,16 @@ public class GameToolbar extends JPanel {
 		this.add(fastForward);
 		this.add(nextWave);
 
+	}
+
+	public void updateToolbar() {
+		if (game.gameStats.isWave)
+			this.wave.setText("Current Wave: " + game.gameStats.currWave);
+		else
+			this.wave.setText("Waves Passed: " + (game.gameStats.currWave));
+		this.nextWave.setEnabled(!game.gameStats.isWave);
+		this.fastForward.setEnabled(game.gameStats.isWave);
+		this.lives.setText("HP: " + game.gameStats.life);
+		this.time.setText("Time: " + game.timer.toString());
 	}
 }

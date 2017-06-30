@@ -35,5 +35,14 @@ public class Board extends JPanel {
 	public boolean isFloor(int x, int y) {
 		return directionMatrix[y][x].xInc != 0 || directionMatrix[y][x].yInc != 0;
 	}
+	
+	public boolean isInBoard(Point location){
+			return location.x<32 && location.x>=0 && location.y>=0 && location.y<32;
+		
+	}
+
+	public Point getStartPosition() {
+		return startPosition;
+	}
 
 }

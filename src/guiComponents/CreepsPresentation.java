@@ -17,6 +17,7 @@ import utilities.Pair;
 public class CreepsPresentation extends JComponent implements Tickable {
 
 	public LinkedList<Creep> creeps;
+	public LinkedList<Creep> creepsInLine; 
 
 	public CreepsPresentation(Pair[][] directionMatrix) {
 		this.creeps = new LinkedList<Creep>();
@@ -42,4 +43,5 @@ public class CreepsPresentation extends JComponent implements Tickable {
 	public void tickHappened() {
 		repaint();
 	}
+	
 }

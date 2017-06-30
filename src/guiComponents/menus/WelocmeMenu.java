@@ -21,10 +21,10 @@ import run.TowerDefence;
 public class WelocmeMenu extends JPanel implements ActionListener {
 
 	protected JLabel _headline;
-	protected JButton _playButton;
+	public JButton _playButton;
 	public JButton _exitButton;
 	protected JButton _backButton;
-	protected JButton _startButton;
+	public JButton _startButton;
 	public JComboBox<Integer> _levelSelect;
 	protected JLabel _select;
 	protected JPanel _buttons;

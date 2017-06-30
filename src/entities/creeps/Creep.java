@@ -129,4 +129,7 @@ public abstract class Creep extends Entity implements Visited, Tickable {
 		return directionMatrix[location.y][location.x];
 	}
 
+	public boolean isAlive() {
+		return HP > 0;
+	}
 }

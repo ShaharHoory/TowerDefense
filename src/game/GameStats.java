@@ -18,4 +18,18 @@ public class GameStats {
 	public boolean isAlive() {
 		return life > 0;
 	}
+
+	public void nextWaveStats() {
+		currWave++;
+		isWave = true;
+	}
+
+	public void creepPassed() {
+		life--;
+		creepsPassed++;
+	}
+
+	public boolean isWon() {
+		return !isWave && currWave == 5;
+	}
 }

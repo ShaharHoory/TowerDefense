@@ -2,6 +2,8 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -16,10 +18,10 @@ import guiComponents.TowerSelectionDialog;
 import guiComponents.TowersPresentation;
 import pace.Timer;
 
-public class Game extends JPanel implements MouseListener {
+public class Game extends JPanel implements MouseListener, ActionListener {
 	public Timer timer;
-	protected Board board;
-	protected BoardPresentation boardGUI;
+	public Board board;
+	public BoardPresentation boardGUI;
 	public CreepsPresentation gameCreeps;
 	public TowersPresentation gameTowers;
 	public GameStats gameStats;
@@ -34,7 +36,6 @@ public class Game extends JPanel implements MouseListener {
 		gameTowers = new TowersPresentation(gameCreeps.creeps);
 		gameToolbar = new GameToolbar(this);
 		this.add(boardGUI, BorderLayout.CENTER);
-		this.setVisible(true);
 		boardGUI.addMouseListener(this);
 	}
 
@@ -79,6 +80,12 @@ public class Game extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 	}

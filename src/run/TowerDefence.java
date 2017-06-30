@@ -2,17 +2,27 @@ package run;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
+import entities.creeps.Creep;
+import entities.creeps.Knight;
+import entities.creeps.MikeW;
+import entities.creeps.Naji;
+import entities.creeps.Skull;
 import game.Board;
 import game.Game;
-import guiComponents.GameToolbar;
 import guiComponents.menus.MainWindow;
 import guiComponents.menus.WelocmeMenu;
 import pace.Tickable;
@@ -32,12 +42,22 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 		levelLoader = new LevelLoader();
 		Board currBoard = new Board(getDirectionMatrixAtChosenLevel());
 		game = new Game(currBoard, timer);
+
 		game.gameToolbar.fastForward.addActionListener(this);
 		game.gameToolbar.nextWave.addActionListener(this);
 		timer.register(this);
 		timer.register(game.gameCreeps);
 		timer.register(game.gameTowers);
-		
+
+		JLayeredPane layers = new JLayeredPane();
+		layers.add(game.boardGUI, new Integer(0));
+		layers.add(game.gameCreeps, new Integer(1));
+		layers.add(game.gameTowers, new Integer(2));
+		layers.setVisible(true);
+
+		this.add(layers, BorderLayout.CENTER);
+		this.add(game.gameToolbar, BorderLayout.NORTH);
+
 	}
 
 	private Pair[][] getDirectionMatrixAtChosenLevel() {
@@ -75,14 +95,82 @@ public class TowerDefence extends JFrame implements ActionListener, Tickable {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == _welcomeMenu._exitButton) {
-			_welcomeMenu.exit();
+		JButton clicked = (JButton) e.getSource();
+		if (clicked == game.gameToolbar.nextWave)
+			summonNextWave();
+		if( clicked == _welcomeMenu._startButton){
+			_welcomeMenu.setVisible(false);
+			game.setVisible(true);
 		}
+			
+		
+	}
+
+	private void summonNextWave() {
+		game.gameStats.nextWaveStats();
+		LinkedList<Creep> toInit = new LinkedList<Creep>();
+		initiateNextWave(toInit);
+		Collections.shuffle(toInit);
+		game.gameCreeps.creepsInLine.addAll(toInit);
+		game.gameToolbar.updateToolbar();
+		timer.register(this);
+		timer.register(game.gameCreeps);
+		timer.register(game.gameTowers);
+		timer.start();
+	}
+
+	private void initiateNextWave(LinkedList<Creep> toInit) {
+		for (int i = 1; i <= Math.pow(2, game.gameStats.currWave); i++) {
+			addCreepsToWave(toInit);
+		}
+	}
+
+	private void addCreepsToWave(LinkedList<Creep> toInit) {
+		Point location = game.board.getStartPosition();
+		toInit.add(new Skull(location, getDirectionMatrixAtChosenLevel()));
+		toInit.add(new Knight(location, getDirectionMatrixAtChosenLevel()));
+		toInit.add(new MikeW(location, getDirectionMatrixAtChosenLevel()));
+		toInit.add(new Naji(location, getDirectionMatrixAtChosenLevel()));
+
 	}
 
 	@Override
 	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
+		if (game.gameStats.isWave) {
+			if (isTimeToSummonNextCreep()) {
+				Creep summoned = game.gameCreeps.creepsInLine.removeFirst();
+				game.gameCreeps.creeps.add(summoned);
+				timer.register(summoned);
+			}
+			LinkedList<Creep> passedAndKilled = new LinkedList<Creep>();
+			for (Creep creep : game.gameCreeps.creeps) {
+				if (!creep.isAlive()) {
+					game.gameStats.creepsKilled++;
+					passedAndKilled.add(creep);
+				}
+				if (!game.board.isInBoard(creep.location)) {
+					game.gameStats.creepPassed();
+					timer.unregister(creep);
+					passedAndKilled.add(creep);
+				}
+				game.gameCreeps.creeps.removeAll(passedAndKilled);
+			}
+			if (!game.gameStats.isAlive()) {
+				timer.stop();
+				this.dispose();
+				// TODO : add losing window
+			}
+
+			if (game.gameStats.isWon()) {
+				this.dispose();
+				// TODO : add winning window
+			}
+			game.gameToolbar.updateToolbar();
+		}
+	}
+	
+
+	private boolean isTimeToSummonNextCreep() {
+		return game.gameCreeps.creepsInLine.size() > 0 && timer.getTicksAccumulator() % 5 == 0;
 	}
 }
