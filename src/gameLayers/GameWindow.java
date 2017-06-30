@@ -1,4 +1,4 @@
-package utils;
+package gameLayers;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,16 +16,21 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
 import creeps.Creep;
-import creeps.GameCreeps;
 import creeps.Guli;
 import creeps.Knight;
 import creeps.Mike;
 import creeps.Naji;
+import timer.Tickable;
+import timer.Timer;
+import utils.Loader;
+import windows.GameToolbar;
+import windows.LosingWindow;
+import windows.MainMenu;
+import windows.winningWindow;
 
 public class GameWindow extends JFrame implements ActionListener , Tickable{
 
 	private Game _game;
-	MainMenu _menu;
 	GameToolbar _toolbar;
 	private Timer timer;
 	private Loader _loader;
@@ -44,20 +49,20 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		});
 		_loader = loader;
 		timer = new Timer();
-		_game = new Game(new Board(loader.levels.get(levelIndex-1)) , timer);
+		_game = new Game(new Board(loader.getLevels().get(levelIndex-1)) , timer);
 		_toolbar = new GameToolbar(_game);		
-		_toolbar.fastForward.addActionListener(this);
-		_toolbar.nextWave.addActionListener(this);
+		_toolbar.getFastForward().addActionListener(this);
+		_toolbar.getNextWave().addActionListener(this);
 		
 		timer.register(this);
-		timer.register(_game.gameCreeps);
-		timer.register(_game.gameTowers);
+		timer.register(_game.getGameCreeps());
+		timer.register(_game.getGameTowers());
 		
 		JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));       
         layeredPane.add(_game.get_board() , new Integer(0));
-        layeredPane.add(_game.gameCreeps , new Integer(1));
-        layeredPane.add(_game.gameTowers , new Integer(2));
+        layeredPane.add(_game.getGameCreeps() , new Integer(1));
+        layeredPane.add(_game.getGameTowers() , new Integer(2));
         
         this.add(layeredPane, BorderLayout.CENTER);
 		this.add(_toolbar , BorderLayout.NORTH);
@@ -73,26 +78,26 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = ((JButton)e.getSource());
-		if(buttonPressed.equals(_toolbar.nextWave)){
+		if(buttonPressed.equals(_toolbar.getNextWave())){
 			callNextWave();
 		}
-		else if(buttonPressed.equals(_toolbar.fastForward)){
-			if(timer.tick==timer.NORMAL_TICK){
-				_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.doubleSpeed));
+		else if(buttonPressed.equals(_toolbar.getFastForward())){
+			if(timer.getTick()==timer.NORMAL_TICK){
+				_toolbar.getFastForward().setIcon(new ImageIcon(_toolbar.getDoubleSpeed()));
 				timer.fastForward();
 			}
 			else{
-				_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.regularSpeed));
+				_toolbar.getFastForward().setIcon(new ImageIcon(_toolbar.getRegularSpeed()));
 				timer.regularSpeed();
 			}
 		}			
 	}
 	
 	public void callNextWave() {
-		_game._isWave = true;
-		_game._currWave++;
-		LinkedList<Creep> addedCreeps = _game.gameCreeps.getAddedCreeps();
-		for(int i=1 ; i<= Math.pow(2, _game._currWave-1) ; i++){
+		_game.set_isWave(true);
+		_game.set_currWave(_game.get_currWave() + 1);
+		LinkedList<Creep> addedCreeps = _game.getGameCreeps().getAddedCreeps();
+		for(int i=1 ; i<= Math.pow(2, _game.get_currWave()-1) ; i++){
 			addCreeps(addedCreeps);
 		}
 		Collections.shuffle(addedCreeps);
@@ -111,7 +116,7 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 
 	@Override
 	public void tickHappened() {
-		GameCreeps gc = _game.gameCreeps;
+		GameCreeps gc = _game.getGameCreeps();
 		if(gc.getAddedCreeps().size()>0 && timer.getNumOfTicks()%7==0){
 			Creep creep = gc.getAddedCreeps().removeFirst();
 			gc.getCreeps().add(creep);
@@ -120,13 +125,13 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		LinkedList<Creep> creepsToRemove = new LinkedList<>();
 		for (Creep creep : gc.getCreeps()) {
 			if(creep.getHp()<=0){
-				_game._deadCreeps++;
+				_game.set_deadCreeps(_game.get_deadCreeps() + 1);
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);
 			}			
 			if(!_game.get_board().isInBoard(creep.getBoardX() , creep.getBoardY())){
-				_game._lives--;
-				_game._passedFinishPointCreeps++;
+				_game.set_lives(_game.get_lives() - 1);
+				_game.set_passedFinishPointCreeps(_game.get_passedFinishPointCreeps() + 1);
 				//timer.unregister(creep);
 				creepsToRemove.add(creep);
 			}
@@ -141,10 +146,10 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 		
 		if(gc.getCreeps().isEmpty() && gc.getAddedCreeps().isEmpty()){
 			timer.stop();
-			_game._isWave = false;
-			_toolbar.fastForward.setIcon(new ImageIcon(_toolbar.regularSpeed));
+			_game.set_isWave(false);
+			_toolbar.getFastForward().setIcon(new ImageIcon(_toolbar.getRegularSpeed()));
 		}				
-		if (!_game._isWave && _game._currWave == 5) { //if won
+		if (!_game.is_isWave() && _game.get_currWave() == 5) { //if won
 			this.dispose();
 			new winningWindow(_game);
 		}
@@ -152,14 +157,14 @@ public class GameWindow extends JFrame implements ActionListener , Tickable{
 	}
 
 	private void updateGameToolbar() {
-		if(_game._isWave)
-			_toolbar.wave.setText("Current Wave: "+_game._currWave);
+		if(_game.is_isWave())
+			_toolbar.getWave().setText("Current Wave: "+_game.get_currWave());
 		else
-			_toolbar.wave.setText("Waves Passed: "+(_game._currWave));
-		_toolbar.nextWave.setEnabled(!_game._isWave);
-		_toolbar.fastForward.setEnabled(_game._isWave);
-		_toolbar.lives.setText("Lives: "+_game._lives);
-		_toolbar.time.setText("Time: "+timer.toString());
+			_toolbar.getWave().setText("Waves Passed: "+(_game.get_currWave()));
+		_toolbar.getNextWave().setEnabled(!_game.is_isWave());
+		_toolbar.getFastForward().setEnabled(_game.is_isWave());
+		_toolbar.getLives().setText("Lives: "+_game.get_lives());
+		_toolbar.getTime().setText("Time: "+timer.toString());
 	}	
 	
 	//exits the program according to the user's choice

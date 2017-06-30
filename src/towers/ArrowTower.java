@@ -14,10 +14,10 @@ public class ArrowTower extends Tower{
 	 public ArrowTower (int x , int y) {
 		super(2, 2 , x , y);
 		this.type = TYPE.REGULAR;
-		rangeColor = Color.WHITE;
-		towerImage = this.getClass().getResource("/Arrow Tower.png");
-		shootingImage = this.getClass().getResource("/Shooting Arrow Tower.png");
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.WHITE);
+		setTowerImage(this.getClass().getResource("/Arrow Tower.png"));
+		setShootingImage(this.getClass().getResource("/Shooting Arrow Tower.png"));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 
 	@Override
@@ -38,11 +38,5 @@ public class ArrowTower extends Tower{
 	@Override
 	public void visit(Naji n) {
 		n.setHp(n.getHp()-n.getPoisoningPower()*30);	
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 }

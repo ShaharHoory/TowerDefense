@@ -1,4 +1,4 @@
-package creeps;
+package gameLayers;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,9 +8,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
+import creeps.Creep;
+import timer.Tickable;
+import timer.Timer;
 import utils.Pair;
-import utils.Tickable;
-import utils.Timer;
 
 import java.awt.Image;
 
@@ -38,28 +39,28 @@ public class GameCreeps extends JComponent implements Tickable {
 		Image image;
 		for (Creep creep : creeps) {
 			if(creep._x<31.99999){
-				if(creep.direction){
-					if(creep.walking){
-						creep.setIcon(new ImageIcon(creep.rightW));
+				if(creep.isDirection()){
+					if(creep.isWalking()){
+						creep.setIcon(new ImageIcon(creep.getRightW()));
 						image = creep.getIcon().getImage();
-						creep.walking = !creep.walking;
+						creep.setWalking(!creep.isWalking());
 					}
 					else{
-						creep.setIcon(new ImageIcon(creep.rightS));
+						creep.setIcon(new ImageIcon(creep.getRightS()));
 						image = creep.getIcon().getImage();
-						creep.walking = !creep.walking;
+						creep.setWalking(!creep.isWalking());
 					}
 				}
 				else{
-					if(creep.walking){
-						creep.setIcon(new ImageIcon(creep.leftW));
+					if(creep.isWalking()){
+						creep.setIcon(new ImageIcon(creep.getLeftW()));
 						image = creep.getIcon().getImage();
-						creep.walking = !creep.walking;
+						creep.setWalking(!creep.isWalking());
 					}
 					else{
-						creep.setIcon(new ImageIcon(creep.leftS));
+						creep.setIcon(new ImageIcon(creep.getLeftS()));
 						image = creep.getIcon().getImage();
-						creep.walking = !creep.walking;
+						creep.setWalking(!creep.isWalking());
 					}
 				}
 				//g.drawOval((int)(creep._x*25), (int)(creep._y*25), 20, 20);
@@ -72,32 +73,32 @@ public class GameCreeps extends JComponent implements Tickable {
 	@Override
 	public void tickHappened() {
 		for (Creep creep : creeps) {
-			Pair moveTo = _directionsMat[creep.boardY][creep.boardX];
+			Pair moveTo = _directionsMat[creep.getBoardY()][creep.getBoardX()];
 			if(moveTo.get_x()>0){ //right
 				double moveX = creep._x+creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
 				creep._x = moveX;	
-				if((int)(creep._x+0.00001)>creep.boardX)
-					creep.boardX++;	
-				creep.direction=true;				
+				if((int)(creep._x+0.00001)>creep.getBoardX())
+					creep.setBoardX(creep.getBoardX() + 1);	
+				creep.setDirection(true);				
 			}
 			else if(moveTo.get_x()<0){ //left
 				double moveX = creep._x-creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
 				creep._x = moveX;	
-				if((Math.ceil((creep._x-0.00001))<creep.boardX))
-					creep.boardX--;
-				creep.direction=false;
+				if((Math.ceil((creep._x-0.00001))<creep.getBoardX()))
+					creep.setBoardX(creep.getBoardX() - 1);
+				creep.setDirection(false);
 			}
 			else if (moveTo.get_y()>0){ //down
 				double moveY = creep._y+creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
 				creep._y = moveY;	
-				if((int)(creep._y+0.00001)>creep.boardY)
-					creep.boardY++;	
+				if((int)(creep._y+0.00001)>creep.getBoardY())
+					creep.setBoardY(creep.getBoardY() + 1);	
 			}
 			else { //up
 				double moveY = creep._y-creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
 				creep._y = moveY;	
-				if((Math.ceil((creep._y-0.00001))<creep.boardY))
-					creep.boardY--;
+				if((Math.ceil((creep._y-0.00001))<creep.getBoardY()))
+					creep.setBoardY(creep.getBoardY() - 1);
 			}		
 			creep.steps+=creep.getSpeed()*((double)Timer.NORMAL_TICK/1000);
 			if(creep.get_poisoningTimeLeft()>0){

@@ -1,4 +1,4 @@
-package utils;
+package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import gameLayers.Game;
 
 public class LosingWindow extends JFrame implements MouseListener{
 
@@ -56,8 +58,8 @@ public class LosingWindow extends JFrame implements MouseListener{
 		_score = new JLabel("\n" + "\n" + "Your score: 0");
 		_livesLabel = new JLabel("lives: 0");
 		_passedEnemies = new JLabel("Amount of enemies who passed the finish point: 20");
-		_deadCreeps = new JLabel("Creeps Killed: " + _game._deadCreeps);
-		_timePassed = new JLabel("Time Passed: " + _game.timer.toString());
+		_deadCreeps = new JLabel("Creeps Killed: " + _game.get_deadCreeps());
+		_timePassed = new JLabel("Time Passed: " + _game.getTimer().toString());
 		//size
 		_score.setFont(new Font("Tahoma", Font.BOLD, 14));
 		_livesLabel.setFont(new Font("Tahoma", Font.BOLD, 14));

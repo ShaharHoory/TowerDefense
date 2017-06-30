@@ -9,16 +9,16 @@ import creeps.Guli;
 import creeps.Knight;
 import creeps.Mike;
 import creeps.Naji;
-import utils.GameWindow;
+import gameLayers.GameWindow;
 
 public class PoisonTower extends Tower{
 	public PoisonTower(int x , int y) {
 		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;		
-		rangeColor = Color.green;
-		towerImage = this.getClass().getResource("/Poison Tower.png");
-		shootingImage = this.getClass().getResource("/Shooting Poison Tower.png");
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.green);
+		setTowerImage(this.getClass().getResource("/Poison Tower.png"));
+		setShootingImage(this.getClass().getResource("/Shooting Poison Tower.png"));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 
 	@Override
@@ -41,11 +41,5 @@ public class PoisonTower extends Tower{
 	public void visit(Naji n) {
 		n.setPoisoningPower(1.5);
 		n.set_poisoningTimeLeft(5000);
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 }

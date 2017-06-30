@@ -15,10 +15,10 @@ public class LavaTower extends Tower{
 	public LavaTower(int x , int y) {
 		super(1, 1 , x , y);
 		this.type = TYPE.ASSASIN;
-		rangeColor = Color.ORANGE;
-		towerImage = (this.getClass().getResource("/Lava Tower.png"));
-		shootingImage = (this.getClass().getResource("/Shooting Lava Tower.png"));
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.ORANGE);
+		setTowerImage((this.getClass().getResource("/Lava Tower.png")));
+		setShootingImage((this.getClass().getResource("/Shooting Lava Tower.png")));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 
 	@Override
@@ -39,11 +39,5 @@ public class LavaTower extends Tower{
 	@Override
 	public void visit(Naji n) {
 		n.setHp(n.getHp()-n.getPoisoningPower()*15);		
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 }

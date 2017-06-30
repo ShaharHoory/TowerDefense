@@ -15,10 +15,10 @@ public class SamTower extends Tower{
 	public SamTower(int x , int y) {
 		super(2, 2 , x , y);
 		this.type = TYPE.ASSASIN;
-		rangeColor = Color.BLACK;
-		towerImage = this.getClass().getResource("/Sam Tower.png");
-		shootingImage = this.getClass().getResource("/Shooting Sam Tower.png");
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.BLACK);
+		setTowerImage(this.getClass().getResource("/Sam Tower.png"));
+		setShootingImage(this.getClass().getResource("/Shooting Sam Tower.png"));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 
 	@Override
@@ -45,12 +45,6 @@ public class SamTower extends Tower{
 	public void visit(Naji n) {
 		n.set_slowTimeLeft(3000);
 		n.setSpeed(n.INIT_SPEED/2);
-		
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
 		
 	}
 

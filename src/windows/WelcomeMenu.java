@@ -1,4 +1,4 @@
-package utils;
+package windows;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,7 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import gameLayers.GameWindow;
 import highscores.RecordsManager;
+import utils.Loader;
 
 
 public class WelcomeMenu extends JFrame implements ActionListener {
@@ -50,7 +52,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 		
 		_levelLoader = new Loader();
 		_levelLoader.load("Levels.txt");
-		_numOfLevels = _levelLoader.levels.size();
+		_numOfLevels = _levelLoader.getLevels().size();
 		_recordsManager = new RecordsManager();
 		
 		//menu content panel

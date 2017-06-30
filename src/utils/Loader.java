@@ -12,10 +12,10 @@ public class Loader {
 	private static final char LEFT = 'L';
 	private static final char NOT_IN_PATH = '.';
 	
-	Vector<Pair[][]> levels;
+	private Vector<Pair[][]> levels;
 	
 	public Loader(){
-		levels = new Vector<>();
+		setLevels(new Vector<>());
 	}
 	
 	public boolean load(String levelsFile) throws IOException{
@@ -29,7 +29,7 @@ public class Loader {
 			// end of level
 			if (line.trim().isEmpty()) {
 				if (level!=null) {
-					levels.add(level);
+					getLevels().add(level);
 					level = null;
 				}
 				continue;
@@ -64,7 +64,7 @@ public class Loader {
 			row++;
 		}
 		if (level!=null) {
-			levels.add(level);
+			getLevels().add(level);
 			level = null;
 		}
 		br.close();
@@ -85,6 +85,14 @@ public class Loader {
 			return new Pair(0,0);
 		default: return null;
 		}
+	}
+
+	public Vector<Pair[][]> getLevels() {
+		return levels;
+	}
+
+	public void setLevels(Vector<Pair[][]> levels) {
+		this.levels = levels;
 	}
 	
 	

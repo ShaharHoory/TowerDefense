@@ -1,4 +1,4 @@
-package utils;
+package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import gameLayers.Game;
 import highscores.RecordsManager;
 
 public class winningWindow extends JFrame implements MouseListener{
@@ -52,7 +53,7 @@ public class winningWindow extends JFrame implements MouseListener{
 		_game = game;
 		_saved = false;
 		_recordsManager = new RecordsManager();
-		_score = (_game._lives*_game._deadCreeps)/(_game.gameTowers.getNumOfTowers()+_game.getNumOfMinutes());
+		_score = (_game.get_lives()*_game.get_deadCreeps())/(_game.getGameTowers().getNumOfTowers()+_game.getNumOfMinutes());
 		
 		//mainPanel
 		JLabel lostLabel = new JLabel("You Won!");
@@ -66,10 +67,10 @@ public class winningWindow extends JFrame implements MouseListener{
 		_infoPanel.setSize(100, 150);
 		//text
 		_scoreLabel = new JLabel("\n" + "\n" + "Your score: " + _score);
-		_livesLabel = new JLabel("lives: " + _game._lives);
-		_passedEnemies = new JLabel("Amount of enemies who passed the finish point: " + _game._passedFinishPointCreeps);
-		_deadCreeps = new JLabel("Creeps Killed: " + _game._deadCreeps);
-		_timePassed = new JLabel("Time Passed: " + _game.timer.toString());
+		_livesLabel = new JLabel("lives: " + _game.get_lives());
+		_passedEnemies = new JLabel("Amount of enemies who passed the finish point: " + _game.get_passedFinishPointCreeps());
+		_deadCreeps = new JLabel("Creeps Killed: " + _game.get_deadCreeps());
+		_timePassed = new JLabel("Time Passed: " + _game.getTimer().toString());
 		//size
 		_scoreLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		_livesLabel.setFont(new Font("Tahoma", Font.BOLD, 14));

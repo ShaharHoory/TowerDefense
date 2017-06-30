@@ -15,10 +15,10 @@ public class MagicTower extends Tower {
 	public MagicTower(int x , int y) {
 		super(1, 1 , x , y);
 		this.type = TYPE.REGULAR;
-		rangeColor = Color.PINK;
-		towerImage = this.getClass().getResource("/Magic Tower.png");
-		shootingImage = this.getClass().getResource("/Shooting Magic Tower.png");
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.PINK);
+		setTowerImage(this.getClass().getResource("/Magic Tower.png"));
+		setShootingImage(this.getClass().getResource("/Shooting Magic Tower.png"));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 
 	@Override
@@ -39,12 +39,6 @@ public class MagicTower extends Tower {
 	@Override
 	public void visit(Naji n) {
 		n.setHp(n.getHp()-n.getPoisoningPower()*10);		
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

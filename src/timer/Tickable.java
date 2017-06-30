@@ -1,4 +1,4 @@
-package utils;
+package timer;
 
 public interface Tickable {
 	

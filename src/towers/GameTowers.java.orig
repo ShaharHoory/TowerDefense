@@ -31,7 +31,11 @@ public class GameTowers extends JComponent implements Tickable{
 	LinkedList<Creep> creeps;
 	Tower visibleRangeTower;
 	Board board;
+<<<<<<< HEAD
 	int numOfTowers;
+=======
+	private int numOfTowers;
+>>>>>>> buttons
 	
 	
 	public GameTowers(Board board , LinkedList<Creep> creeps){
@@ -40,7 +44,11 @@ public class GameTowers extends JComponent implements Tickable{
 		towersLeft = new HashMap<>();
 		this.creeps = creeps;
 		this.board = board; 
+<<<<<<< HEAD
+		numOfTowers = 0;
+=======
 		this.numOfTowers = 0;
+>>>>>>> buttons
 		setSize(new Dimension(800, 800));
 		setPreferredSize(new Dimension(800, 800));
 	}

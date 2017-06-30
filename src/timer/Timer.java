@@ -1,22 +1,22 @@
-package utils;
+package timer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
-import towers.GameTowers;
+import gameLayers.GameTowers;
 
 public class Timer implements ActionListener {
 	protected LinkedList<Tickable> timedElements;
 	protected javax.swing.Timer t;
 	public static final int NORMAL_TICK = 100;
-	protected int tick;
+	private int tick;
 	private int numOfTicks;
 	
 	public Timer(){
 		timedElements = new LinkedList<>();
-		tick = NORMAL_TICK;
-		t = new javax.swing.Timer(tick, this);
+		setTick(NORMAL_TICK);
+		t = new javax.swing.Timer(getTick(), this);
 		numOfTicks = 0;
 	}
 
@@ -39,13 +39,13 @@ public class Timer implements ActionListener {
 	}
 	
 	public void fastForward(){
-		tick = NORMAL_TICK/2;
-		t.setDelay(tick);
+		setTick(NORMAL_TICK/2);
+		t.setDelay(getTick());
 	}
 	
 	public void regularSpeed(){
-		tick = NORMAL_TICK;
-		t.setDelay(tick);
+		setTick(NORMAL_TICK);
+		t.setDelay(getTick());
 	}
 	
 	public void notifyEveryone(){
@@ -64,8 +64,8 @@ public class Timer implements ActionListener {
 
 	public void stop() {
 		t.stop();	
-		tick = NORMAL_TICK;
-		t.setDelay(tick);
+		setTick(NORMAL_TICK);
+		t.setDelay(getTick());
 	}
 	
 	public String toString(){
@@ -79,5 +79,13 @@ public class Timer implements ActionListener {
 		else
 			return (seconds/60)+":"+(seconds%60);
 		
+	}
+
+	public int getTick() {
+		return tick;
+	}
+
+	public void setTick(int tick) {
+		this.tick = tick;
 	}
 }

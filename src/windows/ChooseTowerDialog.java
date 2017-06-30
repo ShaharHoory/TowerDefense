@@ -1,4 +1,4 @@
-package towers;
+package windows;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,6 +13,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import towers.*;
+import windows.*;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,8 +24,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import gameLayers.Game;
+import gameLayers.GameTowers;
+import gameLayers.GameWindow;
 import javafx.scene.control.RadioButton;
-import utils.*;
 
 public class ChooseTowerDialog extends JDialog implements ActionListener{
 	Game _game;

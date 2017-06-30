@@ -6,31 +6,31 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 
 import creeps.Creep;
-import utils.Tickable;
+import timer.Tickable;
 import utils.Visitor;
 
-public abstract class Tower implements Visitor,Tickable {
+public abstract class Tower implements Visitor{
 	protected int threatArea;
-	protected enum TYPE{
+	public enum TYPE{
 		REGULAR,
 		ASSASIN
 	}
-	protected TYPE type;
-	protected int attackSpeed;
-	protected ImageIcon icon;
+	public TYPE type;
+	private int attackSpeed;
+	private ImageIcon icon;
 	int x;
 	int y;
-	int timeToShoot;
-	Color rangeColor;
-	protected URL towerImage;
-	protected URL shootingImage;
+	private int timeToShoot;
+	private Color rangeColor;
+	private URL towerImage;
+	private URL shootingImage;
 
 	public Tower(int threatArea, int attackSpeed , int x , int y) {
 		this.threatArea = threatArea;
-		this.attackSpeed = attackSpeed;
+		this.setAttackSpeed(attackSpeed);
 		this.x = x;
 		this.y = y;
-		timeToShoot=0;
+		setTimeToShoot(0);
 	}
 	
 	public int getThreatArea() {
@@ -51,6 +51,54 @@ public abstract class Tower implements Visitor,Tickable {
 	
 	public int getY() {
 		return y;
+	}
+
+	public Color getRangeColor() {
+		return rangeColor;
+	}
+
+	public void setRangeColor(Color rangeColor) {
+		this.rangeColor = rangeColor;
+	}
+
+	public int getTimeToShoot() {
+		return timeToShoot;
+	}
+
+	public void setTimeToShoot(int timeToShoot) {
+		this.timeToShoot = timeToShoot;
+	}
+
+	public ImageIcon getIcon() {
+		return icon;
+	}
+
+	public void setIcon(ImageIcon icon) {
+		this.icon = icon;
+	}
+
+	public URL getShootingImage() {
+		return shootingImage;
+	}
+
+	public void setShootingImage(URL shootingImage) {
+		this.shootingImage = shootingImage;
+	}
+
+	public URL getTowerImage() {
+		return towerImage;
+	}
+
+	public void setTowerImage(URL towerImage) {
+		this.towerImage = towerImage;
+	}
+
+	public int getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	public void setAttackSpeed(int attackSpeed) {
+		this.attackSpeed = attackSpeed;
 	}
 	
 }

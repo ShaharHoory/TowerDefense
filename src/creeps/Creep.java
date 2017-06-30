@@ -5,12 +5,12 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import timer.Tickable;
 import utils.Pair;
-import utils.Tickable;
 import utils.Visited;
 import utils.Visitor;
 
-public abstract class Creep extends JPanel implements Visited,Tickable {
+public abstract class Creep extends JPanel implements Visited{
 
 	public double INIT_SPEED;
 	private double _speed;
@@ -29,8 +29,8 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 	protected URL rightS;
 	protected URL leftW;
 	protected URL rightW;
-	boolean direction = true; //right - true , left - false
-	boolean walking = false; // staying - false
+	private boolean direction = true; //right - true , left - false
+	private boolean walking = false; // staying - false
 	
 	public Creep(int speed, ImageIcon icon, double x , double y , int reductionParameter) {
 		setSpeed(speed);
@@ -162,5 +162,21 @@ public abstract class Creep extends JPanel implements Visited,Tickable {
 
 	public void setRightW(URL rightW) {
 		this.rightW = rightW;
+	}
+
+	public boolean isDirection() {
+		return direction;
+	}
+
+	public void setDirection(boolean direction) {
+		this.direction = direction;
+	}
+
+	public boolean isWalking() {
+		return walking;
+	}
+
+	public void setWalking(boolean walking) {
+		this.walking = walking;
 	}
 }

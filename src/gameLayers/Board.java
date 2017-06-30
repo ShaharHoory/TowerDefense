@@ -1,4 +1,4 @@
-package utils;
+package gameLayers;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,11 +19,13 @@ import javax.swing.JPanel;
 import com.sun.xml.internal.bind.v2.runtime.reflect.Lister.Pack;
 
 import creeps.Creep;
+import timer.Tickable;
 import towers.ArrowTower;
 import towers.Tower;
+import utils.Pair;
 
 
-public class Board extends JPanel implements Tickable{
+public class Board extends JPanel{
 	
 	Pair[][] _directionsMat;
 	private GridBagConstraints _gbc;
@@ -58,12 +60,6 @@ public class Board extends JPanel implements Tickable{
 			}
 		}
 	} */
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void createMap(){
         JLabel label;
@@ -72,7 +68,7 @@ public class Board extends JPanel implements Tickable{
 			for(int j=0; j<_directionsMat[i].length; j++){
 				_gbc.gridx = j;
 				ImageIcon backgroundImage;
-				if(_directionsMat[i][j]._x!=0 || _directionsMat[i][j]._y!=0){
+				if(_directionsMat[i][j].get_x()!=0 || _directionsMat[i][j].get_y()!=0){
 					backgroundImage = new ImageIcon(GameWindow.class.getResource("/floor.png"));
 					if(j==0){
 						startX = j;

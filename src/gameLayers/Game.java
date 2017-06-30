@@ -1,4 +1,4 @@
-package utils;
+package gameLayers;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,34 +13,33 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import creeps.GameCreeps;
-import towers.ChooseTowerDialog;
-import towers.GameTowers;
+import timer.Timer;
 import towers.Tower;
+import windows.ChooseTowerDialog;
 
 public class Game extends JPanel implements MouseListener {
 
-	protected Timer timer;
+	private Timer timer;
 	protected Board _board;
-	protected int _lives;
-	protected int _currWave;
-	protected int _passedFinishPointCreeps;
-	protected int _deadCreeps;	
-	protected boolean _isWave;
+	private int _lives;
+	private int _currWave;
+	private int _passedFinishPointCreeps;
+	private int _deadCreeps;	
+	private boolean _isWave;
 	protected GameTowers gameTowers;
-	protected GameCreeps gameCreeps;
+	private GameCreeps gameCreeps;
 	
 	public Game(Board board , Timer timer) {
 		super(new BorderLayout());
-		_lives = 20;
-		_currWave = 0; // it's 0 until the user pushes the nextWave button
-		_passedFinishPointCreeps = 0;
-		_deadCreeps = 0;
+		set_lives(20);
+		set_currWave(0); // it's 0 until the user pushes the nextWave button
+		set_passedFinishPointCreeps(0);
+		set_deadCreeps(0);
 		_board = board;	
-		_isWave = false;
-		this.timer = timer;
-		gameCreeps = new GameCreeps(_board._directionsMat , timer);
-		gameTowers = new GameTowers(_board , gameCreeps.getCreeps());		
+		set_isWave(false);
+		this.setTimer(timer);
+		setGameCreeps(new GameCreeps(_board._directionsMat , timer));
+		gameTowers = new GameTowers(_board , getGameCreeps().getCreeps());		
 		addTowerTypes();
 		this.add(_board, BorderLayout.CENTER);
 		this.setVisible(true);
@@ -48,7 +47,7 @@ public class Game extends JPanel implements MouseListener {
 	}
 	
 	public boolean lost() {
-		return _lives <= 0;
+		return get_lives() <= 0;
 	}
 
 	@Override
@@ -61,8 +60,8 @@ public class Game extends JPanel implements MouseListener {
 			gameTowers.repaint();
 		}
 		else{
-			if(!_isWave){
-				if(_board._directionsMat[yLoc][xLoc]._x!=0 || _board._directionsMat[yLoc][xLoc]._y!=0)
+			if(!is_isWave()){
+				if(_board._directionsMat[yLoc][xLoc].get_x()!=0 || _board._directionsMat[yLoc][xLoc].get_y()!=0)
 					JOptionPane.showMessageDialog(this, "You may put towers only on grass tiles!", "Error" , 0);
 				else{
 					ChooseTowerDialog dialog = new ChooseTowerDialog(this , xLoc , yLoc);
@@ -108,7 +107,7 @@ public class Game extends JPanel implements MouseListener {
 	}
 	
 	public int getNumOfMinutes() {
-		String time = timer.toString();
+		String time = getTimer().toString();
 		int minutesIndex = time.indexOf(':');
 		String minutesString = time.substring(0, minutesIndex);
 		return Integer.parseInt(minutesString);
@@ -140,5 +139,45 @@ public class Game extends JPanel implements MouseListener {
 
 	public GameTowers getGameTowers() {
 		return gameTowers;
+	}
+
+	public Timer getTimer() {
+		return timer;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+
+	public boolean is_isWave() {
+		return _isWave;
+	}
+
+	public void set_isWave(boolean _isWave) {
+		this._isWave = _isWave;
+	}
+
+	public void set_deadCreeps(int _deadCreeps) {
+		this._deadCreeps = _deadCreeps;
+	}
+
+	public GameCreeps getGameCreeps() {
+		return gameCreeps;
+	}
+
+	public void setGameCreeps(GameCreeps gameCreeps) {
+		this.gameCreeps = gameCreeps;
+	}
+
+	public void set_currWave(int _currWave) {
+		this._currWave = _currWave;
+	}
+
+	public void set_lives(int _lives) {
+		this._lives = _lives;
+	}
+
+	public void set_passedFinishPointCreeps(int _passedFinishPointCreeps) {
+		this._passedFinishPointCreeps = _passedFinishPointCreeps;
 	}
 }

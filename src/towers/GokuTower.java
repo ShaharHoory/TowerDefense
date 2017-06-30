@@ -20,10 +20,10 @@ public class GokuTower extends Tower {
 		this.type = TYPE.REGULAR;
 		_hitParameterH = 1;
 		_numOfHits = 0;
-		rangeColor = Color.RED;
-		towerImage = (this.getClass().getResource("/Goku Tower.png"));
-		shootingImage = (this.getClass().getResource("/Shooting Goku Tower.png"));
-		icon = new ImageIcon(towerImage);
+		setRangeColor(Color.RED);
+		setTowerImage((this.getClass().getResource("/Goku Tower.png")));
+		setShootingImage((this.getClass().getResource("/Shooting Goku Tower.png")));
+		setIcon(new ImageIcon(getTowerImage()));
 	}
 	
 	//updates the numOfHits in accordance
@@ -55,12 +55,6 @@ public class GokuTower extends Tower {
 	public void visit(Naji n) {
 		n.setHp(n.getHp()-(_hitParameterH*n.getReductionParameterK()));
 		hitted();
-	}
-
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

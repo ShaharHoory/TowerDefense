@@ -2,7 +2,7 @@ package creeps;
 
 import javax.swing.ImageIcon;
 
-import utils.GameWindow;
+import gameLayers.GameWindow;
 import utils.Visitor;
 
 public class Guli extends Creep {
@@ -27,12 +27,6 @@ public class Guli extends Creep {
 	@Override
 	public void slow(int seconds) {
 		// TODO Auto-generated method stub
-	}
-	
-	@Override
-	public void tickHappened() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
