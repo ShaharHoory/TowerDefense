@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entities.towers.Tower;
-import run.Game;
+import game.Game;
 import run.TowerDefence;
 
 public class TowerSelectionDialog extends JDialog implements ActionListener {

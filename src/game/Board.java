@@ -1,4 +1,4 @@
-package gameMap;
+package game;
 
 import java.awt.GridBagLayout;
 import java.awt.Point;

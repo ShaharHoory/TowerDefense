@@ -1,4 +1,5 @@
-package menus;
+package guiComponents.menus;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,14 +16,16 @@ import java.util.Vector;
 
 import javax.swing.*;
 
+import run.TowerDefence;
+
 public class WelocmeMenu extends JPanel implements ActionListener {
 
 	protected JLabel _headline;
 	protected JButton _playButton;
-	protected JButton _exitButton;
+	public JButton _exitButton;
 	protected JButton _backButton;
 	protected JButton _startButton;
-	protected JComboBox<Integer> _levelSelect;
+	public JComboBox<Integer> _levelSelect;
 	protected JLabel _select;
 	protected JPanel _buttons;
 	protected JPanel _lvlSelect;
@@ -31,20 +34,20 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 
 	public WelocmeMenu() {
 		super();
-		this.setLayout(new BorderLayout(30,30));
+		this.setLayout(new BorderLayout(30, 30));
 		this.setPreferredSize(new Dimension(800, 800));
 		this.setMaximumSize(getPreferredSize());
 		this.setMinimumSize(getPreferredSize());
 		this.setSize(getPreferredSize());
 		this.setBackground(Color.lightGray);
-		_headline = new JLabel(new ImageIcon("icons/towerDefenceLogo.png"));
-		//_headline.setFont(new Font("Tahoma", Font.BOLD, 100));
+		_headline = new JLabel(new ImageIcon(TowerDefence.class.getResource("/towerDefenceLogo.png")));
+		_headline.setFont(new Font("Tahoma", Font.BOLD, 100));
 		_headline.setVisible(true);
 		_headline.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(_headline, BorderLayout.NORTH);
+		 this.add(_headline, BorderLayout.NORTH);
 		_select = new JLabel("Select a level :");
 		_select.setHorizontalAlignment(SwingConstants.LEFT);
-		_select.setFont(new Font("Tahoma",Font.BOLD,24));
+		_select.setFont(new Font("Tahoma", Font.BOLD, 24));
 		_select.setVisible(false);
 		_select.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(_select, BorderLayout.CENTER);
@@ -57,28 +60,28 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		if (e.getSource() == _playButton) {
 			_playButton.setVisible(false);
 			_exitButton.setVisible(false);
-			//_levelSelect.setVisible(true);
+			// _levelSelect.setVisible(true);
 			_select.setVisible(true);
 			_lvlSelect.setVisible(true);
 			_backButton.setVisible(true);
 			_startButton.setVisible(true);
-			//_buttons.repaint();
-			//_buttons.revalidate();
-			//this.repaint();
-			//this.revalidate();
+			// _buttons.repaint();
+			// _buttons.revalidate();
+			// this.repaint();
+			// this.revalidate();
 		}
 		if (e.getSource() == _backButton) {
 			_playButton.setVisible(true);
 			_exitButton.setVisible(true);
-			//_levelSelect.setVisible(false);
+			// _levelSelect.setVisible(false);
 			_select.setVisible(false);
 			_lvlSelect.setVisible(false);
 			_backButton.setVisible(false);
 			_startButton.setVisible(false);
-			//_buttons.repaint();
-			//_buttons.revalidate();
-			//this.repaint();
-			//this.revalidate();
+			// _buttons.repaint();
+			// _buttons.revalidate();
+			// this.repaint();
+			// this.revalidate();
 		}
 	}
 
@@ -117,36 +120,32 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		b.setContentAreaFilled(true);
 		_buttons.add(b, CENTER_ALIGNMENT);
 		_buttons.add(Box.createVerticalStrut(25));
-		//b.setBounds(b.getBounds().x, b.getBounds().y, 200, 100);
+		// b.setBounds(b.getBounds().x, b.getBounds().y, 200, 100);
 	}
 
-	/*private void initializeLevelSelect() {
-		Vector<Integer> levels = new Vector<Integer>();
-		for (int i = 1; i<=5; i++)
-			levels.add(new Integer(i));
-		this._levelSelect = new JComboBox<>(levels);
-		_levelSelect.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		_buttons.add(_levelSelect);
-		Dimension size = new Dimension(100, 50);
-		_levelSelect.setMinimumSize(size);
-		_levelSelect.setMaximumSize(size);
-		_levelSelect.setVisible(false);
-	}*/
-	
+	/*
+	 * private void initializeLevelSelect() { Vector<Integer> levels = new
+	 * Vector<Integer>(); for (int i = 1; i<=5; i++) levels.add(new Integer(i));
+	 * this._levelSelect = new JComboBox<>(levels); _levelSelect.setFont(new
+	 * Font("Tahoma", Font.PLAIN, 24)); _buttons.add(_levelSelect); Dimension
+	 * size = new Dimension(100, 50); _levelSelect.setMinimumSize(size);
+	 * _levelSelect.setMaximumSize(size); _levelSelect.setVisible(false); }
+	 */
+
 	private void initializeLvlSelect() {
 		Color transparent = new Color(0, 0, 0, 0);
 		_lvlSelect = new JPanel();
 		_lvlSelect.setLayout(new FlowLayout());
 		_lvlSelect.setMaximumSize(new Dimension(800, 225));
 		_lvlSelect.setBackground(transparent);
-		//_buttons.add(_select, CENTER_ALIGNMENT);
+		// _buttons.add(_select, CENTER_ALIGNMENT);
 		JButton leftArrow = new JButton();
-		ImageIcon leftArrowIcon = new ImageIcon("icons/leftArrow.png");
+		ImageIcon leftArrowIcon = new ImageIcon(TowerDefence.class.getResource("/leftArrow.png"));
 		leftArrow.setIcon(leftArrowIcon);
 		leftArrow.setSelected(false);
 		leftArrow.setBackground(Color.LIGHT_GRAY);
 		leftArrow.setForeground(Color.LIGHT_GRAY);
-		leftArrow.setSize(200,200);
+		leftArrow.setSize(200, 200);
 		leftArrow.setBorderPainted(false);
 		leftArrow.setFocusPainted(false);
 		leftArrow.addActionListener(new ActionListener() {
@@ -157,24 +156,24 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		});
 		leftArrow.setMinimumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
 		leftArrow.setMaximumSize(new Dimension(leftArrowIcon.getIconWidth(), leftArrowIcon.getIconHeight()));
-		leftArrow.setSize(100,100);
+		leftArrow.setSize(100, 100);
 		_lvlSelect.add(leftArrow, FlowLayout.LEFT);
 		_lvl = 1;
-		_lvlPreview = new JLabel(new ImageIcon("icons/level1.png"));
-		//_lvlPreview.setBackground(Color.WHITE);
-		//_lvlPreview.setMinimumSize(new Dimension(300, 300));
-		//_lvlPreview.setHorizontalTextPosition(SwingConstants.CENTER);
-		//_lvlPreview.setVerticalTextPosition(SwingConstants.CENTER);
-		//_lvlPreview.setMaximumSize(new Dimension(300, 300));
-		//_lvlPreview.setSize(getMaximumSize());
+		_lvlPreview = new JLabel(new ImageIcon(TowerDefence.class.getResource("/level1.png")));
+		// _lvlPreview.setBackground(Color.WHITE);
+		// _lvlPreview.setMinimumSize(new Dimension(300, 300));
+		// _lvlPreview.setHorizontalTextPosition(SwingConstants.CENTER);
+		// _lvlPreview.setVerticalTextPosition(SwingConstants.CENTER);
+		// _lvlPreview.setMaximumSize(new Dimension(300, 300));
+		// _lvlPreview.setSize(getMaximumSize());
 		_lvlSelect.add(_lvlPreview, FlowLayout.CENTER);
 		JButton rightArrow = new JButton();
-		ImageIcon rightArrowIcon = new ImageIcon("icons/rightArrow.png");
+		ImageIcon rightArrowIcon = new ImageIcon(TowerDefence.class.getResource("/rightArrow.png"));
 		rightArrow.setIcon(rightArrowIcon);
 		rightArrow.setSelected(false);
 		rightArrow.setBackground(Color.LIGHT_GRAY);
 		rightArrow.setForeground(Color.WHITE);
-		rightArrow.setSize(200,200);
+		rightArrow.setSize(200, 200);
 		rightArrow.setContentAreaFilled(true);
 		rightArrow.setBorderPainted(false);
 		rightArrow.setFocusPainted(false);
@@ -189,28 +188,28 @@ public class WelocmeMenu extends JPanel implements ActionListener {
 		_buttons.add(_lvlSelect, CENTER_ALIGNMENT);
 		_lvlSelect.setVisible(false);
 	}
-	
+
 	private void nextLvl() {
-		if (_lvl<5)
+		if (_lvl < 5)
 			_lvl++;
 		else
 			_lvl = 1;
-		_lvlPreview.setIcon(new ImageIcon("icons/level"+_lvl+".png"));
+		_lvlPreview.setIcon(new ImageIcon(TowerDefence.class.getResource("/level" + _lvl + ".png")));
 	}
-	
+
 	private void prevLvl() {
-		if (_lvl>1)
+		if (_lvl > 1)
 			_lvl--;
 		else
-			_lvl=5;
-		_lvlPreview.setIcon(new ImageIcon("icons/level"+_lvl+".png"));
+			_lvl = 5;
+		_lvlPreview.setIcon(new ImageIcon(TowerDefence.class.getResource("/level" + _lvl + ".png")));
 	}
-	
+
 	public void exit() {
 		String ObjButtons[] = { "Yes", "No" };
 		int PromptResult = JOptionPane.showOptionDialog(this, "Are you sure you want to exit?",
-				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-				ObjButtons, ObjButtons[1]);
+				"Online Examination System", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+				ObjButtons[1]);
 		if (PromptResult == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}

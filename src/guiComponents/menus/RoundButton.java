@@ -1,4 +1,4 @@
-package menus;
+package guiComponents.menus;
 
 import java.awt.Color;
 import java.awt.Component;

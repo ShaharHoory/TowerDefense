@@ -1,4 +1,4 @@
-package gameMap;
+package game;
 
 public class GameStats {
 	public int life;

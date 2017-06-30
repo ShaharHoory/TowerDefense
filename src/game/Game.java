@@ -1,4 +1,4 @@
-package run;
+package game;
 
 import java.awt.BorderLayout;
 import java.awt.Point;
@@ -9,21 +9,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import entities.towers.Tower;
-import gameMap.Board;
-import gameMap.GameStats;
 import guiComponents.BoardPresentation;
 import guiComponents.CreepsPresentation;
+import guiComponents.GameToolbar;
 import guiComponents.TowerSelectionDialog;
 import guiComponents.TowersPresentation;
 import pace.Timer;
 
 public class Game extends JPanel implements MouseListener {
-	protected Timer timer;
+	public Timer timer;
 	protected Board board;
 	protected BoardPresentation boardGUI;
 	public CreepsPresentation gameCreeps;
 	public TowersPresentation gameTowers;
-	protected GameStats gameStats;
+	public GameStats gameStats;
+	public GameToolbar gameToolbar;
 
 	public Game(Board board, Timer timer) {
 		super(new BorderLayout());
@@ -32,6 +32,7 @@ public class Game extends JPanel implements MouseListener {
 		boardGUI = new BoardPresentation(board.blocksPartition());
 		gameCreeps = new CreepsPresentation(this.board.getDirectionMatrix());
 		gameTowers = new TowersPresentation(gameCreeps.creeps);
+		gameToolbar = new GameToolbar(this);
 		this.add(boardGUI, BorderLayout.CENTER);
 		this.setVisible(true);
 		boardGUI.addMouseListener(this);
